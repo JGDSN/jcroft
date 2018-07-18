@@ -13,15 +13,16 @@ public class JCroftConfiguration {
             throw new IllegalArgumentException("Please configure your proxy in settings/jcroft.cfg");
         }
         values = new HashMap<String, String>();
-        BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream(conf)));
-        String str;
-        while ((str = read.readLine()) != null) {
-            String[] s = str.split("=", 2);
-            if (s.length == 2) {
-                values.put(s[0], s[1]);
+
+        try (BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream(conf)))) {
+            String str;
+            while ((str = read.readLine()) != null) {
+                String[] s = str.split("=", 2);
+                if (s.length == 2) {
+                    values.put(s[0], s[1]);
+                }
             }
         }
-        read.close();
     }
 
     public static String getValue(String key) {

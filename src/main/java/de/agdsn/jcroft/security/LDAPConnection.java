@@ -13,6 +13,8 @@ import org.apache.directory.ldap.client.api.LdapConnection;
 import org.apache.directory.ldap.client.api.LdapNetworkConnection;
 import org.springframework.security.authentication.BadCredentialsException;
 
+import java.io.IOException;
+
 public class LDAPConnection {
     /**
      * Authenticates a user and returns his group id
@@ -32,9 +34,7 @@ public class LDAPConnection {
             String host = JCroftConfiguration.getValue("ldap_host");
             int port = JCroftConfiguration.getValueInt("ldap_port");
 
-            LdapConnection conn = new LdapNetworkConnection(host, port);
-
-            try {
+            try (LdapConnection conn = new LdapNetworkConnection(host, port)) {
                 conn.bind("uid=" + username + ",cn=users,cn=accounts,dc=agdsn,dc=de", password);
 
                 SearchRequest req = new SearchRequestImpl();
@@ -69,9 +69,17 @@ public class LDAPConnection {
 
 
                 conn.unBind();
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new BadCredentialsException("Error while authenticating you. Please try again soon");
             } catch (LdapAuthenticationException ex) {
+                ex.printStackTrace();
                 throw new BadCredentialsException("Your credentials were not accepted!");
             }
+
+
+
+
         } catch (LdapException e) {
             e.printStackTrace();
             throw new BadCredentialsException("Error while authenticating you. Please try again soon");

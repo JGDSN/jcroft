@@ -19,13 +19,8 @@ public class CustomAuthenticationProvider
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        if (1<=1) {
-            LDAPConnection.check(name, password);
-            return new UsernamePasswordAuthenticationToken(
-                    name, password, new ArrayList<>());
-        } else {
-            return null;
-        }
+        LDAPConnection.check(name, password);
+        return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
     }
 
     @Override
