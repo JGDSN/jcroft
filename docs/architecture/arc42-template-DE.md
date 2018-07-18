@@ -64,23 +64,14 @@ Szenarien, geordnet nach Prioritäten.
 Stakeholder {#_stakeholder}
 -----------
 
-  - AGDSN Support Team
+  - AGDSN Support Team (BUS)
+  - AGDSN Service Team (Service)
+  - AGDSN Computing Team (Computing)
   - AGDSN SysOps
   - German & European Law (DSGVO and so on)
   - AGDSN Vorstand
   - Datenschutzbeauftragter
-
-**Motivation.**
-
-Sie sollten die Projektbeteiligten und -betroffenen kennen, sonst
-erleben Sie später im Entwicklungsprozess Überraschungen. Diese
-Stakeholder bestimmen unter anderem Umfang und Detaillierungsgrad der
-von Ihnen zu leistenden Arbeit und Ergebnisse.
-
-**Form.**
-
-Tabelle mit Rollen- oder Personennamen, sowie deren Erwartungshaltung
-bezüglich der Architektur und deren Dokumentation.
+  - Finanzer
 
 +-----------------+-----------------+-----------------------------------+
 | Rolle           | Kontakt         | Erwartungshaltung                 |
