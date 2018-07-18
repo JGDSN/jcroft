@@ -1,23 +1,3 @@
-**Über arc42**
-
-arc42, das Template zur Dokumentation von Software- und
-Systemarchitekturen.
-
-Erstellt von Dr. Gernot Starke, Dr. Peter Hruschka und Mitwirkenden.
-
-Template Revision: 7.0 DE (asciidoc-based), January 2017
-
-© We acknowledge that this document uses material from the arc 42
-architecture template, <http://www.arc42.de>. Created by Dr. Peter
-Hruschka & Dr. Gernot Starke.
-
-> **Note**
->
-> Diese Version des Templates enthält Hilfen und Erläuterungen. Sie
-> dient der Einarbeitung in arc42 sowie dem Verständnis der Konzepte.
-> Für die Dokumentation eigener System verwenden Sie besser die *plain*
-> Version.
-
 Einführung und Ziele {#section-introduction-and-goals}
 ====================
 
@@ -84,20 +64,11 @@ Szenarien, geordnet nach Prioritäten.
 Stakeholder {#_stakeholder}
 -----------
 
-**Inhalt.**
-
-Expliziter Überblick über die Stakeholder des Systems, d.h. über alle
-Personen, Rollen oder Organisationen, die
-
--   die Architektur kennen sollten oder
-
--   von der Architektur überzeugt werden müssen,
-
--   mit Architektur oder Code arbeiten (z.B. Schnittstellen nutzen),
-
--   Dokumentation der Architektur für ihre eigene Arbeit benötigen,
-
--   Entscheidungen über das System und dessen Entwicklung treffen.
+  - AGDSN Support Team
+  - AGDSN SysOps
+  - German & European Law (DSGVO and so on)
+  - AGDSN Vorstand
+  - Datenschutzbeauftragter
 
 **Motivation.**
 

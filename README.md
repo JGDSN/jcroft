@@ -21,6 +21,7 @@ The new AG DSN management system
   - Java 8+ (plan: **Java 10**)
   - Maven
   - MySQL
+  - evtl. [Hazelcast.org](http://hazelcast.org) for scaling out
 
 ## How To
 
@@ -32,3 +33,10 @@ German introduction to maven:
 
   - http://jukusoft.com/2016/10/24/tutorial-eine-einfuehrung-in-maven-teil-1/
   - http://jukusoft.com/2016/10/29/tutorial-einfuehrung-maven-teil-2/
+  
+## Technical Requirements
+
+## Non-Technical Requirements
+
+  - failover node
+  - **Privacy by design** (DSGVO-conform)
