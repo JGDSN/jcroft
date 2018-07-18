@@ -12,6 +12,7 @@
 !*codacy*
 cache/*
 target
+settings
 
 .tools
 .tools/*
