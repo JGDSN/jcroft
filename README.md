@@ -41,6 +41,12 @@ For AGDSN you have to be in internal management netz or add a port forwarding fo
 You can add port forwarding with [Bitvise]() for example:
 ![Bitvise Configuration](./docs/images/bitvise.png)
 
+**settings/jcroft.cfg**:
+```text
+ldap_host=localhost
+ldap_port=389
+```
+
 ## Technical Requirements
 
 ## Non-Technical Requirements

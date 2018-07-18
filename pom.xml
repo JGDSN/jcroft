@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.agdsn</groupId>
-    <artifactId>jcroft</artifactId>
-    <version>1.0</version>
-    <packaging>jar</packaging>
-    <name>JCroft</name>
+	<groupId>de.agdsn</groupId>
+	<artifactId>jcroft</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	<name>JCroft</name>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-    </parent>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+	</parent>
 
-    <properties>
-        <!-- Java version -->
-        <java.version>1.8</java.version>
+	<properties>
+		<!-- Java version -->
+		<java.version>1.8</java.version>
 
-        <!-- JUnit version -->
-        <junit.version>5.1.0</junit.version>
+		<!-- JUnit version -->
+		<junit5.version>5.1.0</junit5.version>
 
 		<mockito.version>2.2.7</mockito.version>
-
-        <!-- Adapt this to a version found on
-             https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/
-          -->
-        <jettyVersion>9.4.9.v20180320</jettyVersion>
 
 		<jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
 
@@ -41,29 +36,29 @@
 		<!-- file encoding -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
+	</properties>
 
-    <!-- tag::security[] -->
-    <dependencies>
+	<!-- tag::security[] -->
+	<dependencies>
 		<!-- JUnit -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.version}</version>
+			<version>${junit5.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.version}</version>
+			<version>${junit5.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.junit.vintage</groupId>
 			<artifactId>junit-vintage-engine</artifactId>
-			<version>${junit.version}</version>
+			<version>${junit5.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -93,6 +88,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -116,14 +112,15 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.directory.api</groupId>
 			<artifactId>apache-ldap-api</artifactId>
 			<version>1.0.0</version>
 			<type>pom</type>
 		</dependency>
-    </dependencies>
-    <!-- end::security[] -->
+	</dependencies>
+	<!-- end::security[] -->
 
 	<reporting>
 		<plugins>
@@ -135,12 +132,8 @@
 		</plugins>
 	</reporting>
 
-    <build>
-        <plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+	<build>
+		<plugins>
 			<!-- set Java version -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -166,17 +159,43 @@
 				</executions>
 			</plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1</version>
-                <executions>
-                    <execution><goals><goal>java</goal></goals></execution>
-                </executions>
-                <configuration>
-                    <mainClass>de.agdsn.jcroft.Main</mainClass>
-                </configuration>
-            </plugin>
+			<!-- <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.19.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<skipTests>${skip.tests}</skipTests>
+							<argLine>${argLine} -Duser.timezone=UTC -Xms256m -Xmx256m</argLine>
+							<includes>
+								<includes>**/*Test*</includes>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> -->
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution><goals><goal>java</goal></goals></execution>
+				</executions>
+				<configuration>
+					<mainClass>de.agdsn.jcroft.Main</mainClass>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -218,7 +237,7 @@
 					<check />
 				</configuration>
 			</plugin>
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 
 </project>
