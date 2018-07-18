@@ -20,7 +20,7 @@ The new AG DSN management system
 
   - Java 8+ (plan: **Java 10**)
   - Maven
-  - MySQL
+  - PostGreSQL
   - evtl. [Hazelcast.org](http://hazelcast.org) for scaling out
 
 ## How To
