@@ -67,13 +67,12 @@ public class LDAPConnection {
                     group = 0;
                 }
 
-
                 conn.unBind();
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new BadCredentialsException("Error while authenticating you. Please try again soon");
             } catch (LdapAuthenticationException ex) {
-                ex.printStackTrace();
+                //ex.printStackTrace();
                 throw new BadCredentialsException("Your credentials were not accepted!");
             }
 
