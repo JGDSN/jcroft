@@ -10,6 +10,12 @@
     <packaging>jar</packaging>
     <name>JCroft</name>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+    </parent>
+
     <properties>
         <!-- Adapt this to a version found on
              https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/
@@ -17,6 +23,7 @@
         <jettyVersion>9.4.9.v20180320</jettyVersion>
     </properties>
 
+    <!-- tag::security[] -->
     <dependencies>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
@@ -24,6 +31,7 @@
             <version>${jettyVersion}</version>
         </dependency>
     </dependencies>
+    <!-- end::security[] -->
 
     <build>
         <plugins>
