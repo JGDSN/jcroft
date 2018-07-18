@@ -55,29 +55,24 @@ Tabellarische Darstellung der Qualitätsziele mit möglichst konkreten Szenarien
 
 === Stakeholder
 
-[role="arc42help"]
-****
-.Inhalt
-Expliziter Überblick über die Stakeholder des Systems, d.h. über alle Personen, Rollen oder Organisationen, die
+  - AGDSN Support Team (BUS)
+  - AGDSN Service Team (Service)
+  - AGDSN Computing Team (Computing)
+  - AGDSN SysOps
+  - German & European Law (DSGVO and so on)
+  - AGDSN Vorstand
+  - Datenschutzbeauftragter
+  - Finanzer
 
-* die Architektur kennen sollten oder
-* von der Architektur überzeugt werden müssen,
-* mit Architektur oder Code arbeiten (z.B. Schnittstellen nutzen),
-* Dokumentation der Architektur für ihre eigene Arbeit benötigen,
-* Entscheidungen über das System und dessen Entwicklung treffen.
-
-.Motivation
-Sie sollten die Projektbeteiligten und -betroffenen kennen, sonst erleben Sie später im Entwicklungsprozess Überraschungen. Diese Stakeholder bestimmen unter anderem Umfang und Detaillierungsgrad der von Ihnen zu leistenden Arbeit und Ergebnisse.
-
-.Form
-Tabelle mit Rollen- oder Personennamen, sowie deren Erwartungshaltung bezüglich der Architektur und deren Dokumentation.
-****
-
-
-
-[cols="1,1,2" options="header"]
+[cols="2,1,3" options="header"]
 |===
 |Rolle |Kontakt |Erwartungshaltung
-| _<Rolle-1>_ | _<Kontakt-1>_ | _<Erwartung-1>_
-| _<Rolle-2>_ | _<Kontakt-2>_ | _<Erwartung-2>_ 
+| _Support Team_ | _<Kontakt-1>_ | _<Erwartung-1>_
+| _Service Team_ | _<Kontakt-2>_ | _<Erwartung-2>_
+| _Computing Team_ | _<Kontakt-2>_ | _<Erwartung-2>_
+| _SysOps Team_ | _<Kontakt-2>_ | _<Erwartung-2>_
+| _German & European Law_ | _<Kontakt-2>_ | _<Erwartung-2>_
+| _Vorstand_ | _<Kontakt-2>_ | _<Erwartung-2>_
+| _Datenschutzbeauftragter_ | _<Kontakt-2>_ | _<Erwartung-2>_
+| _Finanzer_ | _<Kontakt-2>_ | _<Erwartung-2>_
 |===
