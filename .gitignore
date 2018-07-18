@@ -11,6 +11,7 @@
 !*codacy-coverage-reporter-4.0.0-assembly.jar
 !*codacy*
 cache/*
+target
 
 .tools
 .tools/*
