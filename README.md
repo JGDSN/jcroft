@@ -22,6 +22,7 @@ The new AG DSN management system
   - Maven
   - PostGreSQL
   - evtl. [Hazelcast.org](http://hazelcast.org) for scaling out
+  - LDAP server for authentification
 
 ## How To
 
@@ -33,6 +34,9 @@ German introduction to maven:
 
   - http://jukusoft.com/2016/10/24/tutorial-eine-einfuehrung-in-maven-teil-1/
   - http://jukusoft.com/2016/10/29/tutorial-einfuehrung-maven-teil-2/
+  
+**Additionally you need a LDAP server.**\
+For AGDSN you have to be in internal management netz or add a port forwarding for 127.0.0.1:389 --> idm0.agdsn.network:389
   
 ## Technical Requirements
 
