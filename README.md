@@ -16,7 +16,5 @@ The new AG DSN management system
 ![GitHub release](https://img.shields.io/github/release/JuKu/island-exploration-rts.svg)
 ![Github commits (since latest release)](https://img.shields.io/github/commits-since/JuKu/island-exploration-rts/latest.svg)
 [![codecov](https://codecov.io/gh/JuKu/island-exploration-rts/branch/master/graph/badge.svg)](https://codecov.io/gh/JuKu/island-exploration-rts)
-![GitHub issues](https://img.shields.io/github/issues/JuKu/island-exploration-rts.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/JuKu/island-exploration-rts.svg)
 
 [![Sonarcloud](https://sonarcloud.io/api/project_badges/quality_gate?project=de.agdsn%3Ajcroft)](https://sonarcloud.io/dashboard/index/de.agdsn%3Ajcroft)
