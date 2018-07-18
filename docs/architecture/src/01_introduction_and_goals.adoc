@@ -67,12 +67,12 @@ Tabellarische Darstellung der Qualitätsziele mit möglichst konkreten Szenarien
 [cols="2,1,3" options="header"]
 |===
 |Rolle |Kontakt |Erwartungshaltung
-| _Support Team_ | _<Kontakt-1>_ | _<Erwartung-1>_
-| _Service Team_ | _<Kontakt-2>_ | _<Erwartung-2>_
-| _Computing Team_ | _<Kontakt-2>_ | _<Erwartung-2>_
-| _SysOps Team_ | _<Kontakt-2>_ | _<Erwartung-2>_
-| _German & European Law_ | _<Kontakt-2>_ | _<Erwartung-2>_
-| _Vorstand_ | _<Kontakt-2>_ | _<Erwartung-2>_
-| _Datenschutzbeauftragter_ | _<Kontakt-2>_ | _<Erwartung-2>_
-| _Finanzer_ | _<Kontakt-2>_ | _<Erwartung-2>_
+| _Support Team_ | _support [at] agdsn.de_ | _<Erwartung-1>_
+| _Service Team_ | _internal_ | _<Erwartung-2>_
+| _Computing Team_ | _internal_ | _<Erwartung-2>_
+| _SysOps Team_ | _internal_ | _<Erwartung-2>_
+| _German & European Law_ | _?_ | _<Erwartung-2>_
+| _Vorstand_ | _vorstand [at] agdsn.de_ | _<Erwartung-2>_
+| _Datenschutzbeauftragter_ | _TU Dresden_ | _<Erwartung-2>_
+| _Finanzer_ | _internal_ | _will Überweisungen importieren können_
 |===
