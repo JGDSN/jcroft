@@ -10,6 +10,12 @@
     <packaging>jar</packaging>
     <name>JCroft</name>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+    </parent>
+
     <properties>
         <!-- Java version -->
         <java.version>1.8</java.version>
@@ -37,6 +43,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <!-- tag::security[] -->
     <dependencies>
 		<!-- JUnit -->
 		<dependency>
@@ -88,6 +95,7 @@
             <version>${jettyVersion}</version>
         </dependency>
     </dependencies>
+    <!-- end::security[] -->
 
 	<reporting>
 		<plugins>
