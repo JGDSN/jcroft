@@ -36,7 +36,7 @@ German introduction to maven:
   - http://jukusoft.com/2016/10/29/tutorial-einfuehrung-maven-teil-2/
   
 **Additionally you need a LDAP server.**\
-For AGDSN you have to be in internal management netz or add a port forwarding for 127.0.0.1:389 --> idm0.agdsn.network:389
+For AGDSN you have to be in internal management netz or add a port forwarding for 127.0.0.1:389 --> <IDM Server>:389
   
 ## Technical Requirements
 
