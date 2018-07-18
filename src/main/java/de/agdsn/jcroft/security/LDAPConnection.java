@@ -89,13 +89,11 @@ public class LDAPConnection {
 
 
 
-        } catch (LdapException e) {
-            e.printStackTrace();
-            throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
-        } catch (CursorException e) {
+        } catch (LdapException | CursorException e) {
             e.printStackTrace();
             throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
         }
+
         return group;
     }
 }
