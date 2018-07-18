@@ -15,3 +15,19 @@ The new AG DSN management system
 [![codecov](https://codecov.io/gh/JuKu/island-exploration-rts/branch/master/graph/badge.svg)](https://codecov.io/gh/JuKu/island-exploration-rts)
 
 [![Sonarcloud](https://sonarcloud.io/api/project_badges/quality_gate?project=de.agdsn%3Ajcroft)](https://sonarcloud.io/dashboard/index/de.agdsn%3Ajcroft)
+
+## Requirements
+
+  - Java 8+ (plan: **Java 10**)
+  - Maven
+
+## How To
+
+```bash
+mvn clean install
+```
+
+German introduction to maven:
+
+  - http://jukusoft.com/2016/10/24/tutorial-eine-einfuehrung-in-maven-teil-1/
+  - http://jukusoft.com/2016/10/29/tutorial-einfuehrung-maven-teil-2/
