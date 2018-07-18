@@ -7,12 +7,19 @@ public class JCroftConfiguration {
     private static final File conf = new File("settings/jcroft.cfg");
     private static HashMap<String, String> values = null;
 
+    /**
+    * private constructor
+    */
+    protected JCroftConfiguration () {
+        //
+    }
+
     protected static void readConfig() throws IOException {
         if (!conf.exists()) {
             createDefaultConfiguration();
             throw new IllegalArgumentException("Please configure your proxy in settings/jcroft.cfg");
         }
-        values = new HashMap<String, String>();
+        values = new HashMap<>();
 
         try (BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream(conf)))) {
             String str;

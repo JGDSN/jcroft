@@ -16,6 +16,16 @@ import org.springframework.security.authentication.BadCredentialsException;
 import java.io.IOException;
 
 public class LDAPConnection {
+
+    protected static final String ERROR_WHILE_AUTHENTIFICATING = "Error while authenticating you. Please try again soon";
+
+    /**
+    * private constructor
+    */
+    protected LDAPConnection () {
+        //
+    }
+
     /**
      * Authenticates a user and returns his group id
      * @param username
@@ -23,7 +33,7 @@ public class LDAPConnection {
      * @return group id
      * @throws org.springframework.security.authentication.BadCredentialsException when user is not allowed to use jcroft or the LDAP request times out
      */
-    public static int check(String username, String password) throws BadCredentialsException {
+    public static int check(String username, String password) {
         int group = -1;
         try {
             // Data to check
@@ -70,7 +80,7 @@ public class LDAPConnection {
                 conn.unBind();
             } catch (IOException e) {
                 e.printStackTrace();
-                throw new BadCredentialsException("Error while authenticating you. Please try again soon");
+                throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
             } catch (LdapAuthenticationException ex) {
                 //ex.printStackTrace();
                 throw new BadCredentialsException("Your credentials were not accepted!");
@@ -81,10 +91,10 @@ public class LDAPConnection {
 
         } catch (LdapException e) {
             e.printStackTrace();
-            throw new BadCredentialsException("Error while authenticating you. Please try again soon");
+            throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
         } catch (CursorException e) {
             e.printStackTrace();
-            throw new BadCredentialsException("Error while authenticating you. Please try again soon");
+            throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
         }
         return group;
     }
