@@ -12,7 +12,7 @@ The new AG DSN management system
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=de.agdsn%3Ajcroft&metric=bugs)](https://sonarcloud.io/dashboard/index/de.agdsn%3Ajcroft) 
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=de.agdsn%3Ajcroft&metric=vulnerabilities)](https://sonarcloud.io/dashboard/index/de.agdsn%3Ajcroft) 
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=de.agdsn%3Ajcroft&metric=security_rating)](https://sonarcloud.io/dashboard/index/de.agdsn%3Ajcroft) 
-[![codecov](https://codecov.io/gh/JuKu/island-exploration-rts/branch/master/graph/badge.svg)](https://codecov.io/gh/JuKu/island-exploration-rts)
+[![codecov](https://codecov.io/gh/JGDSN/jcroft/branch/master/graph/badge.svg)](https://codecov.io/gh/JGDSN/jcroft)
 
 [![Sonarcloud](https://sonarcloud.io/api/project_badges/quality_gate?project=de.agdsn%3Ajcroft)](https://sonarcloud.io/dashboard/index/de.agdsn%3Ajcroft)
 
