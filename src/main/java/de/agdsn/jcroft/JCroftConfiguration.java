@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public class JCroftConfiguration {
-    private static final File conf = new File("settings/jcroft.cfg");
+    protected static final File conf = new File("settings/jcroft.cfg");
     private static HashMap<String, String> values = new HashMap<>();
 
     /**
@@ -35,7 +35,7 @@ public class JCroftConfiguration {
         return values.get(key);
     }
 
-    private static void createDefaultConfiguration() throws IOException {
+    protected static void createDefaultConfiguration() throws IOException {
         conf.getParentFile().mkdirs();
         conf.createNewFile();
         PrintWriter write = new PrintWriter(new FileOutputStream(conf));

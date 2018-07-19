@@ -1,5 +1,6 @@
 package de.agdsn.jcroft;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -7,6 +8,13 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
 public class JCroftConfigurationTest {
+
+    @BeforeClass
+    public static void beforeClass () throws IOException {
+        if (!JCroftConfiguration.conf.exists()) {
+            JCroftConfiguration.createDefaultConfiguration();
+        }
+    }
 
     @Test
     public void testConstructor () {
