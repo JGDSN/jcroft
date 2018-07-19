@@ -55,7 +55,7 @@ public class JCroftConfigurationTest {
 
     @Test (expected = IllegalStateException.class)
     public void testReadConfig2 () throws IOException {
-        File conf = new File("junit/jcroft2.cfg");
+        File conf = new File("src/test/resources/jcroft2.cfg");
         JCroftConfiguration.readConfig(conf);
     }
 

@@ -13,7 +13,7 @@
 cache/*
 target
 settings
-!junit/jcroft2.cfg
+!src/test/resources/jcroft2.cfg
 
 .tools
 .tools/*
