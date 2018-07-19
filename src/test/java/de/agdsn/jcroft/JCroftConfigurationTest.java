@@ -1,7 +1,6 @@
 package de.agdsn.jcroft;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,13 +9,15 @@ import static org.junit.Assert.assertEquals;
 
 public class JCroftConfigurationTest {
 
-    @BeforeClass
-    public static void beforeClass () throws IOException {
-        File conf = new File("settings/jcroft.cfg");
+    @Before
+    public void before () throws IOException {
+        File conf = new File("settings/jcroft1.cfg");
 
         if (conf.exists()) {
-            JCroftConfiguration.createDefaultConfiguration(conf);
+            conf.delete();
         }
+
+        JCroftConfiguration.createDefaultConfiguration(conf);
 
         //delete junit files
         File conf1 = new File("settings/jcroft.junit.cfg");
@@ -26,6 +27,11 @@ public class JCroftConfigurationTest {
         }
     }
 
+    @After
+    public void afterClass () {
+        new File("settings/jcroft.junit1.cfg").delete();
+    }
+
     @Test
     public void testConstructor () {
         new JCroftConfiguration();
@@ -33,7 +39,7 @@ public class JCroftConfigurationTest {
 
     @Test
     public void testReadConfig () throws IOException {
-        File conf = new File("settings/jcroft.cfg");
+        File conf = new File("settings/jcroft1.cfg");
         JCroftConfiguration.readConfig(conf);
 
         assertEquals(true, JCroftConfiguration.getValue("ldap_host").equals("idm0.agdsn.network") || JCroftConfiguration.getValue("ldap_host").equals("localhost"));
