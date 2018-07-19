@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class JCroftConfiguration {
     private static final File conf = new File("settings/jcroft.cfg");
-    private static HashMap<String, String> values = null;
+    private static HashMap<String, String> values = new HashMap<>();
 
     /**
     * private constructor
@@ -19,7 +19,6 @@ public class JCroftConfiguration {
             createDefaultConfiguration();
             throw new IllegalArgumentException("Please configure your proxy in settings/jcroft.cfg");
         }
-        values = new HashMap<>();
 
         try (BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream(conf)))) {
             String str;
