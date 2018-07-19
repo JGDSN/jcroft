@@ -82,7 +82,6 @@ public class LDAPConnection {
                 e.printStackTrace();
                 throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
             } catch (LdapAuthenticationException ex) {
-                //ex.printStackTrace();
                 throw new BadCredentialsException("Your credentials were not accepted!");
             }
 

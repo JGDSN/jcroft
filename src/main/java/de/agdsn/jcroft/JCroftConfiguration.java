@@ -26,6 +26,8 @@ public class JCroftConfiguration {
                 String[] s = str.split("=", 2);
                 if (s.length == 2) {
                     values.put(s[0], s[1]);
+                } else {
+                    throw new IllegalStateException("invalid configuration file: " + conf.getAbsolutePath());
                 }
             }
         }
