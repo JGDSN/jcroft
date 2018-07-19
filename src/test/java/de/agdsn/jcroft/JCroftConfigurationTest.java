@@ -28,8 +28,9 @@ public class JCroftConfigurationTest {
     }
 
     @After
-    public void afterClass () {
+    public void after () {
         new File("settings/jcroft.junit1.cfg").delete();
+        new File("settings/jcroft1.cfg").delete();
     }
 
     @Test
