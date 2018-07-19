@@ -1,7 +1,5 @@
 package de.agdsn.jcroft;
 
-import com.hazelcast.jet.Jet;
-import com.hazelcast.jet.JetInstance;
 import de.agdsn.jcroft.hazelcast.JetProvider;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

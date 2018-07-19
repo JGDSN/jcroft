@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JetProvider {
-    public final JetInstance CLUSTER;
+    private JetInstance cluster;
 
     public JetProvider(){
-        CLUSTER = buildJetProvider();
+        cluster = buildJetProvider();
     }
 
     private JetInstance buildJetProvider() {
@@ -18,7 +18,7 @@ public class JetProvider {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                CLUSTER.shutdown();
+                cluster.shutdown();
                 try {
                     mainThread.join();
                 } catch (InterruptedException e) {
@@ -28,5 +28,9 @@ public class JetProvider {
             }
         });
         return Jet.newJetInstance();
+    }
+
+    public JetInstance getCluster(){
+        return cluster;
     }
 }
