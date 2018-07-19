@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.io.File;
 import java.io.IOException;
 
 @SpringBootApplication
@@ -12,7 +13,7 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            JCroftConfiguration.readConfig();
+            JCroftConfiguration.readConfig(new File("settings/jcroft.cfg"));
         } catch (IOException e) {
             e.printStackTrace();
             return;

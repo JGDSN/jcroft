@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public class JCroftConfiguration {
-    protected static final File conf = new File("settings/jcroft.cfg");
+
     private static HashMap<String, String> values = new HashMap<>();
 
     /**
@@ -14,9 +14,9 @@ public class JCroftConfiguration {
         //
     }
 
-    protected static void readConfig() throws IOException {
+    protected static void readConfig(File conf) throws IOException {
         if (!conf.exists()) {
-            createDefaultConfiguration();
+            createDefaultConfiguration(conf);
             throw new IllegalArgumentException("Please configure your proxy in settings/jcroft.cfg");
         }
 
@@ -35,7 +35,7 @@ public class JCroftConfiguration {
         return values.get(key);
     }
 
-    protected static void createDefaultConfiguration() throws IOException {
+    protected static void createDefaultConfiguration(File conf) throws IOException {
         conf.getParentFile().mkdirs();
         conf.createNewFile();
         PrintWriter write = new PrintWriter(new FileOutputStream(conf));
