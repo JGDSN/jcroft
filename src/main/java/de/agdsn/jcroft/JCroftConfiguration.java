@@ -8,9 +8,9 @@ public class JCroftConfiguration {
     private static HashMap<String, String> values = new HashMap<>();
 
     /**
-    * private constructor
-    */
-    protected JCroftConfiguration () {
+     * private constructor
+     */
+    protected JCroftConfiguration() {
         //
     }
 

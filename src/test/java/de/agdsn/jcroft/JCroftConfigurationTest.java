@@ -1,6 +1,8 @@
 package de.agdsn.jcroft;
 
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class JCroftConfigurationTest {
 
     @Before
-    public void before () throws IOException {
+    public void before() throws IOException {
         File conf = new File("settings/jcroft1.cfg");
 
         if (conf.exists()) {
@@ -28,18 +30,18 @@ public class JCroftConfigurationTest {
     }
 
     @After
-    public void after () {
+    public void after() {
         new File("settings/jcroft.junit1.cfg").delete();
         new File("settings/jcroft1.cfg").delete();
     }
 
     @Test
-    public void testConstructor () {
+    public void testConstructor() {
         new JCroftConfiguration();
     }
 
     @Test
-    public void testReadConfig () throws IOException {
+    public void testReadConfig() throws IOException {
         File conf = new File("settings/jcroft1.cfg");
         JCroftConfiguration.readConfig(conf);
 
@@ -47,14 +49,14 @@ public class JCroftConfigurationTest {
         assertEquals(389, JCroftConfiguration.getValueInt("ldap_port"));
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void testReadConfig1 () throws IOException {
+    @Test(expected = IllegalArgumentException.class)
+    public void testReadConfig1() throws IOException {
         File conf = new File("settings/jcroft.junit.cfg");
         JCroftConfiguration.readConfig(conf);
     }
 
-    @Test (expected = IllegalStateException.class)
-    public void testReadConfig2 () throws IOException {
+    @Test(expected = IllegalStateException.class)
+    public void testReadConfig2() throws IOException {
         File conf = new File("src/test/resources/jcroft2.cfg");
         JCroftConfiguration.readConfig(conf);
     }

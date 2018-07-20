@@ -20,14 +20,15 @@ public class LDAPConnection {
     protected static final String ERROR_WHILE_AUTHENTIFICATING = "Error while authenticating you. Please try again soon";
 
     /**
-    * private constructor
-    */
-    protected LDAPConnection () {
+     * private constructor
+     */
+    protected LDAPConnection() {
         //
     }
 
     /**
      * Authenticates a user and returns his group id
+     *
      * @param username
      * @param password
      * @return group id
@@ -84,8 +85,6 @@ public class LDAPConnection {
             } catch (LdapAuthenticationException ex) {
                 throw new BadCredentialsException("Your credentials were not accepted!");
             }
-
-
 
 
         } catch (LdapException | CursorException e) {

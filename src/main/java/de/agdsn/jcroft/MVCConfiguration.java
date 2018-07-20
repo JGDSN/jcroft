@@ -12,7 +12,7 @@ public class MVCConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/res/**")
-                .addResourceLocations("/static.resources/clippy/", "/static.resources/js/", "/static.resources/html/")
+                .addResourceLocations("/static.resources/js/")
                 .setCachePeriod(3600);
     }
 }

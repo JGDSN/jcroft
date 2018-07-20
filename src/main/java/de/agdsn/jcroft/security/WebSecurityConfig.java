@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder auth){
+    public void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(customAuthenticationProvider);
     }
 

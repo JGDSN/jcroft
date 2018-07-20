@@ -1,0 +1,10 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: jcroft
+logging:
+  level:
+    com.hazelcast: DEBUG
+org.hibernate: DEBUG
