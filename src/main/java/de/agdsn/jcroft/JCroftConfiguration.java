@@ -53,6 +53,7 @@ public class JCroftConfiguration {
         write.println("ldap_host=idm0.agdsn.network");
         write.println("ldap_port=389");
         write.println("");
+        write.println("; database connection");
         write.println("jdbc_ip=localhost");
         write.println("jdbc_port=5432");
         write.println("jdbc_user=jcroft");
