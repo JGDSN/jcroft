@@ -1,10 +1,13 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.utils.IntUtils;
+import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -24,6 +27,11 @@ public class User implements Serializable {
     }
 
     public User(String fname, String lname) {
+        StringUtils.requireNonEmptyString(fname, "forename");
+        StringUtils.requireNonEmptyString(lname, "lastname");
+
+        //TODO:
+
         this.firstName = fname;
         this.lastName = lname;
     }
@@ -33,6 +41,7 @@ public class User implements Serializable {
     }
 
     public void setId(int id) {
+        IntUtils.requireNumberGreaterNull(id, "id");
         this.id = id;
     }
 
@@ -41,6 +50,7 @@ public class User implements Serializable {
     }
 
     public void setFirstName(String firstName) {
+        StringUtils.requireNonEmptyString(firstName, "firstName");
         this.firstName = firstName;
     }
 
@@ -49,6 +59,7 @@ public class User implements Serializable {
     }
 
     public void setLastName(String lastName) {
+        StringUtils.requireNonEmptyString(firstName, "lastName");
         this.lastName = lastName;
     }
 

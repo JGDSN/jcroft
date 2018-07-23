@@ -53,9 +53,6 @@ public class Application {
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
         config.setInstanceName("cache-1");
 
-        //enable management center
-        //config.getManagementCenterConfig().setEnabled(true);
-
         return Hazelcast.newHazelcastInstance(config);
     }
 
