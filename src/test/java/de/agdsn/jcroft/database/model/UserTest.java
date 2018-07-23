@@ -12,6 +12,14 @@ public class UserTest {
         new User();
     }
 
+    @Test
+    public void testConstructor1 () {
+        User user = new User("Max", "Mustermann");
+
+        assertEquals("Max", user.getFirstName());
+        assertEquals("Mustermann", user.getLastName());
+    }
+
     @Test (expected = NullPointerException.class)
     public void testNullFNameConstructor () {
         new User(null, "test");
