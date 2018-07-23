@@ -63,7 +63,7 @@ hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect
 
 ## Database
 
-Currently we use an PostGreSQL database.
+Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
 
   - [Database Schema](https://app.sqldbm.com/MySQL/Share/Hm_yVRXiAIDjSQ1FbBmW8EGFrngIE8md_DYjF4jNYw0)
 
