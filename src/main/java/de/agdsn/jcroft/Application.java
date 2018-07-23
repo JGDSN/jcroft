@@ -44,7 +44,6 @@ public class Application {
 
     @Bean
     HazelcastInstance hazelcastInstance() {
-        //TODO: fetch values from config instead
         Config config = new Config();
         config.getGroupConfig().setName("dev").setPassword("dev-pass");
         TcpIpConfig ipc = config.getNetworkConfig().getJoin().getTcpIpConfig();
