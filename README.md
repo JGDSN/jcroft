@@ -56,6 +56,12 @@ jdbc_database=jcroft
 
 ```
 
+## Database
+
+Currently we use an PostGreSQL database.
+
+  - [Database Schema](https://app.sqldbm.com/MySQL/Share/Hm_yVRXiAIDjSQ1FbBmW8EGFrngIE8md_DYjF4jNYw0)
+
 ## Technical Requirements
 
 ## Non-Technical Requirements
