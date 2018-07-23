@@ -18,7 +18,9 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class JPAConfig {
+
     //TODO: make configureable
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();

@@ -52,8 +52,11 @@ public class Application {
         ipc.addMember("127.0.0.1");
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
         config.setInstanceName("cache-1");
-        HazelcastInstance instance = Hazelcast.newHazelcastInstance(config);
-        return instance;
+
+        //enable management center
+        //config.getManagementCenterConfig().setEnabled(true);
+
+        return Hazelcast.newHazelcastInstance(config);
     }
 
     @Bean
