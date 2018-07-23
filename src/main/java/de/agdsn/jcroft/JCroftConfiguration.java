@@ -2,6 +2,7 @@ package de.agdsn.jcroft;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class JCroftConfiguration {
 
@@ -39,6 +40,8 @@ public class JCroftConfiguration {
     }
 
     public static String getValue(String key) {
+        Objects.requireNonNull(key);
+
         if (!values.containsKey(key)) {
             throw new IllegalStateException("configuration key '" + key + "' doesnt exists in config file settings/jcroft.cfg .");
         }

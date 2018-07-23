@@ -40,6 +40,16 @@ public class JCroftConfigurationTest {
         new JCroftConfiguration();
     }
 
+    @Test (expected = NullPointerException.class)
+    public void testGetNullKey () {
+        JCroftConfiguration.getValue(null);
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void testGetNotExistentConfigKey () {
+        JCroftConfiguration.getValue("not-existent-key");
+    }
+
     @Test
     public void testReadConfig() throws IOException {
         File conf = new File("settings/jcroft1.cfg");
