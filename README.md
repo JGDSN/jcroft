@@ -48,11 +48,16 @@ Change your jcroft config (will be created on first run) to use your tunnel to t
 ldap_host=localhost
 ldap_port=389
 
+; database connection
 jdbc_ip=localhost
 jdbc_port=5432
 jdbc_user=jcroft
 jdbc_password=ENTER YOUR PASSWORD HERE
 jdbc_database=jcroft
+
+; hibernate configuration (only change this, if you know, what you do)
+hibernate.hbm2ddl.auto=update
+hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect
 
 ```
 
