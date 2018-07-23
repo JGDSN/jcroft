@@ -65,4 +65,5 @@ jdbc_database=jcroft
   
 ## Presentation
 
-[Slides](https://slides.com/juku/deck)
+  - [Slides](https://slides.com/juku/deck)
+  - [Database Schema](https://app.sqldbm.com/MySQL/Share/fZEY4IB6jn7cICnCLGp400GFrngIE8md_DYjF4jNYw0)
