@@ -23,6 +23,11 @@ public class JCroftConfiguration {
         try (BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream(conf)))) {
             String str;
             while ((str = read.readLine()) != null) {
+                if (str.startsWith(";") || str.isEmpty()) {
+                    //ignore comment lines
+                    continue;
+                }
+
                 String[] s = str.split("=", 2);
                 if (s.length == 2) {
                     values.put(s[0], s[1]);
@@ -34,6 +39,10 @@ public class JCroftConfiguration {
     }
 
     public static String getValue(String key) {
+        if (!values.containsKey(key)) {
+            throw new IllegalStateException("configuration key '" + key + "' doesnt exists in config file settings/jcroft.cfg .");
+        }
+
         return values.get(key);
     }
 
@@ -43,6 +52,12 @@ public class JCroftConfiguration {
         PrintWriter write = new PrintWriter(new FileOutputStream(conf));
         write.println("ldap_host=idm0.agdsn.network");
         write.println("ldap_port=389");
+        write.println("");
+        write.println("jdbc_ip=localhost");
+        write.println("jdbc_port=5432");
+        write.println("jdbc_user=jcroft");
+        write.println("jdbc_password=ENTER YOUR PASSWORD HERE");
+        write.println("jdbc_database=jcroft");
         write.flush();
         write.close();
     }

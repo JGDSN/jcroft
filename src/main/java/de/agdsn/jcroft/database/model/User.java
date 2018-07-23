@@ -30,7 +30,7 @@ public class User implements Serializable {
         StringUtils.requireNonEmptyString(fname, "forename");
         StringUtils.requireNonEmptyString(lname, "lastname");
 
-        //TODO:
+        //TODO: check for specical characters
 
         this.firstName = fname;
         this.lastName = lname;

@@ -36,11 +36,17 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() {
+        String ip = JCroftConfiguration.getValue("jdbc_ip");
+        int port = JCroftConfiguration.getValueInt("jdbc_port");
+        String user = JCroftConfiguration.getValue("jdbc_user");
+        String password = JCroftConfiguration.getValue("jdbc_password");
+        String dbName = JCroftConfiguration.getValue("jdbc_database");
+
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/jcroft");
-        dataSource.setUsername("jcroft");
-        dataSource.setPassword("agdsn");
+        dataSource.setUrl("jdbc:postgresql://" + ip + ":" + port + "/" + dbName);
+        dataSource.setUsername(user);
+        dataSource.setPassword(password);
         return dataSource;
     }
 
