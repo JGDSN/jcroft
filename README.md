@@ -67,3 +67,28 @@ jdbc_database=jcroft
 
   - [Slides](https://slides.com/juku/deck)
   - [Database Schema](https://app.sqldbm.com/MySQL/Share/Hm_yVRXiAIDjSQ1FbBmW8EGFrngIE8md_DYjF4jNYw0)
+  
+## FAQ
+
+### Why there is a InvocationTargetException on start?
+
+Maybe, you get this exception on startup:
+```java
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_91]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_91]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_91]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_91]
+	
+	...
+	
+	at de.agdsn.jcroft.Application.main(Application.java:42) ~[classes/:na]
+Caused by: java.sql.SQLFeatureNotSupportedException: Die Methode org.postgresql.jdbc4.Jdbc4Connection.createClob() ist noch nicht implementiert.
+	at org.postgresql.Driver.notImplemented(Driver.java:753) ~[postgresql-9.1-901-1.jdbc4.jar:na]
+	at org.postgresql.jdbc4.AbstractJdbc4Connection.createClob(AbstractJdbc4Connection.java:52) ~[postgresql-9.1-901-1.jdbc4.jar:na]
+	at org.postgresql.jdbc4.Jdbc4Connection.createClob(Jdbc4Connection.java:21) ~[postgresql-9.1-901-1.jdbc4.jar:na]
+	... 44 common frames omitted
+```
+
+You can ignore this exception, because hibernate only throws this exception because PostGreSQL doesnt support an specific feature.\
+"Die Methode org.postgresql.jdbc4.Jdbc4Connection.createClob() ist noch nicht implementiert".
