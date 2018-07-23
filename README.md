@@ -47,6 +47,13 @@ Change your jcroft config (will be created on first run) to use your tunnel to t
 ```text
 ldap_host=localhost
 ldap_port=389
+
+jdbc_ip=localhost
+jdbc_port=5432
+jdbc_user=jcroft
+jdbc_password=ENTER YOUR PASSWORD HERE
+jdbc_database=jcroft
+
 ```
 
 ## Technical Requirements
@@ -55,3 +62,7 @@ ldap_port=389
 
   - failover node
   - **Privacy by design** (DSGVO-conform)
+  
+## Presentation
+
+[Slides](https://slides.com/juku/deck)

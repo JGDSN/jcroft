@@ -54,11 +54,16 @@ public class JCroftConfiguration {
         write.println("ldap_port=389");
         write.println("");
         write.println("; database connection");
+        write.println("jdbc_type=postgresql");
         write.println("jdbc_ip=localhost");
         write.println("jdbc_port=5432");
         write.println("jdbc_user=jcroft");
         write.println("jdbc_password=ENTER YOUR PASSWORD HERE");
         write.println("jdbc_database=jcroft");
+        write.println("");
+        write.println("; hibernate configuration (only change this, if you know, what you do)");
+        write.println("hibernate.hbm2ddl.auto=update");
+        write.println("hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect");
         write.flush();
         write.close();
     }

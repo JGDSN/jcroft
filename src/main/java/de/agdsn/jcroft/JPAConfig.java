@@ -36,6 +36,8 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() {
+        String type = JCroftConfiguration.getValue("jdbc_type");//postgresql
+
         String ip = JCroftConfiguration.getValue("jdbc_ip");
         int port = JCroftConfiguration.getValueInt("jdbc_port");
         String user = JCroftConfiguration.getValue("jdbc_user");
@@ -44,7 +46,7 @@ public class JPAConfig {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://" + ip + ":" + port + "/" + dbName);
+        dataSource.setUrl("jdbc:" + type + "://" + ip + ":" + port + "/" + dbName);
         dataSource.setUsername(user);
         dataSource.setPassword(password);
         return dataSource;
@@ -65,8 +67,8 @@ public class JPAConfig {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
+        properties.setProperty("hibernate.hbm2ddl.auto", JCroftConfiguration.getValue("hibernate.hbm2ddl.auto"));
+        properties.setProperty("hibernate.dialect", JCroftConfiguration.getValue("hibernate.dialect"));
         return properties;
     }
 }
