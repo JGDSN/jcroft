@@ -71,6 +71,8 @@ Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
 
 ## Non-Technical Requirements
 
+  - scaling out with load balancers
+  - high availibility clusters
   - failover node
   - **Privacy by design** (DSGVO-conform)
   
