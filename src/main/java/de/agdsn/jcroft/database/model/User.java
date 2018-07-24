@@ -61,11 +61,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getUsername () {
+    public String getUsername() {
         return this.username;
     }
 
-    public void setUsername (String username) {
+    public void setUsername(String username) {
         StringUtils.requireNonEmptyString(username);
         this.username = username;
     }

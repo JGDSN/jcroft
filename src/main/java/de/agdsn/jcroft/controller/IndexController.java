@@ -1,7 +1,6 @@
 package de.agdsn.jcroft.controller;
 
 import de.agdsn.jcroft.database.data.UserRepository;
-import de.agdsn.jcroft.database.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
