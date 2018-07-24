@@ -58,6 +58,11 @@ jdbc_database=jcroft
 hibernate.hbm2ddl.auto=update
 hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect
 
+; hazelcast cluster configuration
+hz_group_name=dev
+hz_group_password=dev-pass
+hz_instance_name=cache-1
+hz_members=127.0.0.1,127.0.0.2
 ```
 
 ## Database
