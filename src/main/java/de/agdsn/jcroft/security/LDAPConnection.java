@@ -52,11 +52,7 @@ public class LDAPConnection {
                 //set timeout of 3 seconds
                 conn.setTimeOut(TIMEOUT_LIMIT_SECONDS * 1000);
 
-                System.err.println("start ldap bind.");
-
                 conn.bind("uid=" + username + ",cn=users,cn=accounts,dc=agdsn,dc=de", password);
-
-                System.err.println("ldap bind successfully.");
 
                 SearchRequest req = new SearchRequestImpl();
                 req.setTimeLimit(TIMEOUT_LIMIT_SECONDS);
