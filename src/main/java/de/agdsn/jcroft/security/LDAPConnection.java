@@ -84,7 +84,7 @@ public class LDAPConnection {
 
                 conn.unBind();
             } catch (InvalidConnectionException e) {
-                throw new BadCredentialsException("LDAP server is down. Please try later again.");
+                throw new BadCredentialsException("LDAP server is down. Please try again later.");
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
