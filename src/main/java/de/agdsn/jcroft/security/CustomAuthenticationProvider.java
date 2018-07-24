@@ -6,6 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Component
 public class CustomAuthenticationProvider
@@ -20,6 +22,7 @@ public class CustomAuthenticationProvider
         try {
             LDAPConnection.check(name, password);
         } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Login exception", e);
             throw e;
         }
 
