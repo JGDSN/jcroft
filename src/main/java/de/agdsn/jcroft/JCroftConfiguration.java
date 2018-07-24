@@ -67,6 +67,12 @@ public class JCroftConfiguration {
         write.println("; hibernate configuration (only change this, if you know, what you do)");
         write.println("hibernate.hbm2ddl.auto=update");
         write.println("hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect");
+        write.println("");
+        write.println("; hazelcast cluster configuration");
+        write.println("hz_group_name=dev");
+        write.println("hz_group_password=dev-pass");
+        write.println("hz_instance_name=cache-1");
+        write.println("hz_members=127.0.0.1,127.0.0.2");
         write.flush();
         write.close();
     }

@@ -44,13 +44,25 @@ public class Application {
 
     @Bean
     HazelcastInstance hazelcastInstance() {
+        //read configuration
+        String groupName = JCroftConfiguration.getValue("hz_group_name");
+        String groupPassword = JCroftConfiguration.getValue("hz_group_password");
+        String instanceName = JCroftConfiguration.getValue("hz_instance_name");
+        String memberStr = JCroftConfiguration.getValue("hz_members");
+
+        String members[] = memberStr.split(",");
+
         Config config = new Config();
-        config.getGroupConfig().setName("dev").setPassword("dev-pass");
+        config.getGroupConfig().setName(groupName).setPassword(groupPassword);
         TcpIpConfig ipc = config.getNetworkConfig().getJoin().getTcpIpConfig();
         ipc.setEnabled(true);
-        ipc.addMember("127.0.0.1");
+
+        for (String member : members) {
+            ipc.addMember(member);
+        }
+
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
-        config.setInstanceName("cache-1");
+        config.setInstanceName(instanceName);
 
         return Hazelcast.newHazelcastInstance(config);
     }
