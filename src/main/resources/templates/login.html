@@ -35,6 +35,9 @@
                 <div class="form-group row" style="text-align: right;margin-right: 0px">
                         <button type="submit" class="btn btn-primary">Login</button>
                 </div>
+                <input type="hidden"
+                       th:name="${_csrf.parameterName}"
+                       th:value="${_csrf.token}"/>
             </form>
         </div>
     </div>
