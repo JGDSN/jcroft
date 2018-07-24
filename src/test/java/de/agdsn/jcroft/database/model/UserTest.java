@@ -59,10 +59,12 @@ public class UserTest {
         user.setId(2);
         user.setFirstName("Max");
         user.setLastName("Mustermann");
+        user.setUsername("max123");
 
         assertEquals(2, user.getId());
         assertEquals("Max", user.getFirstName());
         assertEquals("Mustermann", user.getLastName());
+        assertEquals("max123", user.getUsername());
 
         assertNotNull(user.toString());
     }
