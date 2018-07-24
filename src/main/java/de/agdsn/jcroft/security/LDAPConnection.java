@@ -11,6 +11,7 @@ import org.apache.directory.api.ldap.model.message.SearchScope;
 import org.apache.directory.api.ldap.model.name.Dn;
 import org.apache.directory.ldap.client.api.LdapConnection;
 import org.apache.directory.ldap.client.api.LdapNetworkConnection;
+import org.apache.directory.ldap.client.api.exception.InvalidConnectionException;
 import org.springframework.security.authentication.BadCredentialsException;
 
 import java.io.IOException;
@@ -82,6 +83,8 @@ public class LDAPConnection {
                 }
 
                 conn.unBind();
+            } catch (InvalidConnectionException e) {
+                throw new BadCredentialsException("LDAP server is down. Please try later again.");
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new BadCredentialsException(ERROR_WHILE_AUTHENTIFICATING);
