@@ -20,6 +20,8 @@ public class LDAPConnection {
 
     protected static final String ERROR_WHILE_AUTHENTIFICATING = "Error while authenticating you. Please try again soon";
 
+    protected static final int TIMEOUT_LIMIT_SECONDS = 3;
+
     /**
      * private constructor
      */
@@ -48,11 +50,16 @@ public class LDAPConnection {
 
             try (LdapConnection conn = new LdapNetworkConnection(host, port)) {
                 //set timeout of 3 seconds
-                conn.setTimeOut(3000);
+                conn.setTimeOut(TIMEOUT_LIMIT_SECONDS * 1000);
+
+                System.err.println("start ldap bind.");
 
                 conn.bind("uid=" + username + ",cn=users,cn=accounts,dc=agdsn,dc=de", password);
 
+                System.err.println("ldap bind successfully.");
+
                 SearchRequest req = new SearchRequestImpl();
+                req.setTimeLimit(TIMEOUT_LIMIT_SECONDS);
                 req.setScope(SearchScope.SUBTREE);
                 req.addAttributes("memberOf");
                 req.setBase(new Dn("cn=users,cn=accounts,dc=agdsn,dc=de"));
@@ -69,6 +76,7 @@ public class LDAPConnection {
                 req.abandon();
 
                 SearchRequest req2 = new SearchRequestImpl();
+                req2.setTimeLimit(TIMEOUT_LIMIT_SECONDS);
                 req2.setScope(SearchScope.SUBTREE);
                 req2.addAttributes("memberOf");
                 req2.setBase(new Dn("cn=users,cn=accounts,dc=agdsn,dc=de"));
