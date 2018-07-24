@@ -20,7 +20,6 @@ public class CustomAuthenticationProvider
         try {
             LDAPConnection.check(name, password);
         } catch (Exception e) {
-            e.printStackTrace();
             throw e;
         }
 
