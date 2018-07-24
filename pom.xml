@@ -25,11 +25,11 @@
 
         <mockito.version>2.2.7</mockito.version>
 
-        <jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
+        <jacoco.reportPath>${project.basedir}/target/jacoco.exec</jacoco.reportPath>
 
         <!-- Sonar properties-->
-        <sonar.jacoco.itReportPath>${project.basedir}/../target/jacoco-it.exec</sonar.jacoco.itReportPath>
-        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.itReportPath>${project.basedir}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
+        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.language>java</sonar.language>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 
@@ -263,6 +263,15 @@
                             <destFile>${sonar.jacoco.itReportPath}</destFile>
                         </configuration>
                     </execution>
+
+					<!-- added for codecov.io -->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
                 </executions>
             </plugin>
 
