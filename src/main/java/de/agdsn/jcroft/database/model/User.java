@@ -19,6 +19,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String username;
     private String firstName;
     private String lastName;
 
@@ -58,6 +59,15 @@ public class User implements Serializable {
     public void setLastName(String lastName) {
         StringUtils.requireNonEmptyString(firstName, "lastName");
         this.lastName = lastName;
+    }
+
+    public String getUsername () {
+        return this.username;
+    }
+
+    public void setUsername (String username) {
+        StringUtils.requireNonEmptyString(username);
+        this.username = username;
     }
 
     @Override
