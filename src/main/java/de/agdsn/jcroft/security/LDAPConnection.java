@@ -46,6 +46,9 @@ public class LDAPConnection {
             int port = JCroftConfiguration.getValueInt("ldap_port");
 
             try (LdapConnection conn = new LdapNetworkConnection(host, port)) {
+                //set timeout of 3 seconds
+                conn.setTimeOut(3000);
+
                 conn.bind("uid=" + username + ",cn=users,cn=accounts,dc=agdsn,dc=de", password);
 
                 SearchRequest req = new SearchRequestImpl();
