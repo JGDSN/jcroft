@@ -50,7 +50,7 @@ public class LDAPConnection {
 
             try (LdapConnection conn = new LdapNetworkConnection(host, port)) {
                 //set timeout of 3 seconds
-                conn.setTimeOut(TIMEOUT_LIMIT_SECONDS * 1000);
+                conn.setTimeOut(TIMEOUT_LIMIT_SECONDS * 1000L);
 
                 conn.bind("uid=" + username + ",cn=users,cn=accounts,dc=agdsn,dc=de", password);
 
