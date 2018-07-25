@@ -7,4 +7,5 @@ spring:
 logging:
   level:
     com.hazelcast: DEBUG
+    org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: ERROR
 org.hibernate: DEBUG
