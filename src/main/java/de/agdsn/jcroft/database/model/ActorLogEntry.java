@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "services", indexes = {
+@Table(name = "actor_logs", indexes = {
         @Index(columnList = "actor_id", name = "actor_id_idx")
 })
 public class ActorLogEntry implements Serializable {
@@ -24,7 +24,7 @@ public class ActorLogEntry implements Serializable {
     private int actorID;
 
     @ManyToOne(optional = false)
-    private User author;
+    private Actor author;
 
     @Column(name = "message", nullable = false, updatable = true)
     private String message;
@@ -33,10 +33,34 @@ public class ActorLogEntry implements Serializable {
     @CreationTimestamp
     private Date date;
 
-    public ActorLogEntry (int actorID, User author, String message) {
+    public ActorLogEntry (int actorID, Actor author, String message) {
+        if (actorID <= 0) {
+            throw new IllegalArgumentException("actorID has to be >= 0.");
+        }
+
         this.actorID = actorID;
         this.author = author;
         this.message = message;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getActorID() {
+        return actorID;
+    }
+
+    public Actor getAuthor() {
+        return author;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
 }
