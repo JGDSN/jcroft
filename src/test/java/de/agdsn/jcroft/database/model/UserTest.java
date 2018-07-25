@@ -79,6 +79,8 @@ public class UserTest {
         assertEquals("my-password-hash", user.getPasswordHash());
         assertEquals(registered, user.getRegistered());
 
+        assertEquals(20, user.getActorId());
+
         assertNotNull(user.toString());
     }
 

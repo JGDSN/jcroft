@@ -16,10 +16,6 @@ public class ActorTypeTest {
 
         assertEquals(ActorType.USER, ActorType.valueOf("USER"));
         assertEquals(ActorType.SERVICE, ActorType.valueOf("SERVICE"));
-
-        //test for correct implementation of equals() and hashCode() method
-        assertEquals(ActorType.USER, ActorType.USER);
-        assertEquals(ActorType.SERVICE, ActorType.SERVICE);
     }
 
 }
