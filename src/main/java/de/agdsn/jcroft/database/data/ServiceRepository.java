@@ -1,7 +1,6 @@
 package de.agdsn.jcroft.database.data;
 
 import de.agdsn.jcroft.database.model.Service;
-import de.agdsn.jcroft.database.model.User;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
 
