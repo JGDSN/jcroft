@@ -69,7 +69,7 @@ hz_members=127.0.0.1,127.0.0.2
 
 Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
 
-  - [Database Schema](https://app.sqldbm.com/MySQL/Share/Hm_yVRXiAIDjSQ1FbBmW8EGFrngIE8md_DYjF4jNYw0)
+  - [Database Schema](https://app.sqldbm.com/MySQL/Share/Ql8x9szXqXBW2ulSqpgFDUGFrngIE8md_DYjF4jNYw0)
 
 ## Technical Requirements
 
@@ -83,7 +83,7 @@ Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
 ## Presentation
 
   - [Slides](https://slides.com/juku/deck)
-  - [Database Schema](https://app.sqldbm.com/MySQL/Share/Hm_yVRXiAIDjSQ1FbBmW8EGFrngIE8md_DYjF4jNYw0)
+  - [Database Schema](https://app.sqldbm.com/MySQL/Share/Ql8x9szXqXBW2ulSqpgFDUGFrngIE8md_DYjF4jNYw0)
   
 ## FAQ
 
