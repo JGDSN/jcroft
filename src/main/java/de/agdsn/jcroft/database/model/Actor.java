@@ -5,11 +5,12 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "actors")
-public class Actor {
+public class Actor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -49,10 +49,9 @@ public class User implements Serializable {
     private String lastName;
 
     /**
-    * orphanRemoval = true, because Actor should be also removed if user was removed
-    */
-    @OneToOne(orphanRemoval = true)
-    @Column(name = "actor_id", nullable = false, updatable = true)
+     * orphanRemoval = true, because Actor should be also removed if user was removed
+     */
+    @OneToOne(orphanRemoval = true, mappedBy = "users", optional = false)
     private Actor actor;
 
     public User() {
