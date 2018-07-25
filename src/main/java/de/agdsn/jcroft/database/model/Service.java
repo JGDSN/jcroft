@@ -33,7 +33,7 @@ public class Service implements Serializable {
     /**
      * orphanRemoval = true, because Actor should be also removed if user was removed
      */
-    @OneToOne(orphanRemoval = true, mappedBy = "services", optional = false)
+    @OneToOne(orphanRemoval = true, optional = false)
     private Actor actor;
 
 }
