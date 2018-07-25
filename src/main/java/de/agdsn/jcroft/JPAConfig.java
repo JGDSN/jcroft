@@ -64,11 +64,13 @@ public class JPAConfig {
     }
 
     Properties additionalProperties() {
-        //avoid spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
-
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", JCroftConfiguration.getValue("hibernate.hbm2ddl.auto"));
         properties.setProperty("hibernate.dialect", JCroftConfiguration.getValue("hibernate.dialect"));
+
+        //avoid this exception: java.sql.SQLFeatureNotSupportedException: Die Methode org.postgresql.jdbc4.Jdbc4Connection.createClob() ist noch nicht implementiert.
+        properties.setProperty("spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation", "true");
+
         return properties;
     }
 }
