@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.database.model.enums.ActorType;
 import de.agdsn.jcroft.utils.IntUtils;
 import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -54,15 +56,18 @@ public class User implements Serializable {
     @OneToOne(orphanRemoval = true, optional = false)
     private Actor actor;
 
-    public User() {
-    }
-
-    public User(String fname, String lname) {
+    public User(String fname, String lname, Actor actor) {
         StringUtils.requireNonEmptyString(fname, "forename");
         StringUtils.requireNonEmptyString(lname, "lastname");
+        Objects.requireNonNull(actor);
 
         this.firstName = fname;
         this.lastName = lname;
+        this.actor = actor;
+
+        if (actor.getType() != ActorType.USER) {
+            throw new IllegalArgumentException("actor type isn't of type USER.");
+        }
     }
 
     public int getId() {
@@ -115,6 +120,14 @@ public class User implements Serializable {
 
     public void setRegistered(Date registered) {
         this.registered = registered;
+    }
+
+    public Actor getActor () {
+        return this.actor;
+    }
+
+    public int getActorId () {
+        return getActor().getId();
     }
 
     @Override

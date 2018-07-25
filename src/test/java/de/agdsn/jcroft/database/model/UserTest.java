@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.database.model.enums.ActorType;
 import org.junit.Test;
 
 import java.util.Date;
@@ -11,12 +12,7 @@ public class UserTest {
 
     @Test
     public void testConstructor () {
-        new User();
-    }
-
-    @Test
-    public void testConstructor1 () {
-        User user = new User("Max", "Mustermann");
+        User user = new User("Max", "Mustermann", createActor());
 
         assertEquals("Max", user.getFirstName());
         assertEquals("Mustermann", user.getLastName());
@@ -24,39 +20,49 @@ public class UserTest {
 
     @Test (expected = NullPointerException.class)
     public void testNullFNameConstructor () {
-        new User(null, "test");
+        new User(null, "test", createActor());
     }
 
     @Test (expected = NullPointerException.class)
     public void testNullLNameConstructor () {
-        new User("test", null);
+        new User("test", null, createActor());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testEmptyFNameConstructor () {
-        new User("", "test");
+        new User("", "test", createActor());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testEmptyLNameConstructor () {
-        new User("test", "");
+        new User("test", "", createActor());
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void testNullActorConstructor () {
+        User user = new User("Max", "Mustermann", null);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testInvalideActorTypeConstructor () {
+        User user = new User("Max", "Mustermann", new Actor(ActorType.SERVICE));
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testSetNullID () {
-        User user = new User();
+        User user = new User("max", "mustermann", createActor());
         user.setId(0);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testSetNegativeID () {
-        User user = new User();
+        User user = new User("max", "mustermann", createActor());
         user.setId(-1);
     }
 
     @Test
     public void testGetterAndSetter () {
-        User user = new User();
+        User user = new User("test", "test", createActor());
         Date registered = new Date();
 
         user.setId(2);
@@ -74,6 +80,13 @@ public class UserTest {
         assertEquals(registered, user.getRegistered());
 
         assertNotNull(user.toString());
+    }
+
+    protected static Actor createActor () {
+        Actor actor = new Actor(ActorType.USER);
+        actor.id = 20;
+
+        return actor;
     }
 
 }

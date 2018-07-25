@@ -16,7 +16,7 @@ public class Actor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id", nullable = false, updatable = false)
-    private int id;
+    protected int id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, updatable = false)
