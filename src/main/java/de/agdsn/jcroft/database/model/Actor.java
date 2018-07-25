@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
@@ -25,6 +26,7 @@ public class Actor implements Serializable {
     * create a new actor
     */
     public Actor (ActorType type) {
+        Objects.requireNonNull(type);
         this.type = type;
     }
 
