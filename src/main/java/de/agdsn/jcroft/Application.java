@@ -50,7 +50,7 @@ public class Application {
         String instanceName = JCroftConfiguration.getValue("hz_instance_name");
         String memberStr = JCroftConfiguration.getValue("hz_members");
 
-        String members[] = memberStr.split(",");
+        String[] members = memberStr.split(",");
 
         Config config = new Config();
         config.getGroupConfig().setName(groupName).setPassword(groupPassword);

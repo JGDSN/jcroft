@@ -20,7 +20,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="http://rocketcms.chipbyte.de" class="logo">
+        <a onclick="nav_main('/')" href="javascript:void(0);" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><img src="/res/img/logo_icon.png"></img><b>J</b>C</span>
             <!-- logo for regular state and mobile devices -->
@@ -125,47 +125,31 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="http://rocketcms.chipbyte.de/styles/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">admin</span>
+                            <span class="hidden-xs" th:text="${username}"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="http://rocketcms.chipbyte.de/styles/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                                <p>
-                                    admin - Web Developer
-                                    <small>Member since Nov. 2012</small>
-                                </p>
-                            </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
+                                <p th:utext="${username + '<small>' + usercaption + '</small>'}"></p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
+                                <div style="text-align: center">
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="logout" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>
                     </li>
-                    <!-- Control Sidebar Toggle Button -->
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <!-- Control Logout Button -->
+                    <li class="dropdown messages-menu">
+                        <form action="/logout" method="POST" name="logout">
+                            <input type="hidden"
+                                   th:name="${_csrf.parameterName}"
+                                   th:value="${_csrf.token}"/>
+                        </form>
+                        <a class="dropdown-toggle" onlick="document.logout.submit();"><i class="fa fa-sign-out-alt"></i></a>
                     </li>
                 </ul>
             </div>
@@ -184,8 +168,8 @@
                     <img src="http://rocketcms.chipbyte.de/styles/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <p th:text="${username}"></p>
+                    <a href="#" th:utext="${'<i class=''fa fa-id-badge text-aqua''></i>' + usercaption}"></a>
                 </div>
             </div>
             <!-- search form -->
@@ -209,26 +193,13 @@
                     <a href="#">
                         <i class=" fa fa-tachometer-alt"></i> <span>Dashboard</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
 
 
                         <li><a href="http://rocketcms.chipbyte.de/admin/home"><i class=" fa fa-tachometer-alt"></i> Dashboard</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/settings"><i class=" fa fa-cog"></i> Settings</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/"><i class=" fa fa-desktop"></i> Website</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/update"><i class=" fa fa-download"></i> Updates</a></li>
-
 
                     </ul>
                 </li>
@@ -239,203 +210,11 @@
                     <a href="#">
                         <i class=" fa fa-list-alt"></i> <span>Posts</span>
                         <span class="pull-right-container">
-                        <!-- <small class="label pull-right bg-green">Hot</small> -->
 
-                            <!-- <small class="label pull-right bg-red">3</small>
-                            <small class="label pull-right bg-blue">17</small> -->
-
-
-            </span>
+                        </span>
                     </a>
                 </li>
 
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class=" fa fa-file"></i> <span>Pages</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/pages"><i class=" fa fa-circle"></i> All Pages</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/my_pages"><i class=" fa fa-circle"></i> My Pages</a></li>
-
-
-                    </ul>
-                </li>
-
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class=" fa fa-file-image"></i> <span>Media</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/media"><i class=" fa fa-file-image"></i> All Media</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/media/upload"><i class=" fa fa-upload"></i> Upload Media</a></li>
-
-
-                    </ul>
-                </li>
-
-
-
-                <li>
-                    <a href="http://rocketcms.chipbyte.de/admin/menu">
-                        <i class=" fa fa-anchor"></i> <span>Menu</span>
-                        <span class="pull-right-container">
-                        <!-- <small class="label pull-right bg-green">Hot</small> -->
-
-                            <!-- <small class="label pull-right bg-red">3</small>
-                            <small class="label pull-right bg-blue">17</small> -->
-
-
-            </span>
-                    </a>
-                </li>
-
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class=" fa fa-users"></i> <span>Users</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/users"><i class=" fa fa-id-card"></i> All Users</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/create_user"><i class=" fa fa-user-plus"></i> Create User</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/groups"><i class=" fa fa-users"></i> Groups</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/my_groups"><i class=" fa fa-id-badge"></i> My groups</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/profile"><i class=" fa fa-user-circle"></i> My profile</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/change_password"><i class=" fa fa-key"></i> Change password</a></li>
-
-
-                    </ul>
-                </li>
-
-
-
-                <li>
-                    <a href="http://rocketcms.chipbyte.de/admin/design">
-                        <i class=" fa fa-paint-brush"></i> <span>Design</span>
-                        <span class="pull-right-container">
-                        <!-- <small class="label pull-right bg-green">Hot</small> -->
-
-                            <!-- <small class="label pull-right bg-red">3</small>
-                            <small class="label pull-right bg-blue">17</small> -->
-
-
-            </span>
-                    </a>
-                </li>
-
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class=" fa fa-cubes"></i> <span>Plugins</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/plugins"><i class=" fa fa-cubes"></i> Plugins</a></li>
-
-
-
-                        <li><a href="#"><i class=" fa fa-cogs"></i> Settings</a></li>
-
-
-                    </ul>
-                </li>
-
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class=" fa fa-wrench"></i> <span>Tools</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/phpinfo"><i class=" fab fa-php"></i> phpinfo()</a></li>
-
-
-
-                        <li><a href="#"><i class=" fa fa-laptop"></i> PhpMyAdmin</a></li>
-
-
-
-                        <li><a href="#"><i class=" fa fa-envelope"></i> Webmail</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/sendmail"><i class=" fa fa-envelope-open"></i> Send Mail</a></li>
-
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/clearcache"><i class=" fa fa-trash"></i> Clear Cache</a></li>
-
-
-                    </ul>
-                </li>
-
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class=" fa fa-cogs"></i> <span>Settings</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/settings"><i class=" fa fa-cog"></i> Settings</a></li>
-
-
-                    </ul>
-                </li>
 
 
 
@@ -485,201 +264,6 @@
         </div>
         <strong>Copyright &copy; 2018 <a href="https://agdsn.de">AG DSN</a></strong>, All Rights Reserved.
     </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                <p>Will be 23 on April 24th</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-user bg-yellow"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                                <p>New phone +1(800)555-1234</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-envelope bg-light-blue"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                                <p>nora@example.com</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                                <p>Execution time 5 seconds</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="label label-danger pull-right">70%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Update Resume
-                                <span class="label label-success pull-right">95%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Laravel Integration
-                                <span class="label label-warning pull-right">50%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Back End Framework
-                                <span class="label label-primary pull-right">68%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-            </div>
-            <!-- /.tab-pane -->
-            <!-- Stats tab content -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            <!-- /.tab-pane -->
-            <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Allow mail redirect
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Other sets of options are available
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Expose author name in posts
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Allow the user to show his name in blog posts
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Show me as online
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Turn off notifications
-                            <input type="checkbox" class="pull-right">
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Delete chat history
-                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-            </div>
-            <!-- /.tab-pane -->
-        </div>
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
