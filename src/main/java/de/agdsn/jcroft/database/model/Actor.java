@@ -18,7 +18,7 @@ public class Actor implements Serializable {
     @Column(name = "actor_id", nullable = false, updatable = false)
     protected int id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "type", nullable = false, updatable = false)
     private ActorType type;
 
