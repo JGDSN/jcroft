@@ -71,6 +71,9 @@ Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
 
   - [Database Schema](https://app.sqldbm.com/MySQL/Share/Ql8x9szXqXBW2ulSqpgFDUGFrngIE8md_DYjF4jNYw0)
 
+Outdated database schema (WIP):
+![Database Design](./docs/images/database_design_schema.png)
+
 ## Technical Requirements
 
 ## Non-Technical Requirements
