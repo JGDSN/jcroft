@@ -10,7 +10,9 @@ import java.io.Serializable;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "services")
+@Table(name = "services", indexes = {
+        @Index(columnList = "token", name = "token_index")
+})
 public class Service implements Serializable {
 
     @Id
