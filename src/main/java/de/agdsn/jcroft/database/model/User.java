@@ -48,7 +48,10 @@ public class User implements Serializable {
     @Column(name = "surname", nullable = false, updatable = true)
     private String lastName;
 
-    @OneToOne
+    /**
+    * orphanRemoval = true, because Actor should be also removed if user was removed
+    */
+    @OneToOne(orphanRemoval = true)
     @Column(name = "actor_id", nullable = false, updatable = true)
     private Actor actor;
 
