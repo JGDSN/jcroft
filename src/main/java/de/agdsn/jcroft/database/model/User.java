@@ -4,9 +4,12 @@ import de.agdsn.jcroft.utils.IntUtils;
 import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -18,10 +21,36 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", nullable = false, updatable = false)
     private int id;
+
+    @Size(max = 45)
+    @Column(name = "username", unique = true, nullable = false, updatable = true)
     private String username;
+
+    @Size(max = 255)
+    @Column(name = "password_hash", nullable = true, updatable = true)
+    private String passwordHash;
+
+    @Column(name = "registered", nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date registered;
+
+    @Size(max = 255)
+    @Column(name = "email", nullable = false, updatable = true)
+    private String email;
+
+    @Size(max = 45)
+    @Column(name = "first_name", nullable = false, updatable = true)
     private String firstName;
+
+    @Size(max = 45)
+    @Column(name = "surname", nullable = false, updatable = true)
     private String lastName;
+
+    @OneToOne
+    @Column(name = "actor_id", nullable = false, updatable = true)
+    private Actor actor;
 
     public User() {
     }
@@ -70,8 +99,25 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    public String getPasswordHash() {
+        return this.passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public Date getRegistered() {
+        return this.registered;
+    }
+
+    public void setRegistered(Date registered) {
+        this.registered = registered;
+    }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
     }
+
 }
