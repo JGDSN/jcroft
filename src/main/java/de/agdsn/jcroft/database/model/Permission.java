@@ -34,6 +34,13 @@ public class Permission implements Serializable {
         this.description = description;
     }
 
+    /**
+     * default constructor required by spring hibernate
+     */
+    protected Permission () {
+        //
+    }
+
     public String getToken() {
         return token;
     }

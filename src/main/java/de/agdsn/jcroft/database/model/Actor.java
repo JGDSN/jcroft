@@ -30,6 +30,13 @@ public class Actor implements Serializable {
         this.type = type;
     }
 
+    /**
+     * default constructor required by spring hibernate
+     */
+    protected Actor () {
+        //
+    }
+
     public int getId() {
         return id;
     }

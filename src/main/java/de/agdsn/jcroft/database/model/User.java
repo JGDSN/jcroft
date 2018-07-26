@@ -71,6 +71,13 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * default constructor required by spring hibernate
+     */
+    protected User () {
+        //
+    }
+
     public int getId() {
         return id;
     }

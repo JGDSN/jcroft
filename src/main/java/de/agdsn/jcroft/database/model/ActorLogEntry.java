@@ -48,6 +48,13 @@ public class ActorLogEntry implements Serializable {
         this.author = author;
         this.message = message;
     }
+    /**
+     * default constructor required by spring hibernate
+     */
+    protected ActorLogEntry () {
+        //
+    }
+
 
     public int getId() {
         return id;

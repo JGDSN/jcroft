@@ -45,6 +45,13 @@ public class Service implements Serializable {
         }
     }
 
+    /**
+     * default constructor required by spring hibernate
+     */
+    public Service () {
+        //
+    }
+
     public int getId() {
         return id;
     }
