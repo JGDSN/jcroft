@@ -6,8 +6,7 @@ spring:
     name: jcroft
 logging:
   level:
-    com.hazelcast: DEBUG
+    com.hazelcast: INFO
     org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: ERROR
     com.hazelcast.cluster.impl.TcpIpJoiner: INFO
-    c.h.i.p.InternalPartitionService: INFO
 org.hibernate: DEBUG
