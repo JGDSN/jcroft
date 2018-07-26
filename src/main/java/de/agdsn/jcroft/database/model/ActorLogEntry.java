@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.CreationTimestamp;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
@@ -34,6 +36,9 @@ public class ActorLogEntry implements Serializable {
     private Date date;
 
     public ActorLogEntry (int actorID, Actor author, String message) {
+        Objects.requireNonNull(author);
+        StringUtils.requireNonEmptyString(message, "message");
+
         if (actorID <= 0) {
             throw new IllegalArgumentException("actorID has to be >= 0.");
         }
