@@ -61,6 +61,10 @@ public class ActorLogEntry implements Serializable {
         return author;
     }
 
+    public int getAuthorId() {
+        return getAuthor().getId();
+    }
+
     public String getMessage() {
         return message;
     }
