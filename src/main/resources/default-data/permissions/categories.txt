@@ -1,0 +1,7 @@
+1:Members
+2:Services
+3:User management
+4:Finances
+5:Infrastructure
+6:Group management
+7:Others

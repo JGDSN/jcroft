@@ -1,0 +1,6 @@
+# Nutzerverwaltung
+can_see_userdata;darf Nutzerdaten einsehen;;3
+can_add_user;darf Nutzer anlegen;;3
+can_edit_user;darf Nutzer ändern;;3
+can_remove_user;darf Nutzer löschen;;3
+can_change_mac_addresses;;3
