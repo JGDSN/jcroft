@@ -8,4 +8,5 @@ logging:
   level:
     com.hazelcast: DEBUG
     org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: ERROR
+    com.hazelcast.cluster.impl.TcpIpJoiner: INFO
 org.hibernate: DEBUG
