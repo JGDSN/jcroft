@@ -20,4 +20,13 @@ public class PermissionCategory {
     @Column(name = "title", unique = true, nullable = false, updatable = true)
     private String title;
 
+    public PermissionCategory (int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public PermissionCategory (String title) {
+        this.title = title;
+    }
+
 }
