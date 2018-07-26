@@ -3,6 +3,7 @@ package de.agdsn.jcroft.database.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class PermissionTest {
 
@@ -43,6 +44,7 @@ public class PermissionTest {
         assertEquals("token", permission.getToken());
         assertEquals("test-title", permission.getTitle());
         assertEquals("test", permission.getDescription());
+        assertNotNull(permission.getCategory());
     }
 
 }
