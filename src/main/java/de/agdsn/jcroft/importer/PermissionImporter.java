@@ -48,7 +48,7 @@ public class PermissionImporter {
                 Optional<PermissionCategory> categoryOptional = categoryRepository.findById(id);
 
                 if (!categoryOptional.isPresent()) {
-                    Logger.getAnonymousLogger().log(Level.INFO, "import permission category: " + title);
+                    Logger.getAnonymousLogger().log(Level.INFO, "import permission category: {0}", title);
 
                     //create new category
                     PermissionCategory category = new PermissionCategory(id, title);

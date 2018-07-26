@@ -5,7 +5,6 @@ import com.hazelcast.config.TcpIpConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.spring.cache.HazelcastCacheManager;
-import de.agdsn.jcroft.database.model.Permission;
 import de.agdsn.jcroft.importer.PermissionImporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

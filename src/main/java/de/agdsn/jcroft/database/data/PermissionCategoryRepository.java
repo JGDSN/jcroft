@@ -1,8 +1,6 @@
 package de.agdsn.jcroft.database.data;
 
-import de.agdsn.jcroft.database.model.Permission;
 import de.agdsn.jcroft.database.model.PermissionCategory;
-import de.agdsn.jcroft.database.model.Service;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
 
