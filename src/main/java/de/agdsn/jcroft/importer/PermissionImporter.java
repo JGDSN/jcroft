@@ -35,7 +35,7 @@ public class PermissionImporter {
                     continue;
                 }
 
-                String[] array = line.split(";");
+                String[] array = line.split(":");
 
                 if (array.length != 2) {
                     throw new IOException("invalide permission categories file: " + categoriesFile.getAbsolutePath());
