@@ -20,13 +20,16 @@ The new AG DSN management system
   - Java 8+ (plan: **Java 10**)
   - Maven
   - PostGreSQL
-  - [Hazelcast.org](http://hazelcast.org) for scaling and high availability
-  - LDAP server for authentification
+  - Nice to have: LDAP server for authentification
 
-## How To
+## How To / Creating a test environment
+
+####Build
+
+Clone this repository, then build with maven:
 
 ```bash
-mvn clean install
+mvn clean package
 ```
 
 German introduction to maven:
@@ -34,6 +37,8 @@ German introduction to maven:
   - http://jukusoft.com/2016/10/24/tutorial-eine-einfuehrung-in-maven-teil-1/
   - http://jukusoft.com/2016/10/29/tutorial-einfuehrung-maven-teil-2/
   
+####Configure
+
 **If you want to use your real login password (instead of "test"), you will need a LDAP server.**\
 For AGDSN you have to be in internal management network or add a port forwarding for **127.0.0.1:389 --> IDM Server:389**
 
@@ -83,9 +88,6 @@ Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
 
 ## Non-Technical Requirements
 
-  - scaling out with load balancers
-  - high availibility clusters
-  - failover node
   - **Privacy by design** (DSGVO-conform)
   
 ## Presentation
@@ -95,25 +97,5 @@ Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
   
 ## FAQ
 
-### Why there is a InvocationTargetException on start?
+### Coming soon
 
-Maybe, you get this exception on startup:
-```java
-java.lang.reflect.InvocationTargetException: null
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_91]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_91]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_91]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_91]
-	
-	...
-	
-	at de.agdsn.jcroft.Application.main(Application.java:42) ~[classes/:na]
-Caused by: java.sql.SQLFeatureNotSupportedException: Die Methode org.postgresql.jdbc4.Jdbc4Connection.createClob() ist noch nicht implementiert.
-	at org.postgresql.Driver.notImplemented(Driver.java:753) ~[postgresql-9.1-901-1.jdbc4.jar:na]
-	at org.postgresql.jdbc4.AbstractJdbc4Connection.createClob(AbstractJdbc4Connection.java:52) ~[postgresql-9.1-901-1.jdbc4.jar:na]
-	at org.postgresql.jdbc4.Jdbc4Connection.createClob(Jdbc4Connection.java:21) ~[postgresql-9.1-901-1.jdbc4.jar:na]
-	... 44 common frames omitted
-```
-
-You can ignore this exception, because hibernate only throws this exception because PostGreSQL doesnt support an specific feature.\
-"Die Methode org.postgresql.jdbc4.Jdbc4Connection.createClob() ist noch nicht implementiert".
