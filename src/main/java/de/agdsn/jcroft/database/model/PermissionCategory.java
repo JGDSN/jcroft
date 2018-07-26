@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -22,6 +23,12 @@ public class PermissionCategory implements Serializable {
     private String title;
 
     public PermissionCategory (int id, String title) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("id has to be > 0.");
+        }
+
+        StringUtils.requireNonEmptyString(title, "title");
+
         this.id = id;
         this.title = title;
     }
@@ -35,6 +42,14 @@ public class PermissionCategory implements Serializable {
 
     public PermissionCategory (String title) {
         this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
 }
