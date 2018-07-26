@@ -34,7 +34,7 @@ German introduction to maven:
   - http://jukusoft.com/2016/10/24/tutorial-eine-einfuehrung-in-maven-teil-1/
   - http://jukusoft.com/2016/10/29/tutorial-einfuehrung-maven-teil-2/
   
-**Additionally you need a LDAP server.**\
+**If you want to use your real login password (instead of "test"), you will need a LDAP server.**\
 For AGDSN you have to be in internal management network or add a port forwarding for **127.0.0.1:389 --> IDM Server:389**
 
 You can add port a forwarding with [Bitvise]() for example:
@@ -44,6 +44,11 @@ Change your jcroft config (will be created on first run) to use your tunnel to t
 
 **settings/jcroft.cfg**:
 ```text
+; Welcome to the JCroft configuration section
+
+; When this option is enabled, JCroft accepts the password "test" for any existing user (no LDAP connection needed then)
+auth_test=true
+; LDAP authentication for JCroft users
 ldap_host=localhost
 ldap_port=389
 
