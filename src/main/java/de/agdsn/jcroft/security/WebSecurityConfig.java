@@ -19,13 +19,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .authorizeRequests()
+                    .antMatchers("/api/ws/token**", "/api/rest/token**").permitAll()
+                .and()
                 .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/logoutSuccess");
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/logoutSuccess");
     }
 
     @Override
