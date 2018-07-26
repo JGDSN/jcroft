@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -29,6 +30,9 @@ public class Permission implements Serializable {
     private PermissionCategory category;
 
     public Permission (String token, String title, String description) {
+        StringUtils.requireNonEmptyString(token, "token");
+        StringUtils.requireNonEmptyString(title, "title");
+
         this.token = token;
         this.title = title;
         this.description = description;
