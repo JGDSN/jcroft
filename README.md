@@ -24,7 +24,7 @@ The new AG DSN management system
 
 ## How To / Creating a test environment
 
-####Build
+#### Build
 
 Clone this repository, then build with maven:
 
@@ -37,7 +37,7 @@ German introduction to maven:
   - http://jukusoft.com/2016/10/24/tutorial-eine-einfuehrung-in-maven-teil-1/
   - http://jukusoft.com/2016/10/29/tutorial-einfuehrung-maven-teil-2/
   
-####Configure
+#### Configure
 
 **If you want to use your real login password (instead of "test"), you will need a LDAP server.**\
 For AGDSN you have to be in internal management network or add a port forwarding for **127.0.0.1:389 --> IDM Server:389**
