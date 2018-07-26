@@ -53,7 +53,8 @@ public class User implements Serializable {
     /**
      * orphanRemoval = true, because Actor should be also removed if user was removed
      */
-    @OneToOne(orphanRemoval = true, optional = false)
+    @OneToOne(orphanRemoval = true, optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "actor_id")
     private Actor actor;
 
     public User(String fname, String lname, Actor actor) {

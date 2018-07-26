@@ -31,7 +31,8 @@ public class Service implements Serializable {
     /**
      * orphanRemoval = true, because Actor should be also removed if user was removed
      */
-    @OneToOne(orphanRemoval = true, optional = false)
+    @OneToOne(orphanRemoval = true, optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "actor_id")
     private Actor actor;
 
     public Service (String name, String token, Actor actor) {

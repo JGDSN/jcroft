@@ -25,7 +25,7 @@ public class ActorLogEntry implements Serializable {
     @Column(name = "actor_id", nullable = false, updatable = true)
     private int actorID;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Actor author;
 
