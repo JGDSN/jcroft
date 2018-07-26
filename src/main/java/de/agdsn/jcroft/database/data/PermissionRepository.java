@@ -1,8 +1,6 @@
 package de.agdsn.jcroft.database.data;
 
-import de.agdsn.jcroft.database.model.Actor;
 import de.agdsn.jcroft.database.model.Permission;
-import de.agdsn.jcroft.database.model.enums.ActorType;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
 
@@ -22,6 +20,6 @@ public interface PermissionRepository extends CrudRepository<Permission, String>
      * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
     @Cacheable("permission-repository-findByToken")
-    Optional<Actor> findByToken(String token);
+    Optional<Permission> findByToken(String token);
 
 }

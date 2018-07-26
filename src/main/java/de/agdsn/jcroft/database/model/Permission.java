@@ -24,6 +24,10 @@ public class Permission implements Serializable {
     @Column(name = "description", nullable = false, updatable = true)
     private String description;
 
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private PermissionCategory category;
+
     public Permission (String token, String title, String description) {
         this.token = token;
         this.title = title;
