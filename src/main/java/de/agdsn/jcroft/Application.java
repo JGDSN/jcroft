@@ -45,7 +45,7 @@ public class Application {
         //Start the spring web service
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
-        //add default data like basic permissions
+        //add default data like basic permissions (if absent)
         PermissionImporter importer = context.getBean(PermissionImporter.class);
         importer.importPermissions();
     }
