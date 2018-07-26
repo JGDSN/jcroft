@@ -6,11 +6,13 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.List;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "groups")
-public class Group {
+public class Group implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +22,9 @@ public class Group {
     @Size(max = 45)
     @Column(name = "name", nullable = false, updatable = true)
     private String name;
+
+    @OneToMany
+    private List<GroupPermission> permissions;
 
     public Group (String name) {
         StringUtils.requireNonEmptyString(name, "name");
