@@ -42,6 +42,12 @@ public class GroupPermissionTest {
         assertNotNull(permission.getValue());
 
         assertEquals(PermissionValues.YES, permission.getValue());
+
+        permission.setValue(PermissionValues.NO);
+        assertEquals(PermissionValues.NO, permission.getValue());
+
+        permission.setValue(PermissionValues.YES);
+        assertEquals(PermissionValues.YES, permission.getValue());
     }
 
 }
