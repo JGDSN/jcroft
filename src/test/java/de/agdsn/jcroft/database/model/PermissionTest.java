@@ -13,32 +13,32 @@ public class PermissionTest {
 
     @Test
     public void testConstructor1 () {
-        new Permission("token", "test", "test");
+        new Permission("token", "test", "test", new PermissionCategory());
     }
 
     @Test (expected = NullPointerException.class)
     public void testNullTokenConstructor () {
-        new Permission(null, "test", "test");
+        new Permission(null, "test", "test", new PermissionCategory());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testEmptyTokenConstructor () {
-        new Permission("", "test", "test");
+        new Permission("", "test", "test", new PermissionCategory());
     }
 
     @Test (expected = NullPointerException.class)
     public void testNullTitleConstructor () {
-        new Permission("token", null, "test");
+        new Permission("token", null, "test", new PermissionCategory());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testEmptyTitleConstructor () {
-        new Permission("token", "", "test");
+        new Permission("token", "", "test", new PermissionCategory());
     }
 
     @Test
     public void testGetter () {
-        Permission permission = new Permission("token", "test-title", "test");
+        Permission permission = new Permission("token", "test-title", "test", new PermissionCategory());
 
         assertEquals("token", permission.getToken());
         assertEquals("test-title", permission.getTitle());

@@ -6,7 +6,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "group_permissions")
@@ -24,5 +26,19 @@ public class GroupPermission implements Serializable {
 
     @Column(name = "value", nullable = false, updatable = true)
     private PermissionValues value;
+
+    public GroupPermission (Permission permission, Group group, PermissionValues value) {
+        Objects.requireNonNull(permission);
+        Objects.requireNonNull(group);
+        Objects.requireNonNull(value);
+
+        this.permission = permission;
+        this.group = group;
+        this.value = value;
+    }
+
+    protected GroupPermission () {
+        //
+    }
 
 }
