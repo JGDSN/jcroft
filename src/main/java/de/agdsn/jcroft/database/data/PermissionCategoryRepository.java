@@ -19,7 +19,6 @@ public interface PermissionCategoryRepository extends CrudRepository<PermissionC
      * @return the entity with the given id or {@literal Optional#empty()} if none found
      * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
-    @Cacheable("permission-categories-findById")
     Optional<PermissionCategory> findById(int id);
 
 }

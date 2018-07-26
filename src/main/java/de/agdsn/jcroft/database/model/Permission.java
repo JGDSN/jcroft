@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "permissions")
@@ -29,13 +30,14 @@ public class Permission implements Serializable {
     @JoinColumn(name = "category_id")
     private PermissionCategory category;
 
-    public Permission (String token, String title, String description) {
+    public Permission (String token, String title, String description, PermissionCategory category) {
         StringUtils.requireNonEmptyString(token, "token");
         StringUtils.requireNonEmptyString(title, "title");
 
         this.token = token;
         this.title = title;
         this.description = description;
+        this.category = category;
     }
 
     /**
@@ -57,4 +59,7 @@ public class Permission implements Serializable {
         return description;
     }
 
+    public PermissionCategory getCategory() {
+        return category;
+    }
 }

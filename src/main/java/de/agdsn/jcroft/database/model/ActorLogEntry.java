@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "actor_logs", indexes = {
