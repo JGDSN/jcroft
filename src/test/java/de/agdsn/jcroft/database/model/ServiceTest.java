@@ -26,7 +26,9 @@ public class ServiceTest {
         Actor actor = new Actor(ActorType.SERVICE);
         actor.id = 20;
         Service service = new Service("test-name", "test-token", actor);
+        service.id = 10;
 
+        assertEquals(10, service.getId());
         assertEquals("test-name", service.getName());
         assertEquals("test-token", service.getToken());
         assertEquals(ActorType.SERVICE, service.getActor().getType());
@@ -35,6 +37,9 @@ public class ServiceTest {
         //set token
         service.setToken("test-token2");
         assertEquals("test-token2", service.getToken());
+
+        service.setName("max");
+        assertEquals("max", service.getName());
     }
 
 }

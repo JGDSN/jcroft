@@ -18,7 +18,7 @@ public class Service implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "service_id", nullable = false, updatable = false)
-    private int id;
+    protected int id;
 
     @Size(max = 45)
     @Column(name = "name", nullable = false, updatable = true)
