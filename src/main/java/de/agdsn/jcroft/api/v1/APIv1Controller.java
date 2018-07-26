@@ -42,7 +42,7 @@ public class APIv1Controller {
     @SendTo("/return/v1/{callback_name}")
     public APIv1Response onTokenRequest(APIv1Request request, @RequestParam String token, @DestinationVariable String action){
         Optional<Service> service = serviceRepository.findByToken(token);
-        return service.map(service_inst -> apIv1Handler.performAction(action, request))
+        return service.map(serviceInst -> apIv1Handler.performAction(action, request))
                             .orElseGet(()->{
                                 HashMap<String, String> response = new HashMap<>();
                                 response.put("state", "403");
