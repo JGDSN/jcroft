@@ -13,6 +13,11 @@ public class ActorLogEntryTest {
         new ActorLogEntry(1, new Actor(ActorType.USER), "test");
     }
 
+    @Test
+    public void testConstructor1 () {
+        new ActorLogEntry();
+    }
+
     @Test (expected = IllegalArgumentException.class)
     public void testNullActorIDConstructor () {
         new ActorLogEntry(0, new Actor(ActorType.USER), "test");

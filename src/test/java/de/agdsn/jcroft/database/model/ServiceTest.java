@@ -22,6 +22,11 @@ public class ServiceTest {
     }
 
     @Test
+    public void testConstructor2 () {
+        new Service();
+    }
+
+    @Test
     public void testGetterAndSetter () {
         Actor actor = new Actor(ActorType.SERVICE);
         actor.id = 20;

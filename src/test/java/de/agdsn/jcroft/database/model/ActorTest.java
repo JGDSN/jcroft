@@ -14,6 +14,11 @@ public class ActorTest {
         new Actor(ActorType.SERVICE);
     }
 
+    @Test
+    public void testConstructor1 () {
+        new Actor();
+    }
+
     @Test (expected = NullPointerException.class)
     public void testNullConstructor () {
         new Actor(null);

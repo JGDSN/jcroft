@@ -18,6 +18,11 @@ public class UserTest {
         assertEquals("Mustermann", user.getLastName());
     }
 
+    @Test
+    public void testConstructor1 () {
+        new User();
+    }
+
     @Test (expected = NullPointerException.class)
     public void testNullFNameConstructor () {
         new User(null, "test", createActor());
