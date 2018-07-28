@@ -35,6 +35,10 @@ public class Setting {
         this.value = "" + value;
     }
 
+    protected Setting () {
+        //
+    }
+
     public String getKey() {
         return key;
     }
