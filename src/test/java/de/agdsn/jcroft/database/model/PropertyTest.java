@@ -58,6 +58,17 @@ public class PropertyTest {
         assertEquals(true, property.equals(property1));
 
         assertEquals(property.hashCode(), property1.hashCode());
+
+        Property property2 = new Property("token", "title2");
+        assertEquals(false, property.equals(property2));
+
+        Property property3 = new Property("token2", "title");
+        assertEquals(false, property.equals(property3));
+
+        Property property4 = new Property("token", "title");
+        property4.setTitle("title2");
+        assertEquals(true, property2.equals(property4));
+
     }
 
     @Test
