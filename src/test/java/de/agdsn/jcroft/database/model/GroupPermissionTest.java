@@ -48,8 +48,8 @@ public class GroupPermissionTest {
         assertEquals(true, permission.isNo());
         assertEquals(false, permission.isNever());
 
-        permission.setPower(1);
-        assertEquals(1, permission.getPower());
+        permission.setPower(-1);
+        assertEquals(-1, permission.getPower());
         assertEquals(false, permission.isYes());
         assertEquals(false, permission.isNo());
         assertEquals(true, permission.isNever());
