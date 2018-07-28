@@ -40,7 +40,7 @@ public class SettingTest {
 
         //set new value
         setting.setValue("test");
-        assertEquals("test", setting.getKey());
+        assertEquals("test", setting.getValue());
 
         //set integer value
         setting.setValue(10);
