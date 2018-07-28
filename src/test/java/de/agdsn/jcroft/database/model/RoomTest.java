@@ -64,7 +64,7 @@ public class RoomTest {
 
         //add patch ports
         PatchPort port = new PatchPort(room);
-        room.addPatchPort(new PatchPort(room));
+        room.addPatchPort(port);
         room.addPatchPort(new PatchPort(room));
         assertEquals(2, room.listPatchPorts().size());
 
