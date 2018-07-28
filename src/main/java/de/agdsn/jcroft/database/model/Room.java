@@ -1,12 +1,15 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -39,9 +42,12 @@ public class Room implements Serializable {
     private User user;
 
     @OneToMany(mappedBy = "id")
-    private List<PatchPort> patchPorts;
+    private List<PatchPort> patchPorts = new ArrayList<>();
 
     public Room (Building building, String roomNumber, int floor) {
+        Objects.requireNonNull(building);
+        StringUtils.requireNonEmptyString(roomNumber, "room number");
+
         this.building = building;
         this.roomNumber = roomNumber;
         this.floor = floor;
@@ -93,6 +99,10 @@ public class Room implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isInhabited () {
+        return this.user != null;
     }
 
     public List<PatchPort> listPatchPorts() {
