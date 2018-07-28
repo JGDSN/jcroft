@@ -34,17 +34,20 @@ public class UnixAccountTest {
     @Test
     public void testGetterAndSetter () {
         User user = new User();
-        UnixAccount account = new UnixAccount(user);
+        UnixAccount account = new UnixAccount();
+        assertEquals(0, account.getId());
 
         account.setUid(10);
         account.setGid(20);
         account.setLoginShell("/bin/bash");
         account.setHomeDir("/home/test");
+        account.setUser(user);
 
         assertEquals(10, account.getUid());
         assertEquals(20, account.getGid());
         assertEquals("/bin/bash", account.getLoginShell());
         assertEquals("/home/test", account.getHomeDir());
+        assertEquals(user, account.getUser());
     }
 
 }
