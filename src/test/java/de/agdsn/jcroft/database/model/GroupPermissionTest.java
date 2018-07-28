@@ -1,6 +1,5 @@
 package de.agdsn.jcroft.database.model;
 
-import de.agdsn.jcroft.database.model.enums.PermissionValues;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -15,39 +14,45 @@ public class GroupPermissionTest {
 
     @Test
     public void testConstructor1 () {
-        new GroupPermission(new Permission(), new Group(), PermissionValues.YES);
+        new GroupPermission(new Permission(), new Group(), 1);
     }
 
     @Test (expected = NullPointerException.class)
     public void testNullPermissionConstructor () {
-        new GroupPermission(null, new Group(), PermissionValues.YES);
+        new GroupPermission(null, new Group(), 1);
     }
 
     @Test (expected = NullPointerException.class)
     public void testNullGroupConstructor () {
-        new GroupPermission(new Permission(), null, PermissionValues.YES);
+        new GroupPermission(new Permission(), null, 1);
     }
 
-    @Test (expected = NullPointerException.class)
-    public void testNullPermissionValueConstructor () {
-        new GroupPermission(new Permission(), new Group(), null);
+    @Test (expected = IllegalArgumentException.class)
+    public void testInvalidePermissionValueConstructor () {
+        new GroupPermission(new Permission(), new Group(), -2);
     }
 
     @Test
     public void testGetterAndSetter () {
-        GroupPermission permission = new GroupPermission(new Permission(), new Group(), PermissionValues.YES);
+        GroupPermission permission = new GroupPermission(new Permission(), new Group(), 1);
 
         assertNotNull(permission.getPermission());
         assertNotNull(permission.getGroup());
-        assertNotNull(permission.getValue());
+        assertNotNull(permission.getPower());
 
-        assertEquals(PermissionValues.YES, permission.getValue());
+        assertEquals(1, permission.getPower());
 
-        permission.setValue(PermissionValues.NO);
-        assertEquals(PermissionValues.NO, permission.getValue());
+        permission.setPower(0);
+        assertEquals(0, permission.getPower());
+        assertEquals(false, permission.isYes());
+        assertEquals(true, permission.isNo());
+        assertEquals(false, permission.isNever());
 
-        permission.setValue(PermissionValues.YES);
-        assertEquals(PermissionValues.YES, permission.getValue());
+        permission.setPower(1);
+        assertEquals(1, permission.getPower());
+        assertEquals(true, permission.isYes());
+        assertEquals(false, permission.isNo());
+        assertEquals(false, permission.isNever());
     }
 
 }

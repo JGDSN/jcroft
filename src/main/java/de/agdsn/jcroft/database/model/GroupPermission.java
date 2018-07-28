@@ -24,17 +24,16 @@ public class GroupPermission implements Serializable {
     @JoinColumn(name = "group_id", updatable = false)
     private Group group;
 
-    @Column(name = "value", nullable = false, updatable = true)
-    private PermissionValues value;
+    @Column(name = "power", nullable = false, updatable = true)
+    private int power;
 
-    public GroupPermission (Permission permission, Group group, PermissionValues value) {
+    public GroupPermission (Permission permission, Group group, int power) {
         Objects.requireNonNull(permission);
         Objects.requireNonNull(group);
-        Objects.requireNonNull(value);
 
         this.permission = permission;
         this.group = group;
-        this.value = value;
+        this.setPower(power);
     }
 
     protected GroupPermission () {
@@ -49,14 +48,28 @@ public class GroupPermission implements Serializable {
         return group;
     }
 
-    public PermissionValues getValue() {
-        return value;
+    public int getPower() {
+        return power;
     }
 
-    public void setValue(PermissionValues value) {
-        Objects.requireNonNull(value);
+    public void setPower(int power) {
+        if (power < -1) {
+            throw new IllegalArgumentException("power of < -1 is not allowed (-1 means NEVER, 0 means NO and >= 1 means YES), current power: " + power + ".");
+        }
 
-        this.value = value;
+        this.power = power;
+    }
+
+    public boolean isYes () {
+        return this.power > 0;
+    }
+
+    public boolean isNo () {
+        return this.power == 0;
+    }
+
+    public boolean isNever () {
+        return this.power < 0;
     }
 
 }
