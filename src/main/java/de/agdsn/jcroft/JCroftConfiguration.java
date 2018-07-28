@@ -53,6 +53,11 @@ public class JCroftConfiguration {
         conf.getParentFile().mkdirs();
         conf.createNewFile();
         PrintWriter write = new PrintWriter(new FileOutputStream(conf));
+        write.println("; Welcome to the JCroft configuration section");
+        write.println("");
+        write.println("; When this option is enabled, JCroft accepts the password \"test\" for any existing user (no LDAP connection needed then)");
+        write.println("auth_test=false");
+        write.println("; LDAP authentication for JCroft users");
         write.println("ldap_host=idm0.agdsn.network");
         write.println("ldap_port=389");
         write.println("");
