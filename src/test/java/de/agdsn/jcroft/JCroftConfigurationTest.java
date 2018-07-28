@@ -45,6 +45,11 @@ public class JCroftConfigurationTest {
         JCroftConfiguration.getValue(null);
     }
 
+    @Test
+    public void testContains () {
+        assertEquals(false, JCroftConfiguration.contains("not-existent-key"));
+    }
+
     @Test (expected = IllegalStateException.class)
     public void testGetNotExistentConfigKey () {
         JCroftConfiguration.getValue("not-existent-key");
