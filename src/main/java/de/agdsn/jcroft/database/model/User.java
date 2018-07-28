@@ -58,7 +58,7 @@ public class User implements Serializable {
     @JoinColumn(name = "actor_id")
     private Actor actor;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Column(name = "user_id")
     private List<UnixAccount> unixAccounts;
 

@@ -11,14 +11,21 @@ import java.util.Objects;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "unix_accounts")
+@Table(name = "unix_accounts", indexes = {
+        @Index(columnList = "user_id", name = "user_id_idx")
+})
 public class UnixAccount implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
+    private int id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ManyToOne
     @JoinColumn(name = "user_id", updatable = false)
-    private User id;
+    private User user;
 
     @Column(name = "uid", unique = true, nullable = false, updatable = true)
     private int uid;
@@ -36,23 +43,27 @@ public class UnixAccount implements Serializable {
 
     public UnixAccount (User user) {
         Objects.requireNonNull(user);
-        this.id = user;
+        this.user = user;
     }
 
     protected UnixAccount () {
         //
     }
 
-    public User getUser() {
+    public int getId() {
         return id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void setUser(User id) {
-        if (this.id != null) {
+        if (this.user != null) {
             throw new IllegalStateException("user is already set, because user_id is a primary key, it is not allowed to update the key.");
         }
 
-        this.id = id;
+        this.user = id;
     }
 
     public int getUid() {
