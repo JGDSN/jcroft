@@ -25,11 +25,21 @@ public class PermissionImporter {
     @Autowired
     protected PermissionRepository permissionRepository;
 
+    protected Logger logger = Logger.getLogger(PermissionImporter.class.getName());
+
     public void importPermissions () {
         ClassLoader classLoader = getClass().getClassLoader();
         File categoriesFile = new File(classLoader.getResource("default-data/permissions/categories.txt").getFile());
         File permissionsFile = new File(classLoader.getResource("default-data/permissions/permissions.txt").getFile());
 
+        //import categories
+        this.importCategoriesFile(categoriesFile);
+
+        //import permissions
+        this.importPermissionsFile(permissionsFile);
+    }
+
+    protected void importCategoriesFile (File categoriesFile) {
         //read categories files
         try {
             List<String> lines = FileUtils.readLines(categoriesFile.getAbsolutePath(), StandardCharsets.UTF_8);
@@ -53,7 +63,7 @@ public class PermissionImporter {
                 Optional<PermissionCategory> categoryOptional = categoryRepository.findById(id);
 
                 if (!categoryOptional.isPresent()) {
-                    Logger.getAnonymousLogger().log(Level.INFO, "import permission category: {0} (id: " + id + ")", title);
+                    logger.log(Level.INFO, "import permission category: {0} (id: " + id + ")", title);
 
                     //create new category
                     PermissionCategory category = new PermissionCategory(id, title);
@@ -63,9 +73,11 @@ public class PermissionImporter {
                 }
             }
         } catch (IOException e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "IOException while importing default permission data", e);
+            logger.log(Level.WARNING, "IOException while importing default permission data", e);
         }
+    }
 
+    protected void importPermissionsFile (File permissionsFile) {
         //read permissions file
         try {
             List<String> lines = FileUtils.readLines(permissionsFile.getAbsolutePath(), StandardCharsets.UTF_8);
@@ -79,7 +91,7 @@ public class PermissionImporter {
                 String[] array = line.split(";");
 
                 if (array.length != 4) {
-                    throw new IOException("invalide permissions file: " + categoriesFile.getAbsolutePath() + " (expected length: 4, current length: " + array.length + ")\nline: " + line);
+                    throw new IOException("invalide permissions file: " + permissionsFile.getAbsolutePath() + " (expected length: 4, current length: " + array.length + ")\nline: " + line);
                 }
 
                 String token = array[0];
@@ -91,14 +103,14 @@ public class PermissionImporter {
                 Optional<Permission> permissionOptional = permissionRepository.findByToken(token);
 
                 if (!permissionOptional.isPresent()) {
-                    Logger.getAnonymousLogger().log(Level.INFO, "import permission: {0}", token);
+                    logger.log(Level.INFO, "import permission: {0}", token);
 
                     //find category
                     Optional<PermissionCategory> categoryOptional = categoryRepository.findById(categoryID);
 
                     if (!categoryOptional.isPresent()) {
                         for (PermissionCategory category : categoryRepository.findAll()) {
-                            System.err.println("" + category.getId() + ": " + category.getTitle());
+                            logger.log(Level.SEVERE, "" + category.getId() + ": " + category.getTitle());
                         }
 
                         throw new IOException("invalide permissions file, categoryID doesnt exists: " + categoryID);
@@ -114,7 +126,7 @@ public class PermissionImporter {
                 }
             }
         } catch (IOException e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "IOException while importing default permission data", e);
+            logger.log(Level.WARNING, "IOException while importing default permission data", e);
         }
     }
 
