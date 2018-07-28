@@ -38,8 +38,10 @@ public class LDAPConnection {
      * @throws org.springframework.security.authentication.BadCredentialsException when user is not allowed to use jcroft or the LDAP request times out
      */
     public static int check(String username, String password) {
-        if(password.equals("test")&&JCroftConfiguration.getValue("auth_test").equalsIgnoreCase("true"))return 0;
+        if(password.equals("test") && JCroftConfiguration.contains("auth_test") && JCroftConfiguration.getValue("auth_test").equalsIgnoreCase("true"))return 0;
+
         int group = -1;
+
         try {
             // Data to check
             String privilege = "JUserman";
@@ -50,8 +52,8 @@ public class LDAPConnection {
             int port = JCroftConfiguration.getValueInt("ldap_port");
 
             try (LdapConnection conn = new LdapNetworkConnection(host, port)) {
-                //set timeout of 3 seconds
-                conn.setTimeOut(TIMEOUT_LIMIT_SECONDS * 1000L);
+                //set timeout
+                ((LdapNetworkConnection) conn).getConfig().setTimeout(TIMEOUT_LIMIT_SECONDS * 1000L);
 
                 conn.bind("uid=" + username + ",cn=users,cn=accounts,dc=agdsn,dc=de", password);
 

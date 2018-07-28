@@ -49,6 +49,10 @@ public class JCroftConfiguration {
         return values.get(key);
     }
 
+    public static boolean contains (String key) {
+        return values.containsKey(key);
+    }
+
     protected static void createDefaultConfiguration(File conf) throws IOException {
         conf.getParentFile().mkdirs();
         conf.createNewFile();
