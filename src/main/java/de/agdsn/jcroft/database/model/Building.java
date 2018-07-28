@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.utils.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -27,10 +28,13 @@ public class Building implements Serializable {
     private String street;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "default_group_id")
+    @JoinColumn(name = "default_group_id", nullable = true, updatable = true)
     private Group defaultGroup;
 
     public Building (String name, String street) {
+        StringUtils.requireNonEmptyString(name, "name");
+        StringUtils.requireNonEmptyString(street, "street");
+
         this.name = name;
         this.street = street;
     }
