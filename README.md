@@ -92,7 +92,6 @@ Currently we use an PostGreSQL database with JPA / Hibernate and Hazelcast.
   
 ## Presentation
 
-  - [Slides](https://slides.com/juku/deck)
   - [Database Schema](https://app.sqldbm.com/MySQL/Share/DL-CbDicBqLISCKnigtAp0GFrngIE8md_DYjF4jNYw0)
   
 ## FAQ
