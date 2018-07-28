@@ -6,12 +6,13 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "properties")
-public class Property {
+public class Property implements Serializable {
 
     @Id
     @Size(max = 45)
