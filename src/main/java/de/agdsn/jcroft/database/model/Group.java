@@ -51,4 +51,36 @@ public class Group implements Serializable {
         return name;
     }
 
+    public void setProperty (String token, String value) {
+        StringUtils.requireNonEmptyString(token, "token");
+        StringUtils.requireNonEmptyString(value, "value");
+
+        this.properties.put(token, value);
+    }
+
+    public void removeProperty (String token) {
+        this.properties.remove(token);
+    }
+
+    public String getProperty (String token) {
+        if (!this.properties.containsKey(token)) {
+            //token doesnt exists
+            return "";
+        }
+
+        return this.properties.get(token);
+    }
+
+    public boolean containsProperty (String token) {
+        return this.properties.containsKey(token);
+    }
+
+    public int getPropertyInt (String token) {
+        if (!containsProperty(token)) {
+            throw new IllegalStateException("property '" + token + "' doesnt exists in group '" + this.getId() + "'.");
+        }
+
+        return Integer.parseInt(getProperty(token));
+    }
+
 }
