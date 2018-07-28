@@ -7,7 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
+import java.util.*;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -26,6 +26,13 @@ public class Group implements Serializable {
 
     @OneToMany
     private List<GroupPermission> permissions;
+
+    @ElementCollection(targetClass=String.class)
+    @JoinTable(name = "group_properties",
+            joinColumns = @JoinColumn(name = "group_id"))
+    @MapKeyColumn(name = "token")
+    @Column(name = "value")
+    private Map<String, String> properties = new HashMap<>();
 
     public Group (String name) {
         StringUtils.requireNonEmptyString(name, "name");
