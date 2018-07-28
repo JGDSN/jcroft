@@ -42,5 +42,5 @@ public class PatchPort implements Serializable {
     public void setRoom(Room room) {
         this.room = room;
     }
-    
+
 }

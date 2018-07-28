@@ -47,12 +47,24 @@ public class Building implements Serializable {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getStreet() {
         return street;
     }
 
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
     public Group getDefaultGroup() {
         return defaultGroup;
+    }
+
+    public void setDefaultGroup(Group defaultGroup) {
+        this.defaultGroup = defaultGroup;
     }
 
 }
