@@ -86,6 +86,7 @@ public class UserTest {
         assertEquals(registered, user.getRegistered());
 
         assertNull(user.getRoom());
+        assertEquals(false, user.hasRoom());
         assertEquals(20, user.getActorId());
 
         assertNotNull(user.toString());

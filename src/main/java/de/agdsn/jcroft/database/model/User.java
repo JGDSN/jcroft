@@ -150,6 +150,10 @@ public class User implements Serializable {
         return this.room;
     }
 
+    public boolean hasRoom () {
+        return this.room != null;
+    }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
