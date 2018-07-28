@@ -5,12 +5,13 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "buildings")
-public class Building {
+public class Building implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +26,33 @@ public class Building {
     @Column(name = "street", nullable = false, updatable = true)
     private String street;
 
+    @ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "default_group_id")
-    @ManyToOne
     private Group defaultGroup;
 
     public Building (String name, String street) {
         this.name = name;
+        this.street = street;
+    }
+
+    protected Building () {
+        //
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public Group getDefaultGroup() {
+        return defaultGroup;
     }
 
 }
