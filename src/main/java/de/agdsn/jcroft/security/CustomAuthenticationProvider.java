@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 public class CustomAuthenticationProvider
         implements AuthenticationProvider {
 
+    protected Logger logger = Logger.getLogger(CustomAuthenticationProvider.class.getName());
+
     @Override
     public Authentication authenticate(Authentication authentication) {
 
@@ -25,6 +27,8 @@ public class CustomAuthenticationProvider
             Logger.getAnonymousLogger().log(Level.WARNING, "Login exception", e);
             throw e;
         }
+
+        logger.log(Level.INFO, "user logged in successfully!");
 
         return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
     }
