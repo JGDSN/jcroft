@@ -61,6 +61,18 @@ public class RoomTest {
         assertEquals(false, room.isInhabitable());
         assertEquals(true, room.isInhabited());
         assertEquals(user, room.getUser());
+
+        //add patch ports
+        PatchPort port = new PatchPort(room);
+        room.addPatchPort(new PatchPort(room));
+        room.addPatchPort(new PatchPort(room));
+        assertEquals(2, room.listPatchPorts().size());
+
+        room.removePatchPort(port);
+        assertEquals(1, room.listPatchPorts().size());
+
+        room.removeAllPatchPorts();
+        assertEquals(0, room.listPatchPorts().size());
     }
 
 }
