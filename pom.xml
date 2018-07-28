@@ -124,6 +124,14 @@
             <scope>test</scope>
         </dependency>
 
+		<!-- H2 database for junit tests only -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+			<scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.directory.api</groupId>
             <artifactId>apache-ldap-api</artifactId>

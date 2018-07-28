@@ -1,10 +1,12 @@
-package de.agdsn.jcroft;
+package de.agdsn.jcroft.database.data;
 
+import de.agdsn.jcroft.JCroftConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -16,10 +18,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
+
 @Configuration
 @EnableTransactionManagement
-@Profile("default")
-public class JPAConfig {
+@Profile("test")
+public class JPATestConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -36,20 +40,15 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() {
-        String type = JCroftConfiguration.getValue("jdbc_type");//postgresql
-
-        String ip = JCroftConfiguration.getValue("jdbc_ip");
-        int port = JCroftConfiguration.getValueInt("jdbc_port");
-        String user = JCroftConfiguration.getValue("jdbc_user");
-        String password = JCroftConfiguration.getValue("jdbc_password");
-        String dbName = JCroftConfiguration.getValue("jdbc_database");
-
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:" + type + "://" + ip + ":" + port + "/" + dbName);
-        dataSource.setUsername(user);
-        dataSource.setPassword(password);
-        return dataSource;
+        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+        return builder
+                .generateUniqueName(true)
+                .setType(H2)
+                .setScriptEncoding("UTF-8")
+                .ignoreFailedDrops(true)
+                //.addScript("schema.sql")
+                //.addScripts("user_data.sql", "country_data.sql")
+                .build();
     }
 
     @Bean
@@ -67,8 +66,8 @@ public class JPAConfig {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", JCroftConfiguration.getValue("hibernate.hbm2ddl.auto"));
-        properties.setProperty("hibernate.dialect", JCroftConfiguration.getValue("hibernate.dialect"));
+        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        //properties.setProperty("hibernate.dialect", JCroftConfiguration.getValue("hibernate.dialect"));
 
         //avoid this exception: java.sql.SQLFeatureNotSupportedException: Die Methode org.postgresql.jdbc4.Jdbc4Connection.createClob() ist noch nicht implementiert.
         properties.setProperty("spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation", "true");

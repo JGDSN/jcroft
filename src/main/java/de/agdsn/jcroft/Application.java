@@ -17,6 +17,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.io.File;
@@ -50,6 +51,7 @@ public class Application {
     }
 
     @Bean
+    @Profile("default")
     HazelcastInstance hazelcastInstance() {
         //read configuration
         String groupName = JCroftConfiguration.getValue("hz_group_name");
@@ -75,6 +77,7 @@ public class Application {
     }
 
     @Bean
+    @Profile("default")
     CacheManager cacheManager() {
         return new HazelcastCacheManager(hazelcastInstance());
     }
