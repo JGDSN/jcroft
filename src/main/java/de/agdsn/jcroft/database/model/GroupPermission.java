@@ -1,6 +1,5 @@
 package de.agdsn.jcroft.database.model;
 
-import de.agdsn.jcroft.database.model.enums.PermissionValues;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
