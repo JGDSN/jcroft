@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Cacheable
@@ -56,6 +57,13 @@ public class User implements Serializable {
     @OneToOne(orphanRemoval = true, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "actor_id")
     private Actor actor;
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    /*@JoinTable(name = "unix_accounts", joinColumns = {
+            @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    })*/
+    @Column(name = "user_id")
+    private List<UnixAccount> unixAccounts;
 
     public User(String fname, String lname, Actor actor) {
         StringUtils.requireNonEmptyString(fname, "forename");
