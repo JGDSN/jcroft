@@ -62,6 +62,9 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private List<UnixAccount> unixAccounts;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Room room;
+
     public User(String fname, String lname, Actor actor) {
         StringUtils.requireNonEmptyString(fname, "forename");
         StringUtils.requireNonEmptyString(lname, "lastname");
@@ -141,6 +144,10 @@ public class User implements Serializable {
 
     public int getActorId () {
         return getActor().getId();
+    }
+
+    public Room getRoom() {
+        return this.room;
     }
 
     @Override

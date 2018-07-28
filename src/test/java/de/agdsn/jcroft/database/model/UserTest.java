@@ -7,6 +7,7 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class UserTest {
 
@@ -84,6 +85,7 @@ public class UserTest {
         assertEquals("my-password-hash", user.getPasswordHash());
         assertEquals(registered, user.getRegistered());
 
+        assertNull(user.getRoom());
         assertEquals(20, user.getActorId());
 
         assertNotNull(user.toString());
