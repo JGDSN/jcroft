@@ -58,6 +58,12 @@ public class Group implements Serializable {
         this.properties.put(token, value);
     }
 
+    public void setProperty (String token, int value) {
+        StringUtils.requireNonEmptyString(token, "token");
+
+        this.properties.put(token, "" + value);
+    }
+
     public void removeProperty (String token) {
         this.properties.remove(token);
     }

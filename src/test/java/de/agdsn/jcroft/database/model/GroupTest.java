@@ -35,4 +35,28 @@ public class GroupTest {
         assertEquals("test", group.getName());
     }
 
+    @Test
+    public void testProperties () {
+        Group group = new Group("test");
+
+        assertEquals(false, group.containsProperty("test-token"));
+
+        group.setProperty("test-token", "test");
+        assertEquals(true, group.containsProperty("test-token"));
+        assertEquals("test", group.getProperty("test-token"));
+
+        //test override
+        group.setProperty("test-token", "value");
+        assertEquals("value", group.getProperty("test-token"));
+
+        group.setProperty("test-token2", "test2");
+        assertEquals(true, group.containsProperty("test-token"));
+        assertEquals(true, group.containsProperty("test-token2"));
+        assertEquals("test2", group.getProperty("test-token2"));
+
+        //test with integer
+        group.setProperty("test", 10);
+        assertEquals(10, group.getPropertyInt("test"));
+    }
+
 }
