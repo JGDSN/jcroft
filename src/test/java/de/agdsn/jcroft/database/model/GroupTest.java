@@ -57,6 +57,21 @@ public class GroupTest {
         //test with integer
         group.setProperty("test", 10);
         assertEquals(10, group.getPropertyInt("test"));
+
+        //remove property
+        group.removeProperty("test");
+        assertEquals(false, group.containsProperty("test"));
+
+        assertEquals("", group.getProperty("not-existent-token"));
+
+        //check, that no other property was removed too
+        assertEquals(true, group.containsProperty("test-token"));
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void testGetIntNotExistentProperty () {
+        Group group = new Group("test");
+        group.getPropertyInt("test2");
     }
 
 }
