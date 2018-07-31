@@ -92,4 +92,20 @@ public class Group implements Serializable {
         return Integer.parseInt(getProperty(token));
     }
 
+    public List<GroupMembership> listMemberships() {
+        return members;
+    }
+
+    public List<Actor> listMembers() {
+        List<Actor> actors = new ArrayList<>();
+
+        for (GroupMembership membership : listMemberships()) {
+            if (membership.isMember()) {
+                actors.add(membership.getActor());
+            }
+        }
+
+        return actors;
+    }
+
 }
