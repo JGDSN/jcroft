@@ -65,7 +65,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findByUsername(username);
 
         if (!userOptional.isPresent()) {
-            logger.log(Level.FINE, "It's not neccessary to remove user {0}, because user doesnt exists.", username);
+            logger.log(Level.FINE, "It\'s not neccessary to remove user {0}, because user doesnt exists.", username);
 
             //user doesnt exists
             return;
@@ -88,7 +88,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(userID);
 
         if (!userOptional.isPresent()) {
-            logger.log(Level.FINE, "It's not neccessary to remove user with id {0}, because user doesnt exists.", userID);
+            logger.log(Level.FINE, "It\'s not neccessary to remove user with id {0}, because user doesnt exists.", userID);
 
             //user doesnt exists
             return;
