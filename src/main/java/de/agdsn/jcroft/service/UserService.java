@@ -2,8 +2,11 @@ package de.agdsn.jcroft.service;
 
 import de.agdsn.jcroft.database.data.ActorRepository;
 import de.agdsn.jcroft.database.data.UserRepository;
+import de.agdsn.jcroft.database.model.Actor;
 import de.agdsn.jcroft.database.model.User;
+import de.agdsn.jcroft.database.model.enums.ActorType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,8 +37,21 @@ public class UserService {
     * create new user
     */
     @Transactional
-    public void createUser () {
-        //
+    public User createUser (String fname, String lname, String username, String email) {
+        try {
+            //first, create new actor
+            Actor actor = new Actor(ActorType.USER);
+            actorRepository.save(actor);
+
+            //create new user
+            User user = new User(fname, lname, username, email, actor);
+            userRepository.save(user);
+
+            return user;
+        } catch (DataIntegrityViolationException e) {
+            logger.log(Level.WARNING, "DataIntegrityViolationException, maybe username already exists.", e);
+            throw new IllegalStateException("username already exists.");
+        }
     }
 
     /**

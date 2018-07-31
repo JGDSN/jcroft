@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -32,12 +33,16 @@ public class RepositoryTest {
     public void testAddUser () {
         //create new actor
         Actor actor = new Actor(ActorType.USER);
+        assertEquals(0, actor.getId());
 
         //create new user
         User user = new User("Max", "Mustermann", "test", "max@mustermann.de", actor);
 
         actorRepository.save(actor);
         userRepository.save(user);
+
+        //check, if actor has an id
+        assertEquals(true, actor.getId() > 0);
 
         //find user
         Optional<User> userOptional = userRepository.findByUsername("test");
@@ -52,6 +57,27 @@ public class RepositoryTest {
         assertEquals(true, actorOptional.isPresent());
         Actor actor1 = actorOptional.get();
         assertEquals(user.getActor(), actor1);
+    }
+
+    @Test (expected = DataIntegrityViolationException.class)
+    public void testAddUserWithSameUsername () {
+        //create new actor
+        Actor actor = new Actor(ActorType.USER);
+
+        //create new user
+        User user = new User("Max", "Mustermann", "test", "max@mustermann.de", actor);
+
+        actorRepository.save(actor);
+        userRepository.save(user);
+
+        //create new actor
+        Actor actor1 = new Actor(ActorType.USER);
+
+        //create new user
+        User user1 = new User("Test", "Test", "test", "test@example.com", actor1);
+
+        actorRepository.save(actor1);
+        userRepository.save(user1);
     }
 
     @Test
