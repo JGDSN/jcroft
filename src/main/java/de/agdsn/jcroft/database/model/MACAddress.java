@@ -28,4 +28,11 @@ public class MACAddress implements Serializable {
         Objects.requireNonNull(user);
     }
 
+    public long getMacAddressLong() {
+        return macAddress;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }
