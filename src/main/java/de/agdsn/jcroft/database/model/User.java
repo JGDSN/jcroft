@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.database.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.agdsn.jcroft.database.model.enums.ActorType;
 import de.agdsn.jcroft.utils.IntUtils;
 import de.agdsn.jcroft.utils.StringUtils;
@@ -31,6 +32,7 @@ public class User implements Serializable {
     @Column(name = "username", unique = true, nullable = false, updatable = true)
     private String username;
 
+    @JsonIgnore
     @Size(max = 255)
     @Column(name = "password_hash", nullable = true, updatable = true)
     private String passwordHash;
