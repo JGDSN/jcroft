@@ -98,4 +98,17 @@ public class UnixAccount implements Serializable {
         this.homeDir = homeDir;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UnixAccount account = (UnixAccount) o;
+        return this.hashCode() == account.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, uid, gid, loginShell, homeDir);
+    }
 }
