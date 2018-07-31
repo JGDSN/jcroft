@@ -36,6 +36,7 @@ public class RoomTest {
         Building building = new Building();
         Room room = new Room(building, "012", 2);
 
+        assertEquals(0, room.getId());
         assertNotNull(room.getBuilding());
         assertEquals(building, room.getBuilding());
         assertEquals("012", room.getRoomNumber());
