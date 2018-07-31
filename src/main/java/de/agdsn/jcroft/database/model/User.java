@@ -67,6 +67,9 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private List<UnixAccount> unixAccounts;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<MACAddress> macAddresses;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected Room room;
 
