@@ -5,15 +5,13 @@ import org.junit.Test;
 
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class UserTest {
 
     @Test
     public void testConstructor () {
-        User user = new User("Max", "Mustermann", createActor());
+        User user = new User("Max", "Mustermann", "test", "max@musterdomain.de", createActor());
 
         assertEquals("Max", user.getFirstName());
         assertEquals("Mustermann", user.getLastName());
@@ -26,49 +24,49 @@ public class UserTest {
 
     @Test (expected = NullPointerException.class)
     public void testNullFNameConstructor () {
-        new User(null, "test", createActor());
+        new User(null, "test", "test", "max@musterdomain.de", createActor());
     }
 
     @Test (expected = NullPointerException.class)
     public void testNullLNameConstructor () {
-        new User("test", null, createActor());
+        new User("test", null, "test", "max@musterdomain.de", createActor());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testEmptyFNameConstructor () {
-        new User("", "test", createActor());
+        new User("", "test", "test", "max@musterdomain.de", createActor());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testEmptyLNameConstructor () {
-        new User("test", "", createActor());
+        new User("test", "", "test", "max@musterdomain.de", createActor());
     }
 
     @Test (expected = NullPointerException.class)
     public void testNullActorConstructor () {
-        User user = new User("Max", "Mustermann", null);
+        User user = new User("Max", "Mustermann", "test", "max@musterdomain.de", null);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testInvalideActorTypeConstructor () {
-        User user = new User("Max", "Mustermann", new Actor(ActorType.SERVICE));
+        User user = new User("Max", "Mustermann", "test", "max@musterdomain.de", new Actor(ActorType.SERVICE));
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testSetNullID () {
-        User user = new User("max", "mustermann", createActor());
+        User user = new User("max", "mustermann", "test", "max@musterdomain.de", createActor());
         user.setId(0);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testSetNegativeID () {
-        User user = new User("max", "mustermann", createActor());
+        User user = new User("max", "mustermann", "test", "max@musterdomain.de", createActor());
         user.setId(-1);
     }
 
     @Test
     public void testGetterAndSetter () {
-        User user = new User("test", "test", createActor());
+        User user = new User("test", "test", "test", "max@musterdomain.de", createActor());
         Date registered = new Date();
 
         user.setId(2);
@@ -90,6 +88,38 @@ public class UserTest {
         assertEquals(20, user.getActorId());
 
         assertNotNull(user.toString());
+    }
+
+    @Test
+    public void testEquals () {
+        //create actor
+        Actor actor = createActor();
+
+        User user = new User("Max", "Mustermann", "test", "test@musterdomain.de", actor);
+        User user1 = new User("Max", "Mustermann", "test", "test@musterdomain.de", actor);
+
+        user.setId(10);
+        user1.setId(10);
+
+        //same instance
+        assertEquals(user, user);
+
+        //check null
+        assertNotEquals(user, null);
+
+        //same values
+        assertEquals(user, user1);
+    }
+
+    @Test
+    public void testHashCode () {
+        //create actor
+        Actor actor = createActor();
+
+        User user = new User("Max", "Mustermann", "test", "test@musterdomain.de", actor);
+        User user1 = new User("Max", "Mustermann", "test", "test@musterdomain.de", actor);
+
+        assertEquals(user.hashCode(), user1.hashCode());
     }
 
     protected static Actor createActor () {

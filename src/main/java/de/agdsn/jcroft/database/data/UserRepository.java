@@ -19,7 +19,9 @@ public interface UserRepository extends CrudRepository<User, Integer> {
      * @return the entity with the given id or {@literal Optional#empty()} if none found
      * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
-    @Cacheable("user-repository-findById")
+    //@Cacheable("user-repository-findById")
     Optional<User> findById(int id);
+
+    Optional<User> findByUsername(String username);
 
 }

@@ -65,13 +65,17 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Room room;
 
-    public User(String fname, String lname, Actor actor) {
+    public User(String fname, String lname, String username, String email, Actor actor) {
         StringUtils.requireNonEmptyString(fname, "forename");
         StringUtils.requireNonEmptyString(lname, "lastname");
+        StringUtils.requireNonEmptyString(username);
+        StringUtils.requireNonEmptyString(email);
         Objects.requireNonNull(actor);
 
         this.firstName = fname;
         this.lastName = lname;
+        this.username = username;
+        this.email = email;
         this.actor = actor;
 
         if (actor.getType() != ActorType.USER) {
@@ -122,6 +126,14 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPasswordHash() {
         return this.passwordHash;
     }
@@ -154,9 +166,31 @@ public class User implements Serializable {
         return this.room != null;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(passwordHash, user.passwordHash) &&
+                Objects.equals(registered, user.registered) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                //Objects.equals(actor, user.actor) &&
+                Objects.equals(unixAccounts, user.unixAccounts) &&
+                Objects.equals(room, user.room);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, passwordHash, registered, email, firstName, lastName, actor, unixAccounts, room);
     }
 
 }
