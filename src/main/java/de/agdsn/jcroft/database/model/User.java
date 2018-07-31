@@ -63,7 +63,7 @@ public class User implements Serializable {
     private List<UnixAccount> unixAccounts;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Room room;
+    protected Room room;
 
     public User(String fname, String lname, String username, String email, Actor actor) {
         StringUtils.requireNonEmptyString(fname, "forename");

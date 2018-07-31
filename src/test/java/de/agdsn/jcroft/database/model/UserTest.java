@@ -97,6 +97,10 @@ public class UserTest {
 
         assertNull(user.getRoom());
         assertEquals(false, user.hasRoom());
+
+        user.room = new Room();
+        assertEquals(true, user.hasRoom());
+
         assertEquals(20, user.getActorId());
 
         assertNotNull(user.toString());
@@ -123,6 +127,12 @@ public class UserTest {
         assertNotEquals(user, "test string");
 
         //same values
+        assertEquals(user, user1);
+
+        user1.setEmail("test@test.de");
+        assertNotEquals(user, user1);
+
+        user1.setEmail("test@musterdomain.de");
         assertEquals(user, user1);
     }
 

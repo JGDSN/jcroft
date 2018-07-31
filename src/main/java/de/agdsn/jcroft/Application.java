@@ -81,4 +81,5 @@ public class Application {
     CacheManager cacheManager() {
         return new HazelcastCacheManager(hazelcastInstance());
     }
+
 }
