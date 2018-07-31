@@ -75,6 +75,7 @@ public class UserTest {
         user.setUsername("max123");
         user.setPasswordHash("my-password-hash");
         user.setRegistered(registered);
+        user.setEmail("test@example.com");
 
         assertEquals(2, user.getId());
         assertEquals("Max", user.getFirstName());
@@ -82,6 +83,7 @@ public class UserTest {
         assertEquals("max123", user.getUsername());
         assertEquals("my-password-hash", user.getPasswordHash());
         assertEquals(registered, user.getRegistered());
+        assertEquals("test@example.com", user.getEmail());
 
         assertNull(user.getRoom());
         assertEquals(false, user.hasRoom());
@@ -106,6 +108,9 @@ public class UserTest {
 
         //check null
         assertNotEquals(user, null);
+
+        //check other instance
+        assertNotEquals(user, "test string");
 
         //same values
         assertEquals(user, user1);

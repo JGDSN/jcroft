@@ -166,26 +166,21 @@ public class User implements Serializable {
         return this.room != null;
     }
 
-    /*@Override
+    @Override
     public String toString() {
-        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
-    }*/
+        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", email=" + email + "]";
+    }
 
     @Override
     public boolean equals(Object o) {
+        //check for same instance
         if (this == o) return true;
+
+        //check if o is not an instance of this class
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(passwordHash, user.passwordHash) &&
-                Objects.equals(registered, user.registered) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                //Objects.equals(actor, user.actor) &&
-                Objects.equals(unixAccounts, user.unixAccounts) &&
-                Objects.equals(room, user.room);
+
+        return this.hashCode() == user.hashCode();
     }
 
     @Override
