@@ -58,6 +58,10 @@ public class Actor implements Serializable {
         return type == ActorType.SERVICE;
     }
 
+    public List<GroupMembership> listGroupMemberships () {
+        return this.groups;
+    }
+
     @Override
     public boolean equals(Object o) {
         //same instance
@@ -76,4 +80,5 @@ public class Actor implements Serializable {
     public int hashCode() {
         return Objects.hash(id, type);
     }
+
 }
