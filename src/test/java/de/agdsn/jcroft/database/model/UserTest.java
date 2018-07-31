@@ -43,6 +43,16 @@ public class UserTest {
     }
 
     @Test (expected = NullPointerException.class)
+    public void testNullUsernameConstructor () {
+        new User("test", "test", null, "max@musterdomain.de", createActor());
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testEmptyUsernameConstructor () {
+        new User("test", "test", "", "max@musterdomain.de", createActor());
+    }
+
+    @Test (expected = NullPointerException.class)
     public void testNullActorConstructor () {
         User user = new User("Max", "Mustermann", "test", "max@musterdomain.de", null);
     }
