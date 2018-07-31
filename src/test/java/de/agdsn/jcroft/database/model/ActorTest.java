@@ -47,4 +47,32 @@ public class ActorTest {
         assertEquals(true, actor2.isService());
     }
 
+    @Test
+    public void testEquals () {
+        Actor actor = new Actor(ActorType.USER);
+        Actor actor1 = new Actor(ActorType.USER);
+
+        actor.id = 10;
+        actor1.id = 10;
+
+        //same instance
+        assertEquals(actor, actor);
+
+        assertNotEquals(actor, null);
+
+        //same values
+        assertEquals(actor, actor1);
+    }
+
+    @Test
+    public void testHashCode () {
+        Actor actor = new Actor(ActorType.USER);
+        Actor actor1 = new Actor(ActorType.USER);
+
+        actor.id = 10;
+        actor1.id = 10;
+
+        assertEquals(actor.hashCode(), actor1.hashCode());
+    }
+
 }

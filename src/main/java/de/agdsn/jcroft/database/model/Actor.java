@@ -54,4 +54,22 @@ public class Actor implements Serializable {
         return type == ActorType.SERVICE;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        //same instance
+        if (this == o) return true;
+
+        //check, if object is null
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Actor actor = (Actor) o;
+
+        return id == actor.id &&
+                type == actor.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type);
+    }
 }
