@@ -18,7 +18,10 @@ import java.util.Objects;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = {
+        @Index(columnList = "username", name = "username_idx"),
+        @Index(columnList = "email", name = "email_idx")
+})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 7974982498293478923L;

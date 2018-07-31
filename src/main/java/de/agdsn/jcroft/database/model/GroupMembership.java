@@ -11,7 +11,10 @@ import java.util.Objects;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "group_members")
+@Table(name = "group_members", indexes = {
+        @Index(columnList = "begins_at", name = "begins_at_idx"),
+        @Index(columnList = "ends_at", name = "ends_at_idx")
+})
 public class GroupMembership implements Serializable {
 
     @Id
