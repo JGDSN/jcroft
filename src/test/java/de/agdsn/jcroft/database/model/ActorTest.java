@@ -59,9 +59,22 @@ public class ActorTest {
         assertEquals(actor, actor);
 
         assertNotEquals(actor, null);
+        assertNotEquals(actor, "test string");
 
         //same values
         assertEquals(actor, actor1);
+
+        //other type
+        Actor actor2 = new Actor(ActorType.SERVICE);
+        actor2.id = 10;
+        assertNotEquals(actor, actor2);
+
+        //other id
+        Actor actor3 = new Actor(ActorType.USER);
+        actor3.id = 20;
+        assertNotEquals(actor, actor3);
+
+        assertEquals(actor.getType(), actor1.getType());
     }
 
     @Test
