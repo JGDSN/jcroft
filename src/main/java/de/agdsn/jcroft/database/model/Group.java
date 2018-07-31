@@ -34,6 +34,9 @@ public class Group implements Serializable {
     @Column(name = "value")
     private Map<String, String> properties = new HashMap<>();
 
+    @OneToMany(mappedBy = "group")
+    private List<GroupMembership> members;
+
     public Group (String name) {
         StringUtils.requireNonEmptyString(name, "name");
         this.name = name;

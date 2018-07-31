@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Cacheable
@@ -22,6 +23,9 @@ public class Actor implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "type", nullable = false, updatable = false)
     private ActorType type;
+
+    @OneToMany (mappedBy = "actor", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<GroupMembership> groups;
 
     /**
     * create a new actor
