@@ -83,17 +83,13 @@ public class GroupMembership implements Serializable {
     public boolean isMember () {
         Date current = new Date();
 
-        if (beginsAt != null) {
-            //check, if beginsAt <= current
-            if (!current.after(beginsAt)) {
-                return false;
-            }
+        //check, if beginsAt <= current
+        if (beginsAt != null && !current.after(beginsAt)) {
+            return false;
         }
 
-        if (endsAt != null) {
-            if (!current.before(endsAt)) {
-                return false;
-            }
+        if (endsAt != null && !current.before(endsAt)) {
+            return false;
         }
 
         return true;
