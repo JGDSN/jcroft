@@ -19,15 +19,13 @@ public class WebSocketConfiguration extends AbstractSecurityWebSocketMessageBrok
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/api/ws/token").withSockJS();
-        registry.addEndpoint("/api/ws/session").withSockJS();
+        registry.addEndpoint("/api/ws").withSockJS();
     }
 
     @Override
     protected void configureInbound(MessageSecurityMetadataSourceRegistry messages) {
         messages
-                .simpDestMatchers("/api/ws/session**").authenticated()
-                .simpDestMatchers("/api/ws/token**").permitAll()
+                .simpDestMatchers("/api/ws**").permitAll()
                 .anyMessage().authenticated();
     }
 }
