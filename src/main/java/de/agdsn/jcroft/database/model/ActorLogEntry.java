@@ -23,8 +23,12 @@ public class ActorLogEntry implements Serializable {
     @Column(name = "log_id", nullable = false, updatable = false)
     private int id;
 
-    @Column(name = "actor_id", nullable = false, updatable = true)
-    private int actorID;
+    //@Column(name = "actor_id", nullable = false, updatable = true)
+    //private int actorID;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "actor_id")
+    private Actor actor;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
@@ -37,15 +41,15 @@ public class ActorLogEntry implements Serializable {
     @CreationTimestamp
     private Date date;
 
-    public ActorLogEntry (int actorID, Actor author, String message) {
+    public ActorLogEntry (Actor actor, Actor author, String message) {
         Objects.requireNonNull(author);
         StringUtils.requireNonEmptyString(message, "message");
 
-        if (actorID <= 0) {
+        if (actor.getId() <= 0) {
             throw new IllegalArgumentException("actorID has to be >= 0.");
         }
 
-        this.actorID = actorID;
+        this.actor = actor;
         this.author = author;
         this.message = message;
     }
@@ -61,8 +65,12 @@ public class ActorLogEntry implements Serializable {
         return id;
     }
 
+    public Actor getActor() {
+        return actor;
+    }
+
     public int getActorID() {
-        return actorID;
+        return this.actor.getId();
     }
 
     public Actor getAuthor() {
