@@ -3,11 +3,13 @@ package de.agdsn.jcroft.security;
 import de.agdsn.jcroft.JCroftConfiguration;
 import org.apache.directory.api.ldap.model.cursor.CursorException;
 import org.apache.directory.api.ldap.model.cursor.SearchCursor;
+import org.apache.directory.api.ldap.model.entry.Attribute;
+import org.apache.directory.api.ldap.model.entry.DefaultEntry;
+import org.apache.directory.api.ldap.model.entry.Entry;
+import org.apache.directory.api.ldap.model.entry.Value;
 import org.apache.directory.api.ldap.model.exception.LdapAuthenticationException;
 import org.apache.directory.api.ldap.model.exception.LdapException;
-import org.apache.directory.api.ldap.model.message.SearchRequest;
-import org.apache.directory.api.ldap.model.message.SearchRequestImpl;
-import org.apache.directory.api.ldap.model.message.SearchScope;
+import org.apache.directory.api.ldap.model.message.*;
 import org.apache.directory.api.ldap.model.name.Dn;
 import org.apache.directory.ldap.client.api.LdapConnection;
 import org.apache.directory.ldap.client.api.LdapNetworkConnection;
@@ -15,6 +17,10 @@ import org.apache.directory.ldap.client.api.exception.InvalidConnectionException
 import org.springframework.security.authentication.BadCredentialsException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LDAPConnection {
 
@@ -88,6 +94,37 @@ public class LDAPConnection {
                 } else {
                     group = 0;
                 }
+
+                req2.abandon();
+
+                //search for user groups (privileges)
+                SearchRequest req3 = new SearchRequestImpl();
+                req3.setTimeLimit(TIMEOUT_LIMIT_SECONDS);
+                req3.setScope(SearchScope.SUBTREE);
+                req3.addAttributes("memberOf");
+                req3.setBase(new Dn("cn=users,cn=accounts,dc=agdsn,dc=de"));
+                req3.setFilter("(&(uid=" + username + ")(memberOf=*))");
+
+                SearchCursor cursor3 = conn.search(req3);
+
+                //filter for privileges
+                if (cursor3.next()) {
+                    Entry entry = cursor3.getEntry();
+
+                    String dn = entry.getDn().getName();
+                    Logger.getAnonymousLogger().log(Level.INFO, "dn: " + dn);
+
+                    for (Attribute attr : entry) {
+                        for (Value<?> value : attr) {
+                            if (value.getString().contains("cn=privileges")) {
+                                String groupName = value.getString().replace(",cn=privileges,cn=pbac,dc=agdsn,dc=de", "").replace("cn=", "");
+                                Logger.getAnonymousLogger().log(Level.INFO, "ldap groupName: " + groupName);
+                            }
+                        }
+                    }
+                }
+
+                req3.abandon();
 
                 conn.unBind();
             } catch (InvalidConnectionException e) {
