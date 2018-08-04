@@ -2,12 +2,12 @@ package de.agdsn.jcroft.database.data;
 
 import de.agdsn.jcroft.database.model.PermissionCategory;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface PermissionCategoryRepository extends CrudRepository<PermissionCategory, Integer> {
+public interface PermissionCategoryRepository extends PagingAndSortingRepository<PermissionCategory, Integer> {
 
     @Cacheable("permission-categories-findAll")
     public List<PermissionCategory> findAll();

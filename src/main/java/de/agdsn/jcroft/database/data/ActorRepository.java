@@ -3,12 +3,12 @@ package de.agdsn.jcroft.database.data;
 import de.agdsn.jcroft.database.model.Actor;
 import de.agdsn.jcroft.database.model.enums.ActorType;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ActorRepository extends CrudRepository<Actor, Integer> {
+public interface ActorRepository extends PagingAndSortingRepository<Actor, Integer> {
 
     @Cacheable("actor-findAll")
     public List<Actor> findAll();
