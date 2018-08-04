@@ -53,6 +53,8 @@ Change your jcroft config (will be created on first run) to use your tunnel to t
 
 ; When this option is enabled, JCroft accepts the password "test" for any existing user (no LDAP connection needed then)
 auth_test=true
+; Session timeout in seconds
+session_timeout=600
 ; LDAP authentication for JCroft users
 ldap_host=localhost
 ldap_port=389

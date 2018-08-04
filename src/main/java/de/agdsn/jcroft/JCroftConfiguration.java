@@ -61,6 +61,8 @@ public class JCroftConfiguration {
         write.println("");
         write.println("; When this option is enabled, JCroft accepts the password \"test\" for any existing user (no LDAP connection needed then)");
         write.println("auth_test=false");
+        write.println("; Session timeout in seconds");
+        write.println("session_timeout=600");
         write.println("; LDAP authentication for JCroft users");
         write.println("ldap_host=idm0.agdsn.network");
         write.println("ldap_port=389");

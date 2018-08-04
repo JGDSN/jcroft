@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.controller;
 
+import de.agdsn.jcroft.api.v1.token.APIv1UserTokenRepository;
 import de.agdsn.jcroft.database.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,9 +13,10 @@ import java.util.Map;
 
 @Controller
 public class SessionController {
-
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    APIv1UserTokenRepository apIv1UserTokenRepository;
 
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model, Authentication authentication) {
@@ -28,7 +30,7 @@ public class SessionController {
     }
 
     @GetMapping("/logoutSuccess")
-    public String logout(Authentication authentication) {
+    public String logoutSuccess(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
         return "logout";
     }
