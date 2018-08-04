@@ -35,7 +35,7 @@ public class Group implements Serializable {
     private Map<String, String> properties = new HashMap<>();
 
     @OneToMany(mappedBy = "group")
-    private List<GroupMembership> members;
+    private List<GroupMembership> members = new ArrayList<>();
 
     public Group (String name) {
         StringUtils.requireNonEmptyString(name, "name");

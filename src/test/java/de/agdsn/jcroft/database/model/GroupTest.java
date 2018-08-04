@@ -3,6 +3,7 @@ package de.agdsn.jcroft.database.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class GroupTest {
 
@@ -33,20 +34,21 @@ public class GroupTest {
 
         assertEquals(10, group.getId());
         assertEquals("test", group.getName());
-        assertEquals(0, group.listMemberships());
-        assertEquals(0, group.listMembers());
+        assertNotNull(group.listMemberships());
+        assertEquals(0, group.listMemberships().size());
+        assertEquals(0, group.listMembers().size());
 
         //add membership
         GroupMembership membership = new GroupMembership();
         group.addMembership(membership);
 
-        assertEquals(1, group.listMemberships());
-        assertEquals(1, group.listMembers());
+        assertEquals(1, group.listMemberships().size());
+        assertEquals(1, group.listMembers().size());
 
         //remove membership
         group.removeMembership(membership);
-        assertEquals(0, group.listMemberships());
-        assertEquals(0, group.listMembers());
+        assertEquals(0, group.listMemberships().size());
+        assertEquals(0, group.listMembers().size());
     }
 
     @Test
