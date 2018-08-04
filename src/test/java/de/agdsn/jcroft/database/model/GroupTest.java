@@ -33,6 +33,20 @@ public class GroupTest {
 
         assertEquals(10, group.getId());
         assertEquals("test", group.getName());
+        assertEquals(0, group.listMemberships());
+        assertEquals(0, group.listMembers());
+
+        //add membership
+        GroupMembership membership = new GroupMembership();
+        group.addMembership(membership);
+
+        assertEquals(1, group.listMemberships());
+        assertEquals(1, group.listMembers());
+
+        //remove membership
+        group.removeMembership(membership);
+        assertEquals(0, group.listMemberships());
+        assertEquals(0, group.listMembers());
     }
 
     @Test

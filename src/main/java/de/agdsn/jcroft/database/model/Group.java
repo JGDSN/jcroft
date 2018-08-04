@@ -96,6 +96,14 @@ public class Group implements Serializable {
         return members;
     }
 
+    public void addMembership (GroupMembership membership) {
+        this.members.add(membership);
+    }
+
+    public void removeMembership (GroupMembership membership) {
+        this.members.remove(membership);
+    }
+
     public List<Actor> listMembers() {
         List<Actor> actors = new ArrayList<>();
 

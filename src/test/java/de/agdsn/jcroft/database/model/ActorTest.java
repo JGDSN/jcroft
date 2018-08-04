@@ -45,6 +45,8 @@ public class ActorTest {
         assertEquals(ActorType.SERVICE, actor2.getType());
         assertEquals(false, actor2.isUser());
         assertEquals(true, actor2.isService());
+
+        assertEquals(0, actor1.listGroupMemberships().size());
     }
 
     @Test
