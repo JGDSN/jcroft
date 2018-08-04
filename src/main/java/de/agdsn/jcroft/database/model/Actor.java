@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +26,13 @@ public class Actor implements Serializable {
     private ActorType type;
 
     @OneToMany (mappedBy = "actor", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<GroupMembership> groups;
+    private List<GroupMembership> groups = new ArrayList<>();
+
+    @OneToOne(mappedBy = "actor", orphanRemoval = true, optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
+
+    @OneToOne(mappedBy = "actor", orphanRemoval = true, optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Service service;
 
     /**
     * create a new actor
@@ -60,6 +67,22 @@ public class Actor implements Serializable {
 
     public List<GroupMembership> listGroupMemberships () {
         return this.groups;
+    }
+
+    public User getUser() {
+        if (!isUser()) {
+            throw new IllegalStateException("actor isnt a user.");
+        }
+
+        return user;
+    }
+
+    public Service getService() {
+        if (!isService()) {
+            throw new IllegalStateException("actor isnt a service.");
+        }
+
+        return service;
     }
 
     @Override

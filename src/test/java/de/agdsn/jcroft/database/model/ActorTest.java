@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 
 public class ActorTest {
 
@@ -29,6 +30,10 @@ public class ActorTest {
         Actor actor1 = new Actor(ActorType.USER);
         Actor actor2 = new Actor(ActorType.SERVICE);
 
+        //should return null, but shouldnt throw an exception
+        assertNull(actor1.getUser());
+        assertNull(actor2.getService());
+
         //check for correct implementation of equals() and hashCode() method
         assertNotEquals(actor1, actor2);
         assertNotEquals(actor1.hashCode(), actor2.hashCode());
@@ -47,6 +52,18 @@ public class ActorTest {
         assertEquals(true, actor2.isService());
 
         assertEquals(0, actor1.listGroupMemberships().size());
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void testGetServiceIfUser () {
+        Actor actor1 = new Actor(ActorType.USER);
+        actor1.getService();
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void testGetUserIfService () {
+        Actor actor2 = new Actor(ActorType.SERVICE);
+        actor2.getUser();
     }
 
     @Test
