@@ -15,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "room_logs", indexes = {
         @Index(columnList = "room_id", name = "room_id_idx"),
-        @Index(columnList = "author_id_id", name = "author_id_idx")
+        @Index(columnList = "author_id", name = "author_id_idx")
 })
 public class RoomLogEntry {
 

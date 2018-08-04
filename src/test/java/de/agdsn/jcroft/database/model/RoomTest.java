@@ -74,6 +74,8 @@ public class RoomTest {
 
         room.removeAllPatchPorts();
         assertEquals(0, room.listPatchPorts().size());
+
+        assertEquals(0, room.listLogs().size());
     }
 
 }

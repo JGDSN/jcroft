@@ -44,6 +44,9 @@ public class Room implements Serializable {
     @OneToMany(mappedBy = "id")
     private List<PatchPort> patchPorts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "room")
+    private List<RoomLogEntry> logs = new ArrayList<>();
+
     public Room (Building building, String roomNumber, int floor) {
         Objects.requireNonNull(building);
         StringUtils.requireNonEmptyString(roomNumber, "room number");
@@ -119,6 +122,10 @@ public class Room implements Serializable {
 
     public void removeAllPatchPorts () {
         this.patchPorts.clear();
+    }
+
+    public List<RoomLogEntry> listLogs() {
+        return logs;
     }
 
 }
