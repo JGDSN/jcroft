@@ -19,7 +19,7 @@ public class UnixAccount implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private int id;
+    protected int id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

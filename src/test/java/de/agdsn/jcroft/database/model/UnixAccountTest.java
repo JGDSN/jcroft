@@ -1,8 +1,10 @@
 package de.agdsn.jcroft.database.model;
 
+import de.agdsn.jcroft.database.model.enums.ActorType;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class UnixAccountTest {
 
@@ -48,6 +50,42 @@ public class UnixAccountTest {
         assertEquals("/bin/bash", account.getLoginShell());
         assertEquals("/home/test", account.getHomeDir());
         assertEquals(user, account.getUser());
+    }
+
+    @Test
+    public void testEquals () {
+        UnixAccount account = new UnixAccount();
+        UnixAccount account1 = new UnixAccount();
+
+        account.id = 10;
+        account1.id = 10;
+
+        //same instance
+        assertEquals(account, account);
+
+        assertNotEquals(account, null);
+        assertNotEquals(account, "test string");
+
+        //same values
+        assertEquals(account, account1);
+
+        //other id
+        UnixAccount account2 = new UnixAccount();
+        account2.id = 20;
+        assertNotEquals(account, account2);
+
+        assertEquals(account.getLoginShell(), account1.getLoginShell());
+    }
+
+    @Test
+    public void testHashCode () {
+        UnixAccount account = new UnixAccount();
+        UnixAccount account1 = new UnixAccount();
+
+        account.id = 10;
+        account1.id = 10;
+
+        assertEquals(account.hashCode(), account1.hashCode());
     }
 
 }
