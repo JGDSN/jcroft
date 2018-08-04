@@ -2,6 +2,9 @@ package de.agdsn.jcroft.database.model;
 
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -48,6 +51,20 @@ public class GroupTest {
         //remove membership
         group.removeMembership(membership);
         assertEquals(0, group.listMemberships().size());
+        assertEquals(0, group.listMembers().size());
+
+        //add membership with date in future
+        GroupMembership membership1 = new GroupMembership(group, new Actor());
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DATE, 1);
+        membership1.setBeginsAt(c.getTime());
+
+        group.addMembership(membership1);
+
+        assertEquals(false, membership1.isMember());
+        assertEquals(1, group.listMemberships().size());
         assertEquals(0, group.listMembers().size());
     }
 
