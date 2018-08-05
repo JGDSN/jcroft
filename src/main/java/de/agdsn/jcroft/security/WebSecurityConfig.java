@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.session.InvalidSessionStrategy;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 
 @Configuration
 @EnableWebSecurity
@@ -23,14 +25,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .and()
-                .logout()
-                .logoutSuccessHandler(apIv1UserLogoutHandler)
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/logoutSuccess");
+                .sessionManagement()
+                    .invalidSessionUrl("/sessionInvalid")
+                    .maximumSessions(1)
+                        .expiredUrl("/sessionExpired")
+                        .maxSessionsPreventsLogin(false)
+                    .and()
+                .and().formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                .and().logout()
+                    .logoutSuccessHandler(apIv1UserLogoutHandler)
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/logoutSuccess");
     }
 
     @Override

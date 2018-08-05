@@ -30,8 +30,26 @@ public class SessionController {
     }
 
     @GetMapping("/logoutSuccess")
-    public String logoutSuccess(Authentication authentication) {
+    public String logoutSuccess(Model model, Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
+
+        model.addAttribute("msg", "You logged out successfully.");
+        return "logout";
+    }
+
+    @GetMapping("/sessionExpired")
+    public String sessionExpired(Model model, Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
+
+        model.addAttribute("msg", "Your session expired.");
+        return "logout";
+    }
+
+    @GetMapping("/sessionInvalid")
+    public String sessionInvalid(Model model, Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
+
+        model.addAttribute("msg", "Your session could not be validated.");
         return "logout";
     }
 }

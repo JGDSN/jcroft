@@ -42,6 +42,8 @@ public class Application {
             return;
         }
 
+        System.setProperty("spring.session.timeout", JCroftConfiguration.getValue("session_timeout"));
+
         //Start the spring web service
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
