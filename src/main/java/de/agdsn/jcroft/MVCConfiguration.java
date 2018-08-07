@@ -16,7 +16,7 @@ public class MVCConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/res/**")
-                .addResourceLocations("/static.resources/js/", "/static.resources/theme/")
+                .addResourceLocations("classpath:/static/")
                 .setCachePeriod(3600)
                 .setCacheControl(CacheControl.maxAge(3600, TimeUnit.SECONDS))
                 .resourceChain(true)
