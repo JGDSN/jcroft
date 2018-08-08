@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
@@ -29,7 +30,13 @@ public class IndexController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/")
-    public String index(Model model, Authentication authentication) {
+    public String index() {
+        return "redirect:/p/";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/p/**")
+    public String page(Model model, Authentication authentication, HttpServletRequest request) {
         //TODO Remove user creation on login (DANGEROUS!)
         Optional<User> ou = userRepository.findByUsername(authentication.getName());
         User user;
@@ -44,9 +51,13 @@ public class IndexController {
         APIv1UserToken token = apIv1UserTokenRepository.lookupByUser(authentication.getName());
         if(token==null)token = apIv1UserTokenRepository.issue(authentication.getName(), user.getId());
 
+        String path = request.getRequestURI().substring("/p".length());
+        if(path.isEmpty())path = "/";
+
         model.addAttribute("username", authentication.getName());
         model.addAttribute("usercaption", "Team JCroft");
         model.addAttribute("api_token", token.getToken());
+        model.addAttribute("init_path", path);
         return "index";
     }
 }
