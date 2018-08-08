@@ -5,7 +5,6 @@ import com.hazelcast.config.TcpIpConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.spring.cache.HazelcastCacheManager;
-import de.agdsn.jcroft.importer.PermissionImporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -46,10 +45,6 @@ public class Application {
 
         //Start the spring web service
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-
-        //add default data like basic permissions (if absent)
-        PermissionImporter importer = context.getBean(PermissionImporter.class);
-        importer.importPermissions();
     }
 
     @Bean
