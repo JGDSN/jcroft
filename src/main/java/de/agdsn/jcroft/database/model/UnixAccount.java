@@ -12,7 +12,7 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "unix_accounts", indexes = {
-        @Index(columnList = "user_id", name = "user_id_idx")
+        //@Index(columnList = "user_id", name = "user_id_idx")
 })
 public class UnixAccount implements Serializable {
 

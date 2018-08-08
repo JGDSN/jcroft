@@ -19,6 +19,7 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "users", indexes = {
+        @Index(columnList = "username", name = "username_idx"),
         @Index(columnList = "email", name = "email_idx")
 })
 public class User implements Serializable {
