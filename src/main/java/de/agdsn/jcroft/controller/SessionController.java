@@ -13,6 +13,10 @@ import java.util.Map;
 
 @Controller
 public class SessionController {
+
+    public static final String REDIRECT_INDEX = "redirect:/";
+    public static final String NO_SESSION_PAGE = "nosession";
+
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -20,7 +24,7 @@ public class SessionController {
 
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model, Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
+        if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX;
         Map<String, String[]> paramMap = request.getParameterMap();
 
         if (paramMap.containsKey("error")) {
@@ -31,25 +35,25 @@ public class SessionController {
 
     @GetMapping("/logoutSuccess")
     public String logoutSuccess(Model model, Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
+        if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX;
 
         model.addAttribute("msg", "You logged out successfully.");
-        return "logout";
+        return NO_SESSION_PAGE;
     }
 
     @GetMapping("/sessionExpired")
     public String sessionExpired(Model model, Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
+        if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX;
 
         model.addAttribute("msg", "Your session expired. Please remember to log out after every visit!");
-        return "logout";
+        return NO_SESSION_PAGE;
     }
 
     @GetMapping("/sessionInvalid")
     public String sessionInvalid(Model model, Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
+        if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX;
 
         model.addAttribute("msg", "Your session is invalid. Please remember to log out after every visit!");
-        return "logout";
+        return NO_SESSION_PAGE;
     }
 }

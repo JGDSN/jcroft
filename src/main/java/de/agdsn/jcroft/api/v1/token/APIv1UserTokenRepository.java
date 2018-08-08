@@ -17,7 +17,7 @@ public class APIv1UserTokenRepository {
     }
 
     public synchronized void revoke(String username){
-        List<APIv1UserToken> revoke = new ArrayList<APIv1UserToken>(2);
+        List<APIv1UserToken> revoke = new ArrayList<>(2);
         for(Map.Entry<String, APIv1UserToken> entry : tokenMap.entrySet()){
             if(entry.getValue().getUsername().equalsIgnoreCase(username)){
                 revoke.add(entry.getValue());

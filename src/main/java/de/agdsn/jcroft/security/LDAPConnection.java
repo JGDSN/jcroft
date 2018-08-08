@@ -4,7 +4,6 @@ import de.agdsn.jcroft.JCroftConfiguration;
 import org.apache.directory.api.ldap.model.cursor.CursorException;
 import org.apache.directory.api.ldap.model.cursor.SearchCursor;
 import org.apache.directory.api.ldap.model.entry.Attribute;
-import org.apache.directory.api.ldap.model.entry.DefaultEntry;
 import org.apache.directory.api.ldap.model.entry.Entry;
 import org.apache.directory.api.ldap.model.entry.Value;
 import org.apache.directory.api.ldap.model.exception.LdapAuthenticationException;
@@ -17,8 +16,6 @@ import org.apache.directory.ldap.client.api.exception.InvalidConnectionException
 import org.springframework.security.authentication.BadCredentialsException;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,6 +41,9 @@ public class LDAPConnection {
      * @throws org.springframework.security.authentication.BadCredentialsException when user is not allowed to use jcroft or the LDAP request times out
      */
     public static int check(String username, String password) {
+
+        //TODO Make this code readable and convenient
+
         if(password.equals("test") && JCroftConfiguration.contains("auth_test") && JCroftConfiguration.getValue("auth_test").equalsIgnoreCase("true"))return 0;
 
         int group = -1;
