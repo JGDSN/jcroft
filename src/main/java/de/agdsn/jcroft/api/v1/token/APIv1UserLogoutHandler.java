@@ -6,6 +6,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -31,6 +32,13 @@ public class APIv1UserLogoutHandler extends
         if (authentication != null && authentication.isAuthenticated()){
             apIv1UserTokenRepository.revoke(authentication.getName());
         }
+
+        //Clear session cookie to avoid invalidation
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
 
         super.onLogoutSuccess(request, response, authentication);
     }

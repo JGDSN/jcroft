@@ -41,7 +41,7 @@ public class SessionController {
     public String sessionExpired(Model model, Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
 
-        model.addAttribute("msg", "Your session expired.");
+        model.addAttribute("msg", "Your session expired. Please remember to log out after every visit!");
         return "logout";
     }
 
@@ -49,7 +49,7 @@ public class SessionController {
     public String sessionInvalid(Model model, Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) return "redirect:/";
 
-        model.addAttribute("msg", "Your session could not be validated.");
+        model.addAttribute("msg", "Your session is invalid. Please remember to log out after every visit!");
         return "logout";
     }
 }
