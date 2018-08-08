@@ -50,10 +50,8 @@ public class SessionController {
     }
 
     @GetMapping("/sessionInvalid")
-    public String sessionInvalid(Model model, Authentication authentication) {
+    public String sessionInvalid(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX;
-
-        model.addAttribute("msg", "Your session is invalid. Please remember to log out after every visit!");
-        return NO_SESSION_PAGE;
+        return "redirect:/login";
     }
 }
