@@ -18,7 +18,11 @@
             <img src="/res/img/login_logo.png" />
             <h5 th:text="${msg}" />
             <br/>
-            <p style="font-weight: 900">Please close this browser window now!</p>
+            <form method="get" action="/login">
+                <div class="form-group row">
+                    <button type="submit" class="btn btn-primary">Back to login page</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
