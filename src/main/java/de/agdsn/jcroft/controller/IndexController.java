@@ -1,5 +1,6 @@
 package de.agdsn.jcroft.controller;
 
+import de.agdsn.jcroft.Application;
 import de.agdsn.jcroft.api.v1.token.APIv1UserToken;
 import de.agdsn.jcroft.api.v1.token.APIv1UserTokenRepository;
 import de.agdsn.jcroft.database.data.ActorRepository;
@@ -7,6 +8,8 @@ import de.agdsn.jcroft.database.data.UserRepository;
 import de.agdsn.jcroft.database.model.Actor;
 import de.agdsn.jcroft.database.model.User;
 import de.agdsn.jcroft.database.model.enums.ActorType;
+import de.agdsn.jcroft.permission.PermissionSet;
+import de.agdsn.jcroft.ui.menu.MenuStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -26,6 +29,8 @@ public class IndexController {
     ActorRepository actorRepository;
     @Autowired
     APIv1UserTokenRepository apIv1UserTokenRepository;
+    @Autowired
+    MenuStructure menuStructure;
 
 
     @PreAuthorize("isAuthenticated()")
@@ -38,6 +43,7 @@ public class IndexController {
     @GetMapping("/p/**")
     public String page(Model model, Authentication authentication, HttpServletRequest request) {
         //TODO Remove user creation on login (DANGEROUS!)
+        //Fetch User & API Token
         Optional<User> ou = userRepository.findByUsername(authentication.getName());
         User user;
         if(ou.isPresent()) {
@@ -53,11 +59,24 @@ public class IndexController {
 
         String path = request.getRequestURI().substring("/p".length());
         if(path.isEmpty())path = "/";
+        if(!path.endsWith("/"))path = path + "/";
+
+        //Calculate version message
+        String version = "<b>Version</b> "+Application.version+" <b>Build</b> "+Application.build;
+
+        //Calculate permissions
+        PermissionSet permissionSet = user.getActor().getPermissions();
+
+        //Build menu structure (depending on permissions)
+        String menu = menuStructure.toHTML(permissionSet);
+
 
         model.addAttribute("username", authentication.getName());
         model.addAttribute("usercaption", "Team JCroft");
         model.addAttribute("api_token", token.getToken());
         model.addAttribute("init_path", path);
+        model.addAttribute("version", version);
+        model.addAttribute("menu", menu);
         return "index";
     }
 }

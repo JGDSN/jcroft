@@ -1,14 +1,13 @@
 package de.agdsn.jcroft.database.model;
 
 import de.agdsn.jcroft.database.model.enums.ActorType;
+import de.agdsn.jcroft.permission.PermissionSet;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -102,6 +101,30 @@ public class Actor implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, type);
+    }
+
+    public Set<Group> getGroups(){
+        Set<Group> groups = new HashSet<>();
+        for(GroupMembership membership : this.listGroupMemberships()){
+            groups.add(membership.getGroup());
+        }
+        //Explore all groups of this user (groups can be in groups), circles allowed
+        boolean all = true;
+        while(all){
+            int before = groups.size();
+            Set<Group> ng = new HashSet<>();
+            for(Group g : groups){
+                ng.add(g);
+                g.listMemberships().forEach(gm->ng.add(gm.getGroup()));
+            }
+            groups = ng;
+            if(groups.size()==before)all = false; //No new elements found anymore -> exploration finished
+        }
+        return groups;
+    }
+
+    public PermissionSet getPermissions(){
+        return new PermissionSet(this);
     }
 
 }

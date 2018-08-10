@@ -31,6 +31,8 @@ import java.io.IOException;
 public class Application {
 
     public static final Logger MAIN_LOGGER = LoggerFactory.getLogger(Application.class);
+    public static final String version = "0.0.1 Dev-Preview";
+    public static final int build = 1;
 
     public static void main(String[] args) {
         System.setProperty("spring.config.name", "application");

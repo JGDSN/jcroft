@@ -191,41 +191,7 @@
             </form>
             <!-- /.search form -->
 
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">MAIN NAVIGATION</li>
-
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class=" fa fa-tachometer-alt"></i> <span>Dashboard</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        <li><a href="http://rocketcms.chipbyte.de/admin/home"><i class=" fa fa-tachometer-alt"></i> Dashboard</a></li>
-
-                    </ul>
-                </li>
-
-
-
-                <li>
-                    <a href="#">
-                        <i class=" fa fa-list-alt"></i> <span>Posts</span>
-                        <span class="pull-right-container">
-
-                        </span>
-                    </a>
-                </li>
-
-
-
-
-            </ul>
+            <ul class="sidebar-menu" data-widget="tree" th:utext="${menu}"></ul>
 
         </section>
         <!-- /.sidebar -->
@@ -236,12 +202,11 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header fade" id="main_header">
             <h1>
-                Welcome to JCroft!
-                <small>it all starts here</small>
+                <div id="title"></div>
             </h1>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb" id="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="#">Examples</a></li>
                 <li class="active">Blank page</li>
@@ -253,11 +218,25 @@
 
         <!-- Main content -->
         <section class="content">
+            <div style="position: absolute; width: inherit; z-index: 1; display: block; visibility: hidden">
+                <div id="loading" class="sk-cube-grid" style="width: 39px;height: 39px;margin: 100px auto">
+                    <div class="sk-cube sk-cube1"></div>
+                    <div class="sk-cube sk-cube2"></div>
+                    <div class="sk-cube sk-cube3"></div>
+                    <div class="sk-cube sk-cube4"></div>
+                    <div class="sk-cube sk-cube5"></div>
+                    <div class="sk-cube sk-cube6"></div>
+                    <div class="sk-cube sk-cube7"></div>
+                    <div class="sk-cube sk-cube8"></div>
+                    <div class="sk-cube sk-cube9"></div>
+                </div>
+                <!-- Dirty workaround to fix missing CSS features -->
+                <p style="width: 100%; visibility: hidden;">J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J J</p>
+            </div>
 
-            <!--------------------------
-              | Your Page Content Here |
-              -------------------------->
+            <div id="main_div" class="fade" style="z-index: 0">
 
+            </div>
 
 
         </section>
@@ -266,9 +245,7 @@
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 0.0.1 Dev-Preview <b>Build</b> 1
-        </div>
+        <div class="pull-right hidden-xs" th:utext="${version}"></div>
         <strong>Copyright &copy; 2018 <a href="https://agdsn.de">AG DSN</a></strong>, All Rights Reserved.
     </footer>
 </div>
@@ -281,7 +258,7 @@
 
 <script>
     $(document).ready(function () {
-        $('.sidebar-menu').tree()
+        navigate(init_path);
     })
 </script>
 

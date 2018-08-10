@@ -116,4 +116,8 @@ public class Group implements Serializable {
         return actors;
     }
 
+    public List<GroupPermission> getPermissions(){
+        return permissions;
+    }
+
 }

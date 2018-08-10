@@ -1,0 +1,35 @@
+package de.agdsn.jcroft.ui.menu;
+
+import de.agdsn.jcroft.permission.PermissionManager;
+import de.agdsn.jcroft.permission.PermissionRequirement;
+import de.agdsn.jcroft.permission.PermissionSet;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+
+public class MenuStructure {
+    @Autowired
+    PermissionManager permissionManager;
+
+    private ArrayList<MenuElement> elements;
+
+    public MenuStructure(){
+        initStructure();
+    }
+
+    private void initStructure() {
+        elements = new ArrayList<>();
+        elements.add(new MenuElement("Home", "fa-tachometer-alt", "/", new PermissionRequirement("*", 0)));
+        elements.add(new MenuElementList("User Management", "fa-user", "#", new PermissionRequirement("*", 0))
+                        .add(new MenuElement("Search users", null, "/search_users", new PermissionRequirement("*", 0)))
+                        .add(new MenuElement("Somepermission", null, "/some_permission", new PermissionRequirement("some.permission", 1))));
+    }
+
+    public String toHTML(PermissionSet permissionSet){
+        String build = "<li class=\"header\">MAIN NAVIGATION</li>";
+        for(MenuElement el : elements){
+            build+=el.toHTML(permissionManager, permissionSet);
+        }
+        return build;
+    }
+}
