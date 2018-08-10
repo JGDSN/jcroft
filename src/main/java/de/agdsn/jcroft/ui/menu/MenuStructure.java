@@ -21,8 +21,8 @@ public class MenuStructure {
         elements = new ArrayList<>();
         elements.add(new MenuElement("Home", "fa-tachometer-alt", "/", new PermissionRequirement("*", 0)));
         elements.add(new MenuElementList("User Management", "fa-user", "#", new PermissionRequirement("*", 0))
-                        .add(new MenuElement("Search users", null, "/search_users", new PermissionRequirement("*", 0)))
-                        .add(new MenuElement("Somepermission", null, "/some_permission", new PermissionRequirement("some.permission", 1))));
+                        .add(new MenuElement("Search users", "fa-search", "/search_users", new PermissionRequirement("*", 0)))
+                        .add(new MenuElement("Somepermission", "fa-search", "/some_permission", new PermissionRequirement("some.permission", 1))));
     }
 
     public String toHTML(PermissionSet permissionSet){

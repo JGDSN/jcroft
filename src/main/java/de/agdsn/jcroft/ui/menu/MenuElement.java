@@ -29,7 +29,7 @@ public class MenuElement {
             }else{
                 //Element in a dropdown
                 return "<li><a href=\"javascript:void(0);\" onclick=\"navigate('" + href
-                        + "')\">" + name + "</a></li>";
+                        + "')\"><i class=\"fa "+icon+"\"></i> " + name + "</a></li>";
             }
         }else return ""; //No permission -> hide element
     }
