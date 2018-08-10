@@ -70,6 +70,9 @@ public class IndexController {
         //Build menu structure (depending on permissions)
         String menu = menuStructure.toHTML(permissionSet);
 
+        //Build user image & url
+        String user_path = "navigate('/user/"+user.getId()+"/')";
+        String user_image = "http://rocketcms.chipbyte.de/styles/admin/dist/img/user2-160x160.jpg";
 
         model.addAttribute("username", authentication.getName());
         model.addAttribute("usercaption", "Team JCroft");
@@ -77,6 +80,8 @@ public class IndexController {
         model.addAttribute("init_path", path);
         model.addAttribute("version", version);
         model.addAttribute("menu", menu);
+        model.addAttribute("user_path", user_path);
+        model.addAttribute("user_image", user_image);
         return "index";
     }
 }

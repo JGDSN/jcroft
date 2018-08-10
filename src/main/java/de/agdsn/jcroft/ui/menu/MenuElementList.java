@@ -37,7 +37,7 @@ public class MenuElementList extends MenuElement{
                 }
             }else{
                 //Render as dropdown
-                String build = "<li class=\"treeview\"><a href=\"javascript:void(0)\" onclick=\"navigate('";
+                String build = "<li class=\"treeview\"><a href=\"javascript:void(0);\" onclick=\"navigate('";
                 build += href;
                 build += "')\"><i class=\"fa ";
                 build += icon;

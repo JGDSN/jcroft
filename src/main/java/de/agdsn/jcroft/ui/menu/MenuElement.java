@@ -22,13 +22,13 @@ public class MenuElement {
         if(manager.hasPermissions(set, permissionRequirement)){
             if(level==0){
                 //Element on the primary level
-                return "<li><a href=\"javascript:void(0)\" onclick=\"navigate('" + href +
+                return "<li><a href=\"javascript:void(0);\" onclick=\"navigate('" + href +
                         "')\"><i class=\"fa " + icon +
                         "\"></i><span>" + name +
                         "</span></a></li>";
             }else{
                 //Element in a dropdown
-                return "<li><a href=\"javascript:void(0)\" onclick=\"navigate('" + href
+                return "<li><a href=\"javascript:void(0);\" onclick=\"navigate('" + href
                         + "')\">" + name + "</a></li>";
             }
         }else return ""; //No permission -> hide element
