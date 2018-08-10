@@ -33,9 +33,6 @@ public class PermissionSet {
         }
     }
 
-    public PermissionSet(Map<String, Integer> permissions){
-        this.permissions = permissions;
-    }
     public Map<String, Integer> getPermissions(){
         return permissions;
     }
