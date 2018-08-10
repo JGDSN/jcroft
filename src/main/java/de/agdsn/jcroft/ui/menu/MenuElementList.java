@@ -23,8 +23,9 @@ public class MenuElementList extends MenuElement{
     @Override
     protected String toHTML(PermissionManager manager, PermissionSet set){
         if(manager.hasPermissions(set, permissionRequirement)){
-            String enc = "";
-            for(MenuElement el : elements)enc += el.toHTML(manager, set);
+            StringBuilder encBuilder = new StringBuilder();
+            for(MenuElement el : elements)encBuilder.append(el.toHTML(manager, set));
+            String enc = encBuilder.toString();
             if(enc.isEmpty()){
                 //There are no subitems here for our user
                 if(href.equalsIgnoreCase("#")){

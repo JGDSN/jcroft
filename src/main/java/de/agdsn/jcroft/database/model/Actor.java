@@ -104,23 +104,23 @@ public class Actor implements Serializable {
     }
 
     public Set<Group> getGroups(){
-        Set<Group> groups = new HashSet<>();
+        Set<Group> pGroups = new HashSet<>();
         for(GroupMembership membership : this.listGroupMemberships()){
-            groups.add(membership.getGroup());
+            pGroups.add(membership.getGroup());
         }
         //Explore all groups of this user (groups can be in groups), circles allowed
         boolean all = true;
         while(all){
-            int before = groups.size();
+            int before = pGroups.size();
             Set<Group> ng = new HashSet<>();
-            for(Group g : groups){
+            for(Group g : pGroups){
                 ng.add(g);
                 g.listMemberships().forEach(gm->ng.add(gm.getGroup()));
             }
-            groups = ng;
-            if(groups.size()==before)all = false; //No new elements found anymore -> exploration finished
+            pGroups = ng;
+            if(pGroups.size()==before)all = false; //No new elements found anymore -> exploration finished
         }
-        return groups;
+        return pGroups;
     }
 
     public PermissionSet getPermissions(){

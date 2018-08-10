@@ -16,18 +16,22 @@ public class PermissionSet {
         for(Group g : groups){
             for(GroupPermission p : g.getPermissions()){
                 String token = p.getPermission().getToken();
-                Integer curr = permissions.get(token);
-                Integer soon = p.getPower();
-                if(curr==null){
-                    permissions.put(token, soon);
-                }else{
-                    if(curr>=0){ //If curr is negative it's already forbidden
-                        if(soon<0){ //New group forbids previously granted permission
-                            permissions.put(token, -1);
-                        }else if(soon>curr){ //New group elevates permission level
-                            permissions.put(token, soon);
-                        }
-                    }
+                Integer level = p.getPower();
+                applyPermission(token, level);
+            }
+        }
+    }
+
+    public void applyPermission(String token, Integer level) {
+        Integer curr = permissions.get(token);
+        if(curr==null){
+            permissions.put(token, level);
+        }else{
+            if(curr>=0){ //If curr is negative it's already forbidden
+                if(level<0){ //New group forbids previously granted permission
+                    permissions.put(token, -1);
+                }else if(level>curr){ //New group elevates permission level
+                    permissions.put(token, level);
                 }
             }
         }
@@ -39,25 +43,26 @@ public class PermissionSet {
 
     public int getPermissionLevel(String token){
         //Tokens in form of a.b.c.d or a.b.c.* or a.b.* (which all grant a.b.c.d)
-        int max_level = 0;
+        int maxlevel = 0;
         //Split the token in its parts
         String[] parts = token.split(Pattern.quote("."));
         for(int i = 0; i<=parts.length; i++){
             String perm = "*";
             if(i>0&&i<parts.length){
-                perm = parts[0];
+                StringBuilder permBuilder = new StringBuilder(parts[0]);
                 for(int a = 1; a<i; a++){
-                    perm+="."+parts[a];
+                    permBuilder.append(".").append(parts[a]);
                 }
-                perm += ".*";
+                permBuilder.append(".*");
+                perm = permBuilder.toString();
             }else if(i==parts.length)perm = token;
             //At this point, String perm holds all permissions (combined over every run)
             Integer comp = permissions.get(perm);
             if(comp!=null){
-                if(comp==-1)max_level = -1;
-                else if(max_level!=-1 && comp>max_level)max_level = comp;   //Permission is join over all parts
+                if(comp==-1)maxlevel = -1;
+                else if(maxlevel!=-1 && comp>maxlevel)maxlevel = comp;   //Permission is join over all parts
             }
         }
-        return max_level;
+        return maxlevel;
     }
 }

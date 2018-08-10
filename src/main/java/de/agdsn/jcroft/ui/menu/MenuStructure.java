@@ -26,10 +26,10 @@ public class MenuStructure {
     }
 
     public String toHTML(PermissionSet permissionSet){
-        String build = "<li class=\"header\">MAIN NAVIGATION</li>";
+        StringBuilder build = new StringBuilder("<li class=\"header\">MAIN NAVIGATION</li>");
         for(MenuElement el : elements){
-            build+=el.toHTML(permissionManager, permissionSet);
+            build.append(el.toHTML(permissionManager, permissionSet));
         }
-        return build;
+        return build.toString();
     }
 }

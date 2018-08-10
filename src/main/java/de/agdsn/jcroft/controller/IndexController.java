@@ -62,7 +62,7 @@ public class IndexController {
         if(!path.endsWith("/"))path = path + "/";
 
         //Calculate version message
-        String version = "<b>Version</b> "+Application.version+" <b>Build</b> "+Application.build;
+        String version = "<b>Version</b> "+Application.VERSION+" <b>Build</b> "+Application.BUILD;
 
         //Calculate permissions
         PermissionSet permissionSet = user.getActor().getPermissions();
