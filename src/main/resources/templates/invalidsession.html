@@ -1,0 +1,69 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>JCroft Usermanagement</title>
+
+</head>
+<!-- LOGOUTIDENTIFYINGKEY -->
+<body>
+<noscript>
+    You need JavaScript to use JCroft.
+</noscript>
+<script>
+    var CookieUtil = {
+
+        get: function (name){
+            var cookieName = encodeURIComponent(name) + "=",
+                cookieStart = document.cookie.indexOf(cookieName),
+                cookieValue = null,
+                cookieEnd;
+
+            if (cookieStart > -1){
+                cookieEnd = document.cookie.indexOf(";", cookieStart);
+                if (cookieEnd == -1){
+                    cookieEnd = document.cookie.length;
+                }
+                cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length, cookieEnd));
+            }
+
+            return cookieValue;
+        },
+
+        set: function (name, value, expires, path, domain, secure) {
+            var cookieText = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+            if (expires instanceof Date) {
+                cookieText += "; expires=" + expires.toGMTString();
+            }
+
+            if (path) {
+                cookieText += "; path=" + path;
+            }
+
+            if (domain) {
+                cookieText += "; domain=" + domain;
+            }
+
+            if (secure) {
+                cookieText += "; secure";
+            }
+
+            document.cookie = cookieText;
+        },
+
+        unset: function (name, path, domain, secure){
+            this.set(name, "", new Date(0), path, domain, secure);
+        }
+
+    };
+    var value = CookieUtil.get("redirect");
+    if(value){
+        CookieUtil.unset("redirect", "/");
+        window.location = value;
+    }else{
+        window.location = "/login";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<div class="callout callout-danger">
+    <h4 th:utext="${'<i class=''icon fa fa-ban''></i> '+title}"></h4>
+
+    <p th:utext="${text}"></p>
+</div>
+<script id="component-script" th:inline="javascript">
+    /*<![CDATA[*/
+    setTitle(/*[[${title}]]*/ "Error resolving thymeleaf expression"
+        , "This should not have happened :(");
+    setPageTitleSuffix(
+        /*[[${title}]]*/"Title failed to load"
+    );
+    applyPageTitle();
+    component = {
+        getComponentData: function () {   //Backup all input fields
+            return {};
+        },
+        initFromData: function (url, component_data) {    //Restore the component's input from component_data
+            return;
+        },
+        initWithoutData: function (url) {   //Make some changes before the user sees the page
+            return;
+        },
+        onInitComplete: function (url, sx, sy) {   //Make ajax calls here, when completed scroll to sx, sy (if not -1)
+            if (sx != -1 && sy != -1) window.scrollTo(sx, sy);
+            return;
+        },
+        onExitComponent: function (url_to) {  //Maybe play a sick animation or sth (component might not really be exited)
+            return;
+        }
+    };
+    /*]]>*/
+</script>

@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -23,13 +24,22 @@ public class SessionController {
     APIv1UserTokenRepository apIv1UserTokenRepository;
 
     @GetMapping("/login")
-    public String login(HttpServletRequest request, Model model, Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX;
+    public String login(HttpServletRequest request, Model model, Authentication authentication, @RequestParam(required=false, defaultValue = "/p/")String from) {
+        if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX+from;
         Map<String, String[]> paramMap = request.getParameterMap();
 
         if (paramMap.containsKey("error")) {
-            model.addAttribute("error", "Invalid credentials!");
+            String[] error_parts = paramMap.get("error");
+            String error = "";
+            if(error_parts!=null&&error_parts.length>=1){
+                StringBuilder builder = new StringBuilder(error_parts[0]);
+                for(int i = 1; i < error_parts.length; i++)builder.append(" ").append(error_parts[i]);
+                error = builder.toString().trim();
+            }
+            if(error.isEmpty())error = "Invalid credentials";
+            model.addAttribute("error", error);
         }
+        model.addAttribute("from", from);
         return "login";
     }
 
@@ -52,6 +62,7 @@ public class SessionController {
     @GetMapping("/sessionInvalid")
     public String sessionInvalid(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX;
-        return "redirect:/login";
+
+        return "invalidsession";
     }
 }
