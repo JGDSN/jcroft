@@ -40,6 +40,12 @@ public class SessionController {
             if(error.isEmpty())error = "Invalid credentials";
             model.addAttribute(ERROR_PARAM, error);
         }
+
+        if(from.toLowerCase().startsWith("/login")){
+            //We don't redirect to ourself
+            from = "/p/";
+        }
+
         model.addAttribute("from", from);
         return "login";
     }
