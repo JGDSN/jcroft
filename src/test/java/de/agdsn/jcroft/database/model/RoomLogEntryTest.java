@@ -3,9 +3,7 @@ package de.agdsn.jcroft.database.model;
 import de.agdsn.jcroft.database.model.enums.ActorType;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class RoomLogEntryTest {
 

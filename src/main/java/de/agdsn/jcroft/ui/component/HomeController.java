@@ -1,4 +1,4 @@
-package de.agdsn.jcroft.controller.component;
+package de.agdsn.jcroft.ui.component;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package de.agdsn.jcroft.security;
+package de.agdsn.jcroft.security.spring;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

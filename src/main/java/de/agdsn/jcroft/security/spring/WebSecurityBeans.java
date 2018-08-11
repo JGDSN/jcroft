@@ -1,4 +1,4 @@
-package de.agdsn.jcroft.security;
+package de.agdsn.jcroft.security.spring;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

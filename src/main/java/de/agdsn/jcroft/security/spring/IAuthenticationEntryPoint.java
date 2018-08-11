@@ -1,4 +1,4 @@
-package de.agdsn.jcroft.security;
+package de.agdsn.jcroft.security.spring;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

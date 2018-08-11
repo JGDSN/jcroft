@@ -1,4 +1,4 @@
-package de.agdsn.jcroft.controller;
+package de.agdsn.jcroft.ui.component;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;

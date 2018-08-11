@@ -1,4 +1,4 @@
-package de.agdsn.jcroft.security;
+package de.agdsn.jcroft.security.spring;
 
 import de.agdsn.jcroft.api.v1.token.APIv1UserLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;

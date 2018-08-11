@@ -15,7 +15,7 @@
     </http>
 
 
-    <beans:bean id="customAuthenticationProvider" class="de.agdsn.jcroft.security.CustomAuthenticationProvider"/>
+    <beans:bean id="customAuthenticationProvider" class="de.agdsn.jcroft.security.spring.CustomAuthenticationProvider"/>
     <authentication-manager>
         <authentication-provider
                 ref="customAuthenticationProvider"/>

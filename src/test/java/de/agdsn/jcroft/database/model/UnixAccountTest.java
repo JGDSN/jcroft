@@ -1,6 +1,5 @@
 package de.agdsn.jcroft.database.model;
 
-import de.agdsn.jcroft.database.model.enums.ActorType;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -9,7 +9,7 @@ import de.agdsn.jcroft.database.model.Actor;
 import de.agdsn.jcroft.database.model.User;
 import de.agdsn.jcroft.database.model.enums.ActorType;
 import de.agdsn.jcroft.permission.PermissionSet;
-import de.agdsn.jcroft.security.RequestRedirector;
+import de.agdsn.jcroft.security.spring.RequestRedirector;
 import de.agdsn.jcroft.ui.menu.MenuStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

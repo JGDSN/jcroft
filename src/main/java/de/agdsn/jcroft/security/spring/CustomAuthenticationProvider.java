@@ -1,5 +1,6 @@
-package de.agdsn.jcroft.security;
+package de.agdsn.jcroft.security.spring;
 
+import de.agdsn.jcroft.security.LDAPConnection;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
