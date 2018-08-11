@@ -16,7 +16,6 @@ public class APIBeans {
     APIv1UserTokenRepository apiVersion1UserTokenRepository(){
         return new APIv1UserTokenRepository();
     }
-
     @Bean
     APIv1UserLogoutHandler apiVersion1UserLogoutHandler(){
         return new APIv1UserLogoutHandler();

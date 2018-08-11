@@ -2,7 +2,6 @@ package de.agdsn.jcroft.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class HttpErrorController implements ErrorController {
 
-    private static final String PATH = "/error";
+    public static final String PATH = "/error";
 
     @RequestMapping(value = PATH)
     public String error(HttpServletRequest request, Model model, HttpServletResponse response) {
@@ -29,9 +28,7 @@ public class HttpErrorController implements ErrorController {
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
             HttpStatus s = HttpStatus.resolve(statusCode);
-            if(s!=null){
-                title = s.value()+" "+s.getReasonPhrase();
-            }
+            title = s.value()+" "+s.getReasonPhrase();
             Object message = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
             if(message!=null){
                 text = message.toString()+" ";

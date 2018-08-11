@@ -92,7 +92,7 @@
                                    th:name="${_csrf.parameterName}"
                                    th:value="${_csrf.token}"/>
                         </form>
-                        <a class="dropdown-toggle" onclick="document.logout.submit();"><i class="fa fa-sign-out-alt"></i></a>
+                        <a class="dropdown-toggle" style="cursor: pointer;" onclick="document.logout.submit();"><i class="fa fa-sign-out-alt"></i></a>
                     </li>
                 </ul>
             </div>
@@ -106,13 +106,13 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel" th:onclick="${user_path}">
+            <div class="user-panel" th:onclick="${user_path}" style="cursor: pointer;">
                 <div class="pull-left image">
                     <img th:src="${user_image}" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p th:text="${username}" style="cursor: default;"></p>
-                    <a href="javascript:void(0);" style="cursor: default;" th:utext="${'<i class=''fa fa-id-badge text-aqua''></i>' + usercaption}"></a>
+                    <p th:text="${username}" style="cursor: pointer;"></p>
+                    <a href="javascript:void(0);" style="cursor: pointer;" th:utext="${'<i class=''fa fa-id-badge text-aqua''></i>' + usercaption}"></a>
                 </div>
             </div>
             <!-- search form -->

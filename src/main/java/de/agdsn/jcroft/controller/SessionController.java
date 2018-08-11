@@ -17,6 +17,7 @@ public class SessionController {
 
     public static final String REDIRECT_INDEX = "redirect:/";
     public static final String NO_SESSION_PAGE = "nosession";
+    public static final String ERROR_PARAM = "error";
 
     @Autowired
     UserRepository userRepository;
@@ -28,16 +29,16 @@ public class SessionController {
         if (authentication != null && authentication.isAuthenticated()) return REDIRECT_INDEX+from;
         Map<String, String[]> paramMap = request.getParameterMap();
 
-        if (paramMap.containsKey("error")) {
-            String[] error_parts = paramMap.get("error");
+        if (paramMap.containsKey(ERROR_PARAM)) {
+            String[] errorParts = paramMap.get(ERROR_PARAM);
             String error = "";
-            if(error_parts!=null&&error_parts.length>=1){
-                StringBuilder builder = new StringBuilder(error_parts[0]);
-                for(int i = 1; i < error_parts.length; i++)builder.append(" ").append(error_parts[i]);
+            if(errorParts!=null&&errorParts.length>=1){
+                StringBuilder builder = new StringBuilder(errorParts[0]);
+                for(int i = 1; i < errorParts.length; i++)builder.append(" ").append(errorParts[i]);
                 error = builder.toString().trim();
             }
             if(error.isEmpty())error = "Invalid credentials";
-            model.addAttribute("error", error);
+            model.addAttribute(ERROR_PARAM, error);
         }
         model.addAttribute("from", from);
         return "login";
