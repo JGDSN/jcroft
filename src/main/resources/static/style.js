@@ -1164,7 +1164,9 @@ function navigate(url, back, sx, sy, old_component_data){
         component.onExitComponent(url);
     }
 
-    $.get( "/a"+url, function(data) {
+    var ajax_path = "/a"+url;
+    if(ajax_path.includes("?"))ajax_path = ajax_path.split("?")[0];
+    $.get( ajax_path, function(data) {
         main_div.innerHTML = data;
 
         if(data.includes("<title>")||data.includes("LOGOUTIDENTIFYINGKEY")){
