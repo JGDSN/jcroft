@@ -1291,3 +1291,30 @@ function updateComponentData(queryObj, dataObject) {
     curr_location = curr_location.split('?')[0]+query;
     window.history.replaceState({"path":curr_location, "sx":window.scrollX, "sy":window.scrollY, "cd":dataObject},"JCroft Usermanagement", "/p"+curr_location);
 }
+
+/**
+ * Update page breadcrumb [{name: "Hey", icon: "fa-home", link: "/hello"},...]
+ * @param breadcrumbData
+ */
+function updateBreadcrumb(breadcrumbData){
+    var build = "";
+
+    var i;
+    for (i = 0; i < breadcrumbData.length; i++) {
+        if(i==breadcrumbData.length-1)build+="<li class=\"active\">";
+        else build+="<li>";
+        if(breadcrumbData[i].link){
+            build += "<a href=\"javascript:void(0);\" onclick=\"navigate('" + breadcrumbData[i].link + "')\">";
+        }
+        if(breadcrumbData[i].icon){
+            build += "<i class=\"fa " + breadcrumbData[i].icon + "\"></i> ";
+        }
+        build += breadcrumbData[i].name;
+        if(breadcrumbData[i].link){
+            build += "</a>";
+        }
+        build+="</li>"
+    }
+
+    breadcrumb.innerHTML = build;
+}

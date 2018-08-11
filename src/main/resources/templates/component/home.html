@@ -5,6 +5,7 @@
     setTitle("Welcome", "Home! :)");
     setPageTitleSuffix("Home");
     applyPageTitle();
+    updateBreadcrumb([{name: "Home", icon: "fa-home"}]);
     component = {
         getComponentData: function () {   //Backup all (not url visible) input fields
             return {};

@@ -11,6 +11,8 @@
         /*[[${title}]]*/"Title failed to load"
     );
     applyPageTitle();
+    updateBreadcrumb([{name: "Home", icon: "fa-home", link: "/"}, {name: /*[[${title}]]*/ "Error"
+    }]);
     component = {
         getComponentData: function () {   //Backup all (not url visible) input fields
             return {};
