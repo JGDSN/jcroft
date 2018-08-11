@@ -1159,7 +1159,7 @@ function navigate(url, back, sx, sy, old_component_data){
     if(curr_location==url)return;
     if(curr_location=="")curr_location="/";
     setLoading(true);
-    backup_component = component;
+    var backup_component = component;
     if(component){
         component.onExitComponent(url);
     }
@@ -1169,18 +1169,20 @@ function navigate(url, back, sx, sy, old_component_data){
 
         if(data.includes("<title>")||data.includes("LOGOUTIDENTIFYINGKEY")){
             //Our login page :D
-            CookieUtil.set("redirect", "/login?error=Session%20expired&from=/p"+url, null, "/");
-            window.location = "/login?error=Session%20expired&from=/p"+url;
+            CookieUtil.set("redirect", "/p"+url, null, "/");
+            window.location = "/login?error=Session%20expired&from="+encodeURIComponent("/p"+url);
             return;
         }
 
         eval(document.getElementById("component-script").innerHTML);
 
         if(back){
-            component.initFromData(url, old_component_data);
+            component.initFromData(url, parseQuery(url), old_component_data);
         }else{
-            component.initWithoutData(url);
-            if(backup_component)window.history.replaceState({"path":curr_location, "sx":window.scrollX, "sy":window.scrollY, "cd":component.getComponentData()},"JCroft Usermanagement", "/p"+curr_location);
+            component.initWithoutData(url, parseQuery(url));
+            if(backup_component){
+                updateComponentData(backup_component.getQueryData(), backup_component.getComponentData());
+            }
             window.history.pushState({"path":url, "sx":window.scrollX, "sy":window.scrollY, "cd":{"unspecified": true}},"JCroft Usermanagement", "/p"+url);
         }
 
@@ -1249,6 +1251,43 @@ function applyPageTitle(){
     if(page_title_suffix) {
         page_title = page_title + " - " + page_title_suffix;
     }
-    window.history.pushState({"path":curr_location, "sx":window.scrollX, "sy":window.scrollY, "cd":{"unspecified": true}},page_title, "/p"+curr_location);
     document.title = page_title;
+}
+
+
+/**
+ * Fetches visible data from the url provided
+ * @param queryString
+ */
+function parseQuery(queryString) {
+    if(queryString.includes('?'))queryString = queryString.split('?')[1];
+    var query = {};
+    var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+    for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split('=');
+        query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+    }
+    return query;
+}
+
+/**
+ * Updates url visible data and hidden (history) data and pushes it to the current history
+ * @param queryObj
+ * @param dataObject
+ */
+function updateComponentData(queryObj, dataObject) {
+    var query = "";
+    var i = 0;
+    for (var key in queryObj) {
+        if (queryObj.hasOwnProperty(key)) {
+            if(i==0)query+="?";
+            else query+="&";
+            query+=key;
+            query+="=";
+            query+=queryObj[key];
+            i++
+        }
+    }
+    curr_location = curr_location.split('?')[0]+query;
+    window.history.replaceState({"path":curr_location, "sx":window.scrollX, "sy":window.scrollY, "cd":dataObject},"JCroft Usermanagement", "/p"+curr_location);
 }

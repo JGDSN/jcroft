@@ -9,6 +9,7 @@ import de.agdsn.jcroft.database.model.Actor;
 import de.agdsn.jcroft.database.model.User;
 import de.agdsn.jcroft.database.model.enums.ActorType;
 import de.agdsn.jcroft.permission.PermissionSet;
+import de.agdsn.jcroft.security.RequestRedirector;
 import de.agdsn.jcroft.ui.menu.MenuStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
-public class IndexController {
+public class IndexController implements RequestRedirector {
 
     @Autowired
     UserRepository userRepository;
@@ -60,6 +61,7 @@ public class IndexController {
         String path = request.getRequestURI().substring("/p".length());
         if(path.isEmpty())path = "/";
         if(!path.endsWith("/"))path = path + "/";
+        path += reconstructParameters(request).toString();
 
         //Calculate version message
         String version = "<b>Version</b> "+Application.VERSION+" <b>Build</b> "+Application.BUILD;

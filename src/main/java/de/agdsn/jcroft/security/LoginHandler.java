@@ -6,6 +6,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 public class LoginHandler implements AuthenticationSuccessHandler {
 
@@ -13,6 +15,7 @@ public class LoginHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         String from = request.getParameter("from");
         if(from==null)from = "/p/";
+        else from = URLDecoder.decode(from, StandardCharsets.UTF_8.toString());
         response.sendRedirect(from);
     }
 }

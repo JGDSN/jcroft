@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class IAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class IAuthenticationEntryPoint implements AuthenticationEntryPoint, RequestRedirector {
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response, AuthenticationException authException)
             throws IOException {
-        response.sendRedirect("/login?from="+request.getRequestURI());
+        this.redirect(request, response);
     }
 }

@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class IAccessDeniedHandler implements AccessDeniedHandler {
+public class IAccessDeniedHandler implements AccessDeniedHandler, RequestRedirector {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
-        response.sendRedirect("/login?from="+request.getRequestURI());
+        this.redirect(request, response);
     }
 }

@@ -60,7 +60,7 @@
     var value = CookieUtil.get("redirect");
     if(value){
         CookieUtil.unset("redirect", "/");
-        window.location = value;
+        window.location = "/login?error=Session%20expired&from="+encodeURIComponent(value);
     }else{
         window.location = "/login";
     }

@@ -6,20 +6,23 @@
     setPageTitleSuffix("Home");
     applyPageTitle();
     component = {
-        getComponentData: function () {   //Backup all input fields
+        getComponentData: function () {   //Backup all (not url visible) input fields
             return {};
         },
-        initFromData: function (url, component_data) {    //Restore the component's input from component_data
+        getQueryData: function () {
+            return {};
+        },
+        initFromData: function (url, query_data, component_data) {    //Restore the component's input from data
             return;
         },
-        initWithoutData: function (url) {   //Make some changes before the user sees the page
+        initWithoutData: function (url, query_data) {   //Make some changes before the user sees the page
             return;
         },
         onInitComplete: function (url, sx, sy) {   //Make ajax calls here, when completed scroll to sx, sy (if not -1)
             if (sx != -1 && sy != -1) window.scrollTo(sx, sy);
             return;
         },
-        onExitComponent: function (url_to) {  //Maybe play a sick animation or sth (component might not really be exited)
+        onExitComponent: function (url_to) {  //Maybe play a sick animation or sth
             return;
         }
     };
