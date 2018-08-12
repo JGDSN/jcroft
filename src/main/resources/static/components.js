@@ -3,6 +3,10 @@ var main_header = document.getElementById("main_header");
 var title = document.getElementById("title");
 var main_div = document.getElementById("main_div");
 var breadcrumb = document.getElementById("breadcrumb");
+var modal = document.getElementById("modal");
+var modal_title = document.getElementById("modal-title");
+var modal_body = document.getElementById("modal-body");
+var modal_footer = document.getElementById("modal-footer");
 var curr_location = "";
 var page_title = "JCroft Usermanagement";
 var page_title_prefix = "";
@@ -60,7 +64,7 @@ function navigate(url, back, sx, sy, old_component_data){
             //Maybe some code in the future
         })
         .fail(function() {
-            alert( "Error while performing ajax request. Maybe try reloading the page?" );
+            showModal( "danger", "Error while contacting JCroft", "<p>Error while performing AJAX request. Maybe try reloading the page?</p>", [{name:"Close", action:"hideModal();", class:"pull-left"}, {name:"Reload", action:"window.location.reload(true);"}]);
             setLoading(false);
         })
         .always(function() {
@@ -182,4 +186,46 @@ function updateBreadcrumb(breadcrumbData){
     }
 
     breadcrumb.innerHTML = build;
+}
+
+/**
+ * Creates a modal
+ * @param type danger/default/primary/info/warning/success
+ * @param title
+ * @param content HTML code
+ * @param options [{name:"somename", action:"someaction", class:"pull-left/pull-right"},...]
+ */
+function showModal(type, title, content, options){
+    modal.classList.remove("modal-danger");
+    modal.classList.remove("modal-default");
+    modal.classList.remove("modal-primary");
+    modal.classList.remove("modal-info");
+    modal.classList.remove("modal-warning");
+    modal.classList.remove("modal-success");
+    modal.classList.add("modal-"+type);
+    modal_title.innerHTML = title;
+    modal_body.innerHTML = content;
+
+    var build = "";
+
+    var i;
+    for (i = 0; i < options.length; i++) {
+            build += "<button type=\"button\" class=\"btn btn-outline";
+            if(options[i].class){
+                build += " "+options[i].class;
+            }
+            build += "\" onclick=\"";
+            build += options[i].action;
+            build += "\">";
+            build += options[i].name;
+            build += "</button>";
+    }
+
+    modal_footer.innerHTML = build;
+
+    $('#modal').modal('show');
+}
+
+function hideModal(){
+    $('#modal').modal('hide');
 }
