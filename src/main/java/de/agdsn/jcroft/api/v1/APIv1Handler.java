@@ -19,6 +19,8 @@ public class APIv1Handler {
     UserRepository userRepository;
     @Autowired
     APIv1UserTokenRepository apIv1UserTokenRepository;
+    @Autowired
+    APIv1ActionRegistry apIv1ActionRegistry;
 
     public APIv1Response onRequest(APIv1Request request, String action){
         Optional<Service> service = serviceRepository.findByToken(request.getToken());
@@ -40,11 +42,14 @@ public class APIv1Handler {
                     }
                 });
     }
-    public APIv1Response performAction(Actor actor, String action, APIv1Request request){
-        HashMap<String, String> response = new HashMap<>();
-        response.put("it", "works");
-        response.put("action", action);
-        response.putAll(request.getParams());
-        return new APIv1Response(200, response);
+    public APIv1Response performAction(Actor actor, String actionName, APIv1Request request){
+        APIv1Action action = apIv1ActionRegistry.getAction(actionName);
+        if(action==null){
+            HashMap<String, String> response = new HashMap<>();
+            response.put("error", "404 - Action not found");
+            response.putAll(request.getParams());
+            return new APIv1Response(404, response);
+        }
+        return action.handle(actor, actor.getPermissions(), request);
     }
 }
